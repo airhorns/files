@@ -1,0 +1,22 @@
+= form_for @log do |f|
+  -if @log.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@log.errors.count, "error")} prohibited this log from being saved:"
+      %ul
+        - @log.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :show_id
+    = f.text_field :show_id
+  .field
+    = f.label :start
+    = f.datetime_select :start
+  .field
+    = f.label :end
+    = f.datetime_select :end
+  .field
+    = f.label :pre_recorded
+    = f.check_box :pre_recorded
+  .actions
+    = f.submit 'Save'
