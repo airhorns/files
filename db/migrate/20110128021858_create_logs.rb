@@ -5,7 +5,7 @@ class CreateLogs < ActiveRecord::Migration
       t.datetime :start
       t.datetime :end
       t.boolean :pre_recorded
-
+      t.text :notes
       t.timestamps
     end
   end

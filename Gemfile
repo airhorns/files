@@ -4,13 +4,14 @@ gem 'rails', '3.0.3'
 gem 'sqlite3-ruby', :require => 'sqlite3'
 gem "devise"
 gem "jammit" # Javascript packager and helper
+gem "thwart", "0.0.4"
 
 group :development, :test do
   # Language manipulation stack
   gem "haml-rails"
   gem "jquery-rails" # Template generator for jQuery
   gem "compass"
-  
+ 
   # Mongrel as test server
   gem "mongrel", "1.2.0.pre2"
   
