@@ -1,0 +1,56 @@
+// Page layout can be done using mixins applied to your semantic classes and IDs
+// For instance this layout defines a one column layout on pages with
+// a body class of "one-col".
+//
+// The markup would look like:
+//    <div id="container">
+//      <div id="header"></div>
+//      <div id="content">
+          <div id="container_footer"></div>
+//      </div>
+//      <div id="footer"></div>
+//    </div>
+//
+// and the layout would look like:
+//    +------------------------+
+//    |        #header         |
+//    +------------------------+
+//    |                        |
+//    |        #content        |
+//    |    #container_footer   |
+//    +------------------------+
+//    |        #footer         |
+//    +------------------------+
+
+@import "compass/layout/sticky-footer"
+
+@include sticky-footer(54px, "#container", "#container_footer", "#footer")
+
+// One third of the grid columns, rounding down. With 24 cols, this is 8.
+//$sidebar-columns: floor($blueprint-grid-columns / 3)
+// Two thirds of the grid columns, rounding up.
+// With 24 cols, this is 16.
+//$content-columns: ceil(2 * $blueprint-grid-columns / 3)
+
+$sidebar-columns: 0
+$content-columns: $blueprint-grid-columns
+
+body.bp
+  #container
+    width: $blueprint-container-size 
+    padding: 0 $blueprint-grid-margin
+    margin: 0 auto -54px auto
+    +clearfix
+     
+  #header
+    +column($blueprint-grid-columns, true)
+
+  #footer
+    width: $blueprint-container-size
+    margin: 0 auto
+    +clearfix
+ 
+  #content
+    // true means it's the last column in the row
+    +column($content-columns, true)
+

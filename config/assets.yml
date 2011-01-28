@@ -1,0 +1,8 @@
+#embed_assets: on
+
+javascripts:
+  main:
+    - public/javascripts/jquery/jquery.js
+    - public/javascripts/rails.js
+    - public/javascripts/application.js
+    - public/javascripts/*.js
