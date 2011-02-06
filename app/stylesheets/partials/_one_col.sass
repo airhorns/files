@@ -35,6 +35,18 @@
 $sidebar-columns: 0
 $content-columns: $blueprint-grid-columns
 
+=padded-span($padding, $n, $override: false)
+  $width: $blueprint_grid_width * $n + $blueprint_grid_margin * ($n - 1) - $padding * 2
+  padding: $padding
+  @if $override
+    width: $width !important
+  @else
+    width: $width
+
+=padded-column($padding, $n, $last: false)
+  +column-base($last)
+  +padded-span($padding, $n)
+
 body.bp
   #container
     width: $blueprint-container-size 

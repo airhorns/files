@@ -1,19 +1,98 @@
+@import compass
 // This import applies a global reset to any page that imports this stylesheet.
 @import blueprint/reset
 // To configure blueprint, edit the partials/base.sass file.
 @import partials/base
+
 // Import all the default blueprint modules so that we can access their mixins.
 @import blueprint
 
+// Import the custom one column layout
+@import partials/one_col
+
+@import "fancy-buttons"
+
+// Elements
+
+h1,h2,h3,h4,h5,h6
+  clear: both
+  width: 100%
+
 body.bp
+  // Blueprint business
   +blueprint-typography(true)
   +blueprint-utilities
   +blueprint-debug
   +blueprint-interaction
-  
-  // Remove the scaffolding when you're ready to start doing visual design.
-  // Or leave it in if you're happy with how blueprint looks out-of-the-box
+
+  // For alert key flash mesages
+  .alert 
+    +error
+
+  // Container setup
+  background-color: #DDD
+  #container
+    .pane, .window
+      +border-radius(5px)
+      background-color: #FFF
+    
+    .window
+      +padded-column(10px, $content-columns, true)
+    .pane
+      +padded-column(10px, $content-columns / 2)
+      &.right
+        margin-right: -1px
+        float: right !important
+    .pane + .pane, .last-pane
+      +padded-column(10px, $content-columns / 2, true)
+
+  .actions
+    width: 100%
+    padding-top: 20px
+    clear: both
+
+
+  // Form setup
   form
     +blueprint-form
+ 
     &.inline
-      +blueprint-inline-form  
+      +blueprint-inline-form
+    .input
+      +column(floor($content-columns / 2), true)
+
+      label
+        width: 80px
+        padding: 10px 10px 0px 0px
+        float: left
+
+      &.field_with_errors 
+        input
+          border: 2px solid #FBC2C4
+          margin-bottom: 0px
+
+        .error
+          display: block
+          border-top: 0px
+          margin-left: 90px
+          width: 293px
+
+  // Buttons
+  a.button, button  
+    +fancy-button-structure   
+    +fancy-button-colors-matte(#ddd)
+
+    margin: 0 2px   
+    vertical-align: middle  
+    font-family: $blueprint-font-family
+    text-decoration: none
+
+    &.big
+      width: 80%
+      margin: 0px auto
+      display: block
+      text-align: center
+
+  //Specific places in the app
+  // Dashboard
+
