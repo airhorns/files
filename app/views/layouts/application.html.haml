@@ -9,8 +9,9 @@
     = include_stylesheets :print, :media => 'print'
     /[if lt IE 8]
       = include_stylesheets :ie, :media => 'screen, projection'
+    - if user_signed_in?
+      = include_javascripts :main
 
-    = include_javascripts :main
     = csrf_meta_tag  
   %body.bp
     #container

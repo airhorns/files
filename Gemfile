@@ -29,6 +29,9 @@ group :development, :test do
   gem "guard-rspec"
   gem "guard-coffeescript"
   gem "guard-compass"
+  if ENV['TERM_PROGRAM'] == 'Apple_Terminal'
+    gem 'growl'
+  end
 
   # ruby-debug 1.9 for ruby 1.9
   gem "ruby-debug19", :require => "ruby-debug"

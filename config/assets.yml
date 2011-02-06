@@ -1,10 +1,12 @@
 #embed_assets: on
 
+template_extension: 'bars'
+template_namespace: 'LDB.ViewRenderers'
+template_function: 'LDB.renderTemplate'
+
 javascripts:
   main:
     - public/javascripts/jquery/jquery.js
-    - public/javascripts/underscore/underscore.js
-    - public/javascripts/backbone/backbone.js
     - public/lib/jqueryui/ui/jquery.ui.core.js
     - public/lib/jqueryui/ui/jquery.ui.widget.js
     - public/lib/jqueryui/ui/jquery.ui.mouse.js
@@ -15,8 +17,10 @@ javascripts:
     - public/lib/slickgrid/slick.core.js
     - public/lib/slickgrid/slick.grid.js
     - public/lib/slickgrid/slick.editors.js
-    - public/javascripts/rails.js
-    - public/javascripts/application.js
+    - public/lib/underscore/underscore.js
+    - public/lib/backbone/backbone.js
+    - public/javascripts/bootstrap.js
+    - client_app/views/**/*.bars
 
 stylesheets:
   screen:
