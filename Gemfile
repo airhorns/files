@@ -2,15 +2,17 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.3'
 gem 'sqlite3-ruby', :require => 'sqlite3'
+gem 'mysql2'
 gem "devise"
 gem "jammit" # Javascript packager and helper
 gem "thwart", "0.0.4"
+gem "compass"
+gem "fancy-buttons"
 
 group :development, :test do
   # Language manipulation stack
   gem "haml-rails"
   gem "jquery-rails" # Template generator for jQuery
-  gem "compass"
  
   # Mongrel as test server
   gem "mongrel", "1.2.0.pre2"
