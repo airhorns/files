@@ -1,0 +1,12 @@
+[submodule "public/lib/jqueryui"]
+	path = public/lib/jqueryui
+	url = https://github.com/jquery/jquery-ui.git
+[submodule "public/lib/slickgrid"]
+	path = public/lib/slickgrid
+	url = https://github.com/mleibman/SlickGrid.git
+[submodule "public/lib/backbone"]
+	path = public/lib/backbone
+	url = https://github.com/documentcloud/backbone.git
+[submodule "public/lib/underscore"]
+	path = public/lib/underscore
+	url = https://github.com/documentcloud/underscore.git
