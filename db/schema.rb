@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110128025302) do
+ActiveRecord::Schema.define(:version => 20110202183018) do
 
   create_table "log_lines", :force => true do |t|
     t.time     "start_time"
@@ -27,6 +27,9 @@ ActiveRecord::Schema.define(:version => 20110128025302) do
     t.boolean  "request"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "artist_mbid"
+    t.string   "album_mbid"
+    t.string   "song_mbid"
   end
 
   create_table "logs", :force => true do |t|
