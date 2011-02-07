@@ -7,11 +7,11 @@
     child.__super__ = parent.prototype;
     return child;
   };
-  LDB.ApplicationController = (function() {
-    function ApplicationController() {
-      ApplicationController.__super__.constructor.apply(this, arguments);
+  LDB.registerView("logs/new", LDB.NewLogView = (function() {
+    function NewLogView() {
+      NewLogView.__super__.constructor.apply(this, arguments);
     }
-    __extends(ApplicationController, Backbone.Controller);
-    return ApplicationController;
-  })();
+    __extends(NewLogView, Backbone.View);
+    return NewLogView;
+  })());
 }).call(this);

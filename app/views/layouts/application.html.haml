@@ -1,7 +1,7 @@
 !!! 5
 %html
   %head
-    %title LOGDB
+    %title Log DB
     %link{:href => "http://fonts.googleapis.com/css?family=Droid+Sans:regular,bold", :rel => "stylesheet", :type => "text/css"}
     %link{:href => "http://fonts.googleapis.com/css?family=Neuton:regular,bold", :rel => "stylesheet", :type => "text/css"}
     %link{:href => "http://fonts.googleapis.com/css?family=Cabin:bold", :rel => "stylesheet", :type => "text/css"}
@@ -15,9 +15,12 @@
     = csrf_meta_tag  
   %body.bp
     #container
-      #header
+      %header
+        = link_to "Sign Out", sign_out_path
+        |
+        = link_to "Feedback", "#"
         %h1 
-          = link_to "LOGDB", root_path
+          = link_to "Log DB", root_path
       #content
         - [:error, :notice, :success, :alert].select {|f| flash[f].present? }.each do |f|
           %div(class=f)

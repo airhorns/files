@@ -10,17 +10,23 @@ javascripts:
     - public/lib/jqueryui/ui/jquery.ui.core.js
     - public/lib/jqueryui/ui/jquery.ui.widget.js
     - public/lib/jqueryui/ui/jquery.ui.mouse.js
-    - public/lib/jqueryui/ui/jquery.ui.*.js
-    - public/lib/jqueryui/ui/jquery.effects.core.js
-    - public/lib/jqueryui/ui/jquery.effects.*.js
+    - public/lib/jqueryui/ui/jquery.ui.tabs.js
+    #- public/lib/jqueryui/ui/jquery.ui.*.js
+    #- public/lib/jqueryui/ui/jquery.effects.core.js
+    #- public/lib/jqueryui/ui/jquery.effects.*.js
     - public/lib/slickgrid/lib/jquery.event.drag-2.0.min.js
     - public/lib/slickgrid/slick.core.js
     - public/lib/slickgrid/slick.grid.js
     - public/lib/slickgrid/slick.editors.js
     - public/lib/underscore/underscore.js
     - public/lib/backbone/backbone.js
-    - public/javascripts/bootstrap.js
+    - public/lib/handlebars/handlebars.js
+    - public/javascripts/paths.js
     - client_app/views/**/*.bars
+    - public/javascripts/views/**/*.js
+    - public/javascripts/models/**/*.js
+    - public/javascripts/controllers/**/*.js
+    - public/javascripts/bootstrap.js
 
 stylesheets:
   screen:

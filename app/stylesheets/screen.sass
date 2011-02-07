@@ -8,12 +8,11 @@
 @import blueprint
 
 // Import the custom one column layout
-@import partials/one_col
+//@import partials/one_col
 
-@import "fancy-buttons"
+//@import "fancy-buttons"
 
 // Elements
-
 h1,h2,h3,h4,h5,h6
   clear: both
   width: 100%
@@ -30,21 +29,53 @@ body.bp
     +error
 
   // Container setup
-  background-color: #DDD
+  background-color: #EEE
+  #container
+    padding: 20px
+    // Bottom margin is weird for the sticky footer at the bottom
+    margin: 0 auto -54px auto
+    +clearfix
+     
+  header
+    z-index: 10
+    display: inline
+    position: absolute
+    top: 15px
+    right: 20px
+    a, a:visited
+      color: #222
+      text-decoration: none      
+
+    a:hover
+      text-decoration: underline
+      color: #666
+
+    h1
+      margin-left: 10px
+      font-size: 20px    
+      display: inline
+      a:hover
+        text-decoration: none
+       
+
+  #footer
+    width: $blueprint-container-size
+    margin: 0 auto
+    +clearfix
+ 
   #container
     .pane, .window
       +border-radius(5px)
       background-color: #FFF
     
     .window
-      +padded-column(10px, $content-columns, true)
+      width: 100%
     .pane
-      +padded-column(10px, $content-columns / 2)
+      width: 50%
       &.right
         margin-right: -1px
         float: right !important
-    .pane + .pane, .last-pane
-      +padded-column(10px, $content-columns / 2, true)
+    //.pane + .pane, .last-pane
 
   .actions
     width: 100%
@@ -59,7 +90,6 @@ body.bp
     &.inline
       +blueprint-inline-form
     .input
-      +column(floor($content-columns / 2), true)
 
       label
         width: 80px
@@ -78,21 +108,28 @@ body.bp
           width: 293px
 
   // Buttons
-  a.button, button  
-    +fancy-button-structure   
-    +fancy-button-colors-matte(#ddd)
+  //a.button, button  
+    //+fancy-button-structure   
+    //+fancy-button-colors-matte(#ddd)
 
-    margin: 0 2px   
-    vertical-align: middle  
-    font-family: $blueprint-font-family
-    text-decoration: none
+    //margin: 0 2px   
+    //vertical-align: middle  
+    //font-family: $blueprint-font-family
+    //text-decoration: none
 
-    &.big
-      width: 80%
-      margin: 0px auto
-      display: block
-      text-align: center
+    //&.big
+      //width: 80%
+      //margin: 0px auto
+      //display: block
+      //text-align: center
 
-  //Specific places in the app
+  // Specific places in the app
+  .application-tabs
+    background: transparent
+    & > .ui-tabs-panel
+      background: white
   // Dashboard
 
+//Footer
+@import "compass/layout/sticky-footer"
+@include sticky-footer(54px, "#container", "#container_footer", "#footer")

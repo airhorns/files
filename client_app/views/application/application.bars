@@ -1,0 +1,8 @@
+<ul>
+  {{#tabs}}
+    <li><a href="#{{anchor}}"><span>{{name}}</span></a></li>
+  {{/tabs}}
+</ul>
+{{#tabs}}
+<div id="{{anchor}}"></div>
+{{/tabs}}

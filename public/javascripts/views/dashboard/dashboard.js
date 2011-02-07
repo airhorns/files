@@ -7,11 +7,11 @@
     child.__super__ = parent.prototype;
     return child;
   };
-  LDB.ApplicationController = (function() {
-    function ApplicationController() {
-      ApplicationController.__super__.constructor.apply(this, arguments);
+  LDB.registerView('dashboard/dashboard', LDB.DashboardView = (function() {
+    function DashboardView() {
+      DashboardView.__super__.constructor.apply(this, arguments);
     }
-    __extends(ApplicationController, Backbone.Controller);
-    return ApplicationController;
-  })();
+    __extends(DashboardView, Backbone.View);
+    return DashboardView;
+  })());
 }).call(this);
