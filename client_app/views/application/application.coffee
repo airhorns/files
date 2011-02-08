@@ -1,14 +1,14 @@
-LDB.registerView "application/application", class LDB.ApplicationView extends Backbone.View
+LDB.registerView "application/application", class LDB.ApplicationView extends LDB.View
   className: "application-tabs"
-  
+  _panels: {}
   tabs: [{
     name: "Dashboard"
     anchor: "dashboard"
-    view: 'dashboard/dashboard'
+    route: "/dashboard"
   },{
     name: "New Log"
-    anchor: "new"
-    view: 'logs/new'
+    anchor: "new_log"
+    route: "/logs/new"
   }]
 
   renderable: ->
@@ -17,13 +17,27 @@ LDB.registerView "application/application", class LDB.ApplicationView extends Ba
 
   render: ->
     super # Renders the handlebars view
-    $(@el).tabs().bind("tabsselect", this.tabChanged).tabs('select', 1).tabs('select',0) # Really stupid hack to force the first tab to render. This is dumb.
+    @ui = $(@el).bind("tabsshow", this.tabShown).tabs().bind("tabsselect", this.tabChanged)
+    return true
 
+  # Panel object builder, gets called for the first tab instantiated when the .tabs() is called
+  tabShown: (event, ui) =>
+    tab = @tabs[ui.index]
+    @_panels[tab.anchor] = $(ui.panel)
+
+  # Route updater for when a user clicks a tab. Only happens after .tabs() is called
   tabChanged: (event, ui) =>
     tab = @tabs[ui.index]
-    unless tab.rendered?
-      # Pull the view to be rendered for this tab, render it, and append it.
-      tab.rendered = (new (LDB.view(tab.view))).render()
-      $(ui.panel).append(tab.rendered.el)
-    true
+    window.location.hash = tab.route # Trigger routing cause this tab was clicked
 
+  panel: (name) ->
+    if @_panels[name]?
+      return @_panels[name]
+    else
+      i = 0
+      for tab in @tabs
+        if tab.anchor == name
+          @ui.tabs('select', i) # Fires event and updates hash
+          return @_panels[name]
+        i++
+      throw "Don't have any panels anchored by #{name}!"

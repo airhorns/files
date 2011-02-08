@@ -1,9 +1,14 @@
 class LDB.DashboardController extends Backbone.Controller
+  views: {}
   routes:
-    '':       'index'
+    '':           'index'
+    '/dashboard': 'dashboard'
 
   index: ->
-    unless LDB.rootView?
-      LDB.rootView = new LDB.ApplicationView()
-      LDB.rootView.render()
-      $('#application').append(LDB.rootView.el)
+    window.location.hash = '/dashboard'
+
+  dashboard: ->
+    unless @views.dashboard?
+      @views.dashboard = new (LDB.view('dashboard/dashboard'))
+      @views.dashboard.render()
+      LDB.rootView.panel('dashboard').append @views.dashboard.el

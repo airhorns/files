@@ -1,5 +1,5 @@
 fmt = (str) ->
-  str.replace(/\s{2,}/g, ' ').replace(/\n/g, ' ').replace(/>\s*</g,'><')
+  (str || "").replace(/\s{2,}/g, ' ').replace(/\n/g, ' ').replace(/>\s*</g,'><')
 
 require '/lib/handlebars/handlebars.js', '/lib/backbone/backbone.js', '/javascripts/forms.js', ->
 
@@ -9,12 +9,13 @@ require '/lib/handlebars/handlebars.js', '/lib/backbone/backbone.js', '/javascri
         toRenderTo: (expected,model={}) ->
           template = Handlebars.compile(this.actual)
           this.actual = template(model)
-          result = (fmt this.actual) == (fmt expected)
-          unless result
-            debugger
+          a = (fmt this.actual)
+          b = (fmt expected)
+
+          result = a == b
           result
 
-    it "should render a field.", ->
+    it "should render a basic field.", ->
       template = '{{#form_for "log"}}
                     {{#field}}
                       {{label "show_id"}}
@@ -56,3 +57,65 @@ require '/lib/handlebars/handlebars.js', '/lib/backbone/backbone.js', '/javascri
                 </form>'
 
       expect(template).toRenderTo(output)
+
+    describe 'select tag rendering', ->
+      beforeEach ->
+        @model =
+          show_id: 2
+          data: [{name:"a", value:1},{name:"b", value:2, selected:true}]
+        @output = '<form accept-charset="UTF-8" action="#" class="new_log">
+                      <select id="log_show_id" name="log[show_id]">
+                        <option value="1">a</option>
+                        <option value="2" selected="selected">b</option>
+                      </select>
+                  </form>'
+
+      it "should render a select input and options", ->
+        template = '{{#form_for "log"}}
+                      {{#select "show_id" data}}
+                        {{option name value}}
+                      {{/select}}
+                    {{/form_for}}'
+        expect(template).toRenderTo(@output, @model)
+
+       it "should render a select label and input with nonstandard", ->
+          @model =
+            qux: [{foo:"a", bar:1},{foo:"b", bar:2, baz:true}]
+          template = '{{#form_for "log"}}
+                        {{#select "show_id" qux}}
+                          {{option foo bar baz}}
+                        {{/select}}
+                      {{/form_for}}'
+          expect(template).toRenderTo(@output, @model)
+
+       it "should render a select label and input using a shortcut.", ->
+          shortcutTemplate = '{{#form_for "log"}}
+                        {{select "show_id" data}}
+                      {{/form_for}}'
+
+          expect(shortcutTemplate).toRenderTo(@output, @model)
+ 
+      it "should render a options without value tags if there are no values", ->
+        @model =
+            data: [{name:"a"},{name:"b"}]
+          template = '{{#form_for "log"}}
+                        {{select "show_id" data}}        
+                      {{/form_for}}'
+          output = '<form accept-charset="UTF-8" action="#" class="new_log">
+                        <select id="log_show_id" name="log[show_id]">
+                          <option>a</option>
+                          <option>b</option>
+                        </select>
+                    </form>'
+
+          expect(template).toRenderTo(output, @model)
+
+    it "should render a hidden field and pull out the value.", ->
+      template = '{{#form_for "log"}}
+                      {{hidden "show_id"}}
+                  {{/form_for}}'
+      output = '<form accept-charset="UTF-8" action="#" class="new_log">
+                    <input type="hidden" id="log_show_id" name="log[show_id]" value="42"/>
+                </form>'
+      expect(template).toRenderTo(output, {show_id: 42})
+    true

@@ -1,5 +1,13 @@
 (function() {
   var compiledCounter;
+  var __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) {
+    for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; }
+    function ctor() { this.constructor = child; }
+    ctor.prototype = parent.prototype;
+    child.prototype = new ctor;
+    child.__super__ = parent.prototype;
+    return child;
+  };
   window.LDB = {
     Views: {},
     ViewRenderers: {},
@@ -22,15 +30,22 @@
       return LDB._compiledHandlebars[i](data, fallback);
     };
   };
-  Backbone.View.prototype.renderable = function() {
-    if (this.model != null) {
-      return this.model.toJSON();
-    } else {
-      return {};
+  LDB.View = (function() {
+    function View() {
+      View.__super__.constructor.apply(this, arguments);
     }
-  };
-  Backbone.View.prototype.render = function() {
-    $(this.el).html(LDB.ViewRenderers[this.view_path](this.renderable()));
-    return this;
-  };
+    __extends(View, Backbone.View);
+    View.prototype.renderable = function() {
+      if (this.model != null) {
+        return this.model.toJSON();
+      } else {
+        return {};
+      }
+    };
+    View.prototype.render = function() {
+      $(this.el).html(LDB.ViewRenderers[this.view_path](this.renderable()));
+      return this;
+    };
+    return View;
+  })();
 }).call(this);

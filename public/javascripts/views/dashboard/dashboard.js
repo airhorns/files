@@ -11,7 +11,7 @@
     function DashboardView() {
       DashboardView.__super__.constructor.apply(this, arguments);
     }
-    __extends(DashboardView, Backbone.View);
+    __extends(DashboardView, LDB.View);
     return DashboardView;
   })());
 }).call(this);

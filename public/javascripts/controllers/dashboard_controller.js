@@ -12,14 +12,19 @@
       DashboardController.__super__.constructor.apply(this, arguments);
     }
     __extends(DashboardController, Backbone.Controller);
+    DashboardController.prototype.views = {};
     DashboardController.prototype.routes = {
-      '': 'index'
+      '': 'index',
+      '/dashboard': 'dashboard'
     };
     DashboardController.prototype.index = function() {
-      if (LDB.rootView == null) {
-        LDB.rootView = new LDB.ApplicationView();
-        LDB.rootView.render();
-        return $('#application').append(LDB.rootView.el);
+      return window.location.hash = '/dashboard';
+    };
+    DashboardController.prototype.dashboard = function() {
+      if (this.views.dashboard == null) {
+        this.views.dashboard = new (LDB.view('dashboard/dashboard'));
+        this.views.dashboard.render();
+        return LDB.rootView.panel('dashboard').append(this.views.dashboard.el);
       }
     };
     return DashboardController;

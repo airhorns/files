@@ -28,12 +28,13 @@ LDB.renderTemplate = (templateString) ->
     return LDB._compiledHandlebars[i](data, fallback)
 
 # We set the default renderer to pull out the view.
-Backbone.View.prototype.renderable = ->
-  if @model?
-    @model.toJSON()
-  else
-    {}
+class LDB.View extends Backbone.View
+  renderable: ->
+    if @model?
+      @model.toJSON()
+    else
+      {}
 
-Backbone.View.prototype.render = ->
-  $(@el).html(LDB.ViewRenderers[@view_path](this.renderable()))
-  return this
+  render: ->
+    $(@el).html(LDB.ViewRenderers[@view_path](this.renderable()))
+    return this

@@ -11,7 +11,27 @@
     function NewLogView() {
       NewLogView.__super__.constructor.apply(this, arguments);
     }
-    __extends(NewLogView, Backbone.View);
+    __extends(NewLogView, LDB.View);
+    NewLogView.prototype.renderable = function() {
+      var log;
+      log = NewLogView.__super__.renderable.apply(this, arguments);
+      log.shows = [
+        {
+          name: "A",
+          value: 1
+        }, {
+          name: "C",
+          value: 2
+        }, {
+          name: "D",
+          value: 3
+        }, {
+          name: "E",
+          value: 4
+        }
+      ];
+      return log;
+    };
     return NewLogView;
   })());
 }).call(this);
