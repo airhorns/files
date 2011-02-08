@@ -23,9 +23,9 @@ LDB.view = (name) ->
 compiledCounter = -1
 LDB.renderTemplate = (templateString) ->
   i = compiledCounter++ # close over index
-  return ->
+  return (data, fallback)->
     LDB._compiledHandlebars[i] ?= Handlebars.compile(templateString) # lazily compile the template at the index
-    return LDB._compiledHandlebars[i](arguments[0], arguments[1])
+    return LDB._compiledHandlebars[i](data, fallback)
 
 # We set the default renderer to pull out the view.
 Backbone.View.prototype.renderable = ->

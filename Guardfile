@@ -14,6 +14,10 @@ guard 'coffeescript', :output => 'public/javascripts' do
   watch(/^client_app\/(.*)\.coffee/)
 end
 
+guard 'coffeescript', :output => 'spec/javascripts' do
+  watch(/^spec\/coffeescripts\/(.*)\.coffee/)
+end
+
 guard 'compass' do
   watch(/^app\/stylesheets\/(.*)\.s[ac]ss/)
 end

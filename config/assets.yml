@@ -21,7 +21,9 @@ javascripts:
     - public/lib/underscore/underscore.js
     - public/lib/backbone/backbone.js
     - public/lib/handlebars/handlebars.js
-    - public/javascripts/paths.js
+    - public/lib/inflections.js
+    - public/javascripts/views.js
+    - public/javascripts/forms.js
     - client_app/views/**/*.bars
     - public/javascripts/views/**/*.js
     - public/javascripts/models/**/*.js

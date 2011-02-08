@@ -1,1 +1,27 @@
 <h1>New Log</h1>
+{{#form_for "log"}}
+  {{#field}}
+    {{label "show_id"}}
+    {{text "show_id"}}
+  {{/field}}
+  <div class='field'> 
+    <label for="log_start_date">Start</label>
+    <input name="log[start_date]" class="date"/>
+    <input name="log[start_time]" class="date"/>
+  </div> 
+  <div class='field'> 
+    <label for="log_end_date">End</label> 
+    <input name="log[end_date]" class="date"/>
+    <input name="log[end_time]" class="date"/>
+  </div> 
+  <div class='field'> 
+    <label for="log_pre_recorded">Pre recorded</label> 
+    <input id="log_pre_recorded" name="log[pre_recorded]" type="checkbox" value="1" /> 
+  </div> 
+  <div class='field log-items'>
+    
+  </div>
+  <div class='actions'> 
+    <input id="log_submit" name="commit" type="submit" value="Save" /> 
+  </div> 
+{{/form_for}}

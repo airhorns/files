@@ -13,7 +13,10 @@ group :development, :test do
   # Language manipulation stack
   gem "haml-rails"
   gem "jquery-rails" # Template generator for jQuery
- 
+
+  # Javascript testing
+  gem 'evergreen', '0.4.0', :require => 'evergreen/rails', :git => "git@github.com:hornairs/evergreen.git"
+   
   # Mongrel as test server
   gem "mongrel", "1.2.0.pre2"
   
