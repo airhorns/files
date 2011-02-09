@@ -87,7 +87,32 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
 }
 
-/* line 20, ../../app/stylesheets/screen.sass */
+/* line 10, ../../../../.rvm/gems/ruby-1.9.2-p0@logdb/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/layout/_sticky-footer.scss */
+html, body {
+  height: 100%;
+}
+
+/* line 12, ../../../../.rvm/gems/ruby-1.9.2-p0@logdb/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/layout/_sticky-footer.scss */
+#container {
+  clear: both;
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin-bottom: -54px;
+}
+/* line 18, ../../../../.rvm/gems/ruby-1.9.2-p0@logdb/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/layout/_sticky-footer.scss */
+#container #container_footer {
+  height: 54px;
+}
+
+/* line 20, ../../../../.rvm/gems/ruby-1.9.2-p0@logdb/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/layout/_sticky-footer.scss */
+#footer {
+  clear: both;
+  position: relative;
+  height: 54px;
+}
+
+/* line 24, ../../app/stylesheets/screen.sass */
 body.bp {
   line-height: 1.5;
   font-family: Helvetica, Arial, sans-serif;
@@ -395,7 +420,7 @@ body.bp .removed {
   background: #990000;
   color: white;
 }
-/* line 28, ../../app/stylesheets/screen.sass */
+/* line 32, ../../app/stylesheets/screen.sass */
 body.bp .alert {
   padding: 0.8em;
   margin-bottom: 1em;
@@ -408,14 +433,16 @@ body.bp .alert {
 body.bp .alert a {
   color: #8a1f11;
 }
-/* line 33, ../../app/stylesheets/screen.sass */
+/* line 37, ../../app/stylesheets/screen.sass */
 body.bp #container {
-  padding: 20px;
-  margin: 0 auto -54px auto;
   overflow: hidden;
   *zoom: 1;
 }
-/* line 39, ../../app/stylesheets/screen.sass */
+/* line 42, ../../app/stylesheets/screen.sass */
+body.bp #container #content {
+  padding: 20px;
+}
+/* line 46, ../../app/stylesheets/screen.sass */
 body.bp header {
   z-index: 10;
   display: inline;
@@ -423,35 +450,35 @@ body.bp header {
   top: 15px;
   right: 20px;
 }
-/* line 45, ../../app/stylesheets/screen.sass */
+/* line 52, ../../app/stylesheets/screen.sass */
 body.bp header a, body.bp header a:visited {
   color: #222222;
   text-decoration: none;
 }
-/* line 49, ../../app/stylesheets/screen.sass */
+/* line 56, ../../app/stylesheets/screen.sass */
 body.bp header a:hover {
   text-decoration: underline;
   color: #666666;
 }
-/* line 53, ../../app/stylesheets/screen.sass */
+/* line 60, ../../app/stylesheets/screen.sass */
 body.bp header h1 {
   margin-left: 10px;
   font-size: 20px;
   display: inline;
 }
-/* line 57, ../../app/stylesheets/screen.sass */
+/* line 64, ../../app/stylesheets/screen.sass */
 body.bp header h1 a:hover {
   text-decoration: none;
 }
-/* line 61, ../../app/stylesheets/screen.sass */
+/* line 68, ../../app/stylesheets/screen.sass */
 body.bp #footer {
-  width: 950px;
+  padding: 0px 20px;
   margin: 0 auto;
   overflow: hidden;
   *zoom: 1;
 }
-/* line 67, ../../app/stylesheets/screen.sass */
-body.bp #container .pane, body.bp #container .window {
+/* line 74, ../../app/stylesheets/screen.sass */
+body.bp #content .pane, body.bp #content .window {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   -o-border-radius: 5px;
@@ -460,20 +487,20 @@ body.bp #container .pane, body.bp #container .window {
   border-radius: 5px;
   background-color: white;
 }
-/* line 71, ../../app/stylesheets/screen.sass */
-body.bp #container .window {
+/* line 78, ../../app/stylesheets/screen.sass */
+body.bp #content .window {
   width: 100%;
 }
-/* line 73, ../../app/stylesheets/screen.sass */
-body.bp #container .pane {
+/* line 80, ../../app/stylesheets/screen.sass */
+body.bp #content .pane {
   width: 50%;
 }
-/* line 75, ../../app/stylesheets/screen.sass */
-body.bp #container .pane.right {
+/* line 82, ../../app/stylesheets/screen.sass */
+body.bp #content .pane.right {
   margin-right: -1px;
   float: right !important;
 }
-/* line 80, ../../app/stylesheets/screen.sass */
+/* line 86, ../../app/stylesheets/screen.sass */
 body.bp .actions {
   width: 100%;
   padding-top: 20px;
@@ -540,7 +567,7 @@ body.bp form textarea {
   width: 390px;
   height: 250px;
 }
-/* line 90, ../../app/stylesheets/screen.sass */
+/* line 96, ../../app/stylesheets/screen.sass */
 body.bp form.inline {
   line-height: 3;
 }
@@ -548,54 +575,29 @@ body.bp form.inline {
 body.bp form.inline p {
   margin-bottom: 0;
 }
-/* line 94, ../../app/stylesheets/screen.sass */
+/* line 100, ../../app/stylesheets/screen.sass */
 body.bp form .input label {
   width: 80px;
   padding: 10px 10px 0px 0px;
   float: left;
 }
-/* line 100, ../../app/stylesheets/screen.sass */
+/* line 106, ../../app/stylesheets/screen.sass */
 body.bp form .input.field_with_errors input {
   border: 2px solid #fbc2c4;
   margin-bottom: 0px;
 }
-/* line 104, ../../app/stylesheets/screen.sass */
+/* line 110, ../../app/stylesheets/screen.sass */
 body.bp form .input.field_with_errors .error {
   display: block;
   border-top: 0px;
   margin-left: 90px;
   width: 293px;
 }
-/* line 127, ../../app/stylesheets/screen.sass */
+/* line 133, ../../app/stylesheets/screen.sass */
 body.bp .application-tabs {
   background: transparent;
 }
-/* line 129, ../../app/stylesheets/screen.sass */
+/* line 135, ../../app/stylesheets/screen.sass */
 body.bp .application-tabs > .ui-tabs-panel {
   background: white;
-}
-
-/* line 10, ../../../../.rvm/gems/ruby-1.9.2-p0@logdb/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/layout/_sticky-footer.scss */
-html, body {
-  height: 100%;
-}
-
-/* line 12, ../../../../.rvm/gems/ruby-1.9.2-p0@logdb/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/layout/_sticky-footer.scss */
-#container {
-  clear: both;
-  min-height: 100%;
-  height: auto !important;
-  height: 100%;
-  margin-bottom: -54px;
-}
-/* line 18, ../../../../.rvm/gems/ruby-1.9.2-p0@logdb/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/layout/_sticky-footer.scss */
-#container #container_footer {
-  height: 54px;
-}
-
-/* line 20, ../../../../.rvm/gems/ruby-1.9.2-p0@logdb/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/layout/_sticky-footer.scss */
-#footer {
-  clear: both;
-  position: relative;
-  height: 54px;
 }

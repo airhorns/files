@@ -43,7 +43,14 @@
       }
     };
     View.prototype.render = function() {
-      $(this.el).html(LDB.ViewRenderers[this.view_path](this.renderable()));
+      var cb, renderable;
+      renderable = this.renderable();
+      $(this.el).html(LDB.ViewRenderers[this.view_path](renderable));
+      if (renderable._afterCallbacks != null) {
+        for (cb in renderable._afterCallbacks) {
+          cb();
+        }
+      }
       return this;
     };
     return View;

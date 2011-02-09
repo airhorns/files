@@ -4,11 +4,10 @@
     {{label "show_id"}}
     {{select "show_id" shows}}
   {{/field}}
-  <div class='field'> 
-    <label for="log_start_date">Start</label>
-    <input name="log[start_date]" class="date"/>
-    <input name="log[start_time]" class="date"/>
-  </div> 
+  {{#field}}
+    {{label "start_date"}}
+    {{date "start_date"}}
+  {{/field}}
   <div class='field'> 
     <label for="log_end_date">End</label> 
     <input name="log[end_date]" class="date"/>

@@ -31,8 +31,9 @@ class FormBuilder
     ss "<div class=\"field\">#{out}</div>"
   
   # Label renderer
-  label: (name)->
-    ss "<label for=\"#{@name}_#{name}\">#{name.replace('_id', '').capitalize()}</label>"
+  label: (name, title) ->
+    title ||= name.replace('_', ' ').replace(' id','').titleize()
+    ss "<label for=\"#{@name}_#{name}\">#{title}</label>"
 
   # Text input renderer
   text: (name) ->
@@ -63,7 +64,18 @@ class FormBuilder
   hidden: (name) ->
     ss "<input type=\"hidden\" id=\"#{@name}_#{name}\" name=\"#{@name}[#{name}]\" value=\"#{this.getValue(name)}\"/>"
 
-for name in ['field', 'label', 'text', 'select', 'option', 'hidden']
+  # Date input helper
+  date: (name) ->
+    id = "#{@name}_#{name}"
+    Handlebars.helpers.after.call @context, ->
+      $(id).datepicker
+        changeMonth: true
+        changeYear: true
+        showButtonPanel: true
+
+    ss "<input id=\"#{id}\" name=\"#{@name}[#{name}]\" value=\"#{this.getValue(name)}\" data-datepicker=\"true\"/>"
+
+for name in ['field', 'label', 'text', 'select', 'option', 'hidden', 'date']
   do (name) ->
     Handlebars.registerHelper name, () ->
       unless CURRENT_FORM
@@ -78,6 +90,10 @@ Handlebars.registerHelper 'form_for', (name, fn) ->
   out = CURRENT_FORM.form_for(fn)
   CURRENT_FORM = false
   return out
+
+Handlebars.registerHelper 'after', (fn, args...) ->
+  this._afterCallbacks ||= []
+  this._afterCallbacks.push -> fn.apply(this, args)
 
 Handlebars.registerHelper 'helperMissing', (name, fn) ->
   throw "No helper by the name of #{name}!"

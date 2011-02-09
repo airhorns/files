@@ -29,7 +29,24 @@ require '/lib/handlebars/handlebars.js', '/lib/backbone/backbone.js', '/javascri
                   </div>
                 </form>'
       expect(template).toRenderTo(output)
-    
+
+    it "should allow overriding the label title, and properly generate it if not given", ->
+      template = '{{#form_for "log"}}
+                    {{#field}}
+                      {{label "show_id"}}
+                      {{label "show_date"}}
+                      {{label "show_id" "Show Name"}}
+                    {{/field}}
+                  {{/form_for}}'
+      output = '<form accept-charset="UTF-8" action="#" class="new_log">
+                  <div class="field">
+                    <label for="log_show_id">Show</label>
+                    <label for="log_show_date">Show Date</label>
+                    <label for="log_show_id">Show Name</label>
+                  </div>
+                </form>'
+      expect(template).toRenderTo(output)
+
     it "should render a field and pull out the value.", ->
       template = '{{#form_for "log"}}
                     {{#field}}
@@ -118,4 +135,14 @@ require '/lib/handlebars/handlebars.js', '/lib/backbone/backbone.js', '/javascri
                     <input type="hidden" id="log_show_id" name="log[show_id]" value="42"/>
                 </form>'
       expect(template).toRenderTo(output, {show_id: 42})
+    
+    it "should render a date field", ->
+      template = '{{#form_for "log"}}
+                      {{date "show_start"}}
+                  {{/form_for}}'
+      output = '<form accept-charset="UTF-8" action="#" class="new_log">
+                    <input id="log_show_start" name="log[show_start]" value="10/20/2011" data-datepicker="true"/>
+                </form>'
+      expect(template).toRenderTo(output, {show_start: '10/20/2011'})
+
     true

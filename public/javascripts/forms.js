@@ -1,5 +1,6 @@
 (function() {
   var CURRENT_FORM, FormBuilder, name, ss, _fn, _i, _len, _ref;
+  var __slice = Array.prototype.slice;
   CURRENT_FORM = false;
   ss = function(str) {
     return new Handlebars.SafeString(str);
@@ -32,8 +33,9 @@
       }
       return ss("<div class=\"field\">" + out + "</div>");
     };
-    FormBuilder.prototype.label = function(name) {
-      return ss("<label for=\"" + this.name + "_" + name + "\">" + (name.replace('_id', '').capitalize()) + "</label>");
+    FormBuilder.prototype.label = function(name, title) {
+      title || (title = name.replace('_', ' ').replace(' id', '').titleize());
+      return ss("<label for=\"" + this.name + "_" + name + "\">" + title + "</label>");
     };
     FormBuilder.prototype.text = function(name) {
       return ss("<input id=\"" + this.name + "_" + name + "\" name=\"" + this.name + "[" + name + "]\" value=\"" + (this.getValue(name)) + "\"/>");
@@ -81,9 +83,21 @@
     FormBuilder.prototype.hidden = function(name) {
       return ss("<input type=\"hidden\" id=\"" + this.name + "_" + name + "\" name=\"" + this.name + "[" + name + "]\" value=\"" + (this.getValue(name)) + "\"/>");
     };
+    FormBuilder.prototype.date = function(name) {
+      var id;
+      id = "" + this.name + "_" + name;
+      Handlebars.helpers.after.call(this.context, function() {
+        return $(id).datepicker({
+          changeMonth: true,
+          changeYear: true,
+          showButtonPanel: true
+        });
+      });
+      return ss("<input id=\"" + id + "\" name=\"" + this.name + "[" + name + "]\" value=\"" + (this.getValue(name)) + "\" data-datepicker=\"true\"/>");
+    };
     return FormBuilder;
   })();
-  _ref = ['field', 'label', 'text', 'select', 'option', 'hidden'];
+  _ref = ['field', 'label', 'text', 'select', 'option', 'hidden', 'date'];
   _fn = function(name) {
     return Handlebars.registerHelper(name, function() {
       if (!CURRENT_FORM) {
@@ -106,6 +120,14 @@
     out = CURRENT_FORM.form_for(fn);
     CURRENT_FORM = false;
     return out;
+  });
+  Handlebars.registerHelper('after', function() {
+    var args, fn;
+    fn = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
+    this._afterCallbacks || (this._afterCallbacks = []);
+    return this._afterCallbacks.push(function() {
+      return fn.apply(this, args);
+    });
   });
   Handlebars.registerHelper('helperMissing', function(name, fn) {
     throw "No helper by the name of " + name + "!";

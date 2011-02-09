@@ -15,13 +15,13 @@
     = csrf_meta_tag  
   %body.bp
     #container
-      %header
-        = link_to "Sign Out", sign_out_path
-        |
-        = link_to "Feedback", "#"
-        %h1 
-          = link_to "Log DB", root_path
       #content
+        %header
+          = link_to "Sign Out", sign_out_path
+          |
+          = link_to "Feedback", "#"
+          %h1 
+            = link_to "Log DB", root_path
         - [:error, :notice, :success, :alert].select {|f| flash[f].present? }.each do |f|
           %div(class=f)
             = flash[f]
