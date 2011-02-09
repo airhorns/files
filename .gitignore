@@ -7,3 +7,4 @@ tmp/**/*
 *.swp
 *.swo
 .sass-cache/*
+lib/MB_MySQL/mbdump/*

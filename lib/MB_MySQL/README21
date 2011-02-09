@@ -1,0 +1,13 @@
+Update MB_MySQL
+Version 2.0 -> 2.1
+
+How to install
+-------------------------------------------------
+
+ 1. Make sure MB_MySQL is not running. v2.1 has lots of
+    new INDEXs that may take a while to process.
+ 
+ 2. Extract install21/ to any replace the files in MB_MySQL.
+ 
+ 2. Run MB_MySQL/install21.pl and follow the prompts.
+
