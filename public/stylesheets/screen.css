@@ -512,47 +512,48 @@ body {
 /* line 49, ../../app/stylesheets/screen.sass */
 header {
   z-index: 10;
+  padding-bottom: 10px;
 }
-/* line 51, ../../app/stylesheets/screen.sass */
+/* line 52, ../../app/stylesheets/screen.sass */
 header a, header a:visited {
   color: #222222;
   text-decoration: none;
 }
-/* line 54, ../../app/stylesheets/screen.sass */
+/* line 55, ../../app/stylesheets/screen.sass */
 header a:hover {
   text-decoration: underline;
   color: #666666;
 }
-/* line 57, ../../app/stylesheets/screen.sass */
+/* line 58, ../../app/stylesheets/screen.sass */
 header h1 {
   display: inline;
 }
-/* line 59, ../../app/stylesheets/screen.sass */
+/* line 60, ../../app/stylesheets/screen.sass */
 header h1 a:hover {
   text-decoration: none;
 }
-/* line 61, ../../app/stylesheets/screen.sass */
+/* line 62, ../../app/stylesheets/screen.sass */
 header nav {
   float: right;
 }
-/* line 64, ../../app/stylesheets/screen.sass */
+/* line 65, ../../app/stylesheets/screen.sass */
 .application header {
   position: absolute;
   top: 15px;
   right: 20px;
 }
-/* line 68, ../../app/stylesheets/screen.sass */
+/* line 69, ../../app/stylesheets/screen.sass */
 .application header nav {
   float: left;
 }
-/* line 70, ../../app/stylesheets/screen.sass */
+/* line 71, ../../app/stylesheets/screen.sass */
 .application header h1 {
   display: inline;
   margin-left: 10px;
   font-size: 20px;
 }
 
-/* line 75, ../../app/stylesheets/screen.sass */
+/* line 76, ../../app/stylesheets/screen.sass */
 #footer {
   padding: 0px 20px;
   margin: 0 auto;
@@ -560,7 +561,7 @@ header nav {
   *zoom: 1;
 }
 
-/* line 81, ../../app/stylesheets/screen.sass */
+/* line 82, ../../app/stylesheets/screen.sass */
 #content .pane, #content .window {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -570,21 +571,21 @@ header nav {
   border-radius: 5px;
   background-color: white;
 }
-/* line 85, ../../app/stylesheets/screen.sass */
+/* line 86, ../../app/stylesheets/screen.sass */
 #content .window {
   width: 100%;
 }
-/* line 87, ../../app/stylesheets/screen.sass */
+/* line 88, ../../app/stylesheets/screen.sass */
 #content .pane {
   width: 50%;
 }
-/* line 89, ../../app/stylesheets/screen.sass */
+/* line 90, ../../app/stylesheets/screen.sass */
 #content .pane.right {
   margin-right: -1px;
   float: right !important;
 }
 
-/* line 93, ../../app/stylesheets/screen.sass */
+/* line 94, ../../app/stylesheets/screen.sass */
 .actions {
   width: 100%;
   padding-top: 20px;
@@ -652,7 +653,7 @@ form textarea {
   width: 390px;
   height: 250px;
 }
-/* line 105, ../../app/stylesheets/screen.sass */
+/* line 106, ../../app/stylesheets/screen.sass */
 form.inline {
   line-height: 3;
 }
@@ -660,18 +661,18 @@ form.inline {
 form.inline p {
   margin-bottom: 0;
 }
-/* line 109, ../../app/stylesheets/screen.sass */
+/* line 110, ../../app/stylesheets/screen.sass */
 form .input label {
   width: 80px;
   padding: 10px 10px 0px 0px;
   float: left;
 }
-/* line 115, ../../app/stylesheets/screen.sass */
+/* line 116, ../../app/stylesheets/screen.sass */
 form .input.field_with_errors input {
   border: 2px solid #fbc2c4;
   margin-bottom: 0px;
 }
-/* line 119, ../../app/stylesheets/screen.sass */
+/* line 120, ../../app/stylesheets/screen.sass */
 form .input.field_with_errors .error {
   display: block;
   border-top: 0px;
@@ -679,7 +680,7 @@ form .input.field_with_errors .error {
   width: 293px;
 }
 
-/* line 127, ../../app/stylesheets/screen.sass */
+/* line 128, ../../app/stylesheets/screen.sass */
 div.time-picker {
   position: absolute;
   background: white;
@@ -688,18 +689,18 @@ div.time-picker {
   -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
-/* line 134, ../../app/stylesheets/screen.sass */
+/* line 135, ../../app/stylesheets/screen.sass */
 div.time-picker ul {
   list-style-type: none;
   overflow: auto;
   width: 110px;
   height: 191px;
 }
-/* line 139, ../../app/stylesheets/screen.sass */
+/* line 140, ../../app/stylesheets/screen.sass */
 div.time-picker li {
   cursor: pointer;
 }
-/* line 141, ../../app/stylesheets/screen.sass */
+/* line 142, ../../app/stylesheets/screen.sass */
 div.time-picker li.selected a {
   font-weight: normal;
   margin: -1px;
@@ -712,19 +713,19 @@ div.time-picker li.selected a {
   border-radius: 0;
 }
 
-/* line 156, ../../app/stylesheets/screen.sass */
+/* line 157, ../../app/stylesheets/screen.sass */
 body.application .flash {
   display: none;
 }
-/* line 159, ../../app/stylesheets/screen.sass */
+/* line 160, ../../app/stylesheets/screen.sass */
 body.application .application-tabs {
   background: transparent;
 }
-/* line 161, ../../app/stylesheets/screen.sass */
+/* line 162, ../../app/stylesheets/screen.sass */
 body.application .application-tabs > .ui-tabs-panel {
   background: white;
 }
-/* line 165, ../../app/stylesheets/screen.sass */
+/* line 166, ../../app/stylesheets/screen.sass */
 body.application .achtung {
   text-shadow: none;
   font-style: normal;

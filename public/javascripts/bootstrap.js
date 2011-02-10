@@ -7,9 +7,11 @@
     new LDB.DashboardController();
     new LDB.LogsController();
     Backbone.history.start();
-    LDB.notify("Signed in successfully.");
     return $('.flash').each(function(e) {
-      LDB.notify(this.innerHTML);
+      LDB.notify({
+        message: this.innerHTML,
+        icon: "ui-icon-" + ($(this).attr('class').split(' ')[0])
+      });
       return $(this).remove();
     });
   });

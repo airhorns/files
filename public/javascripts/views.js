@@ -59,14 +59,14 @@
   })();
   LDB.notify = function(textOrOptions) {
     var options;
+    options = {
+      timeout: 4,
+      icon: 'ui-icon-info'
+    };
     if (_.isString(textOrOptions)) {
-      options = {
-        timeout: 0,
-        icon: 'ui-icon-info',
-        message: textOrOptions
-      };
+      options.message = textOrOptions;
     } else {
-      options = textOrOptions;
+      options = _.extend({}, options, textOrOptions);
     }
     return $.achtung(options);
   };

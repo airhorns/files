@@ -16,10 +16,10 @@ jQuery(($) ->
   Backbone.history.start()
 
   # Alert user of flashes
-  LDB.notify("Signed in successfully.")
-  
   $('.flash').each (e) ->
-    LDB.notify(this.innerHTML)
+    LDB.notify
+      message: this.innerHTML
+      icon: "ui-icon-#{$(this).attr('class').split(' ')[0]}"
     $(this).remove()
 )
 

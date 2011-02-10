@@ -43,11 +43,11 @@ class LDB.View extends Backbone.View
     return this
 
 LDB.notify = (textOrOptions) ->
+  options =
+    timeout: 4
+    icon: 'ui-icon-info'
   if _.isString(textOrOptions)
-    options =
-      timeout: 0
-      icon: 'ui-icon-info'
-      message: textOrOptions
+    options.message = textOrOptions
   else
-    options = textOrOptions
+    options = _.extend {}, options, textOrOptions
   $.achtung options
