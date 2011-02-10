@@ -1,3 +1,4 @@
+# Path setup
 window.LDB =
   Views: {}
   ViewRenderers: {}
@@ -21,27 +22,48 @@ LDB.view = (name) ->
 # The function below compiles the raw view code into a function which will render the 
 # view out as HTML.
 compiledCounter = -1
-
 LDB.renderTemplate = (templateString) ->
   i = compiledCounter++ # close over index
   return (data, fallback)->
     LDB._compiledHandlebars[i] ?= Handlebars.compile(templateString) # lazily compile the template at the index
     return LDB._compiledHandlebars[i](data, fallback)
 
-# We set the default renderer to pull out the view.
+# Base View class, all views in the application extend this bad boy
 class LDB.View extends Backbone.View
+
+  # Used by render to pass something to the view. Usually, this
+  # is the attributes of the model the view is representing, but
+  # this is overridden by some views.
   renderable: ->
     if @model?
       @model.toJSON()
     else
       {}
 
+  # To render, it finds the compiled Handlebars templates using the 
+  # #getBars method. This hits LDB.ViewRenderers array which is 
+  # populated by Jammit calling the stuff up there. LDB.View executes
+  # the template by passing in whatever comes back from #renderable,
+  # and stuffs the generated HTML into @el. It then runs any after 
+  # render callbacks that were queued up by helpers used during
+  # rendering. Phew.
   render: ->
     renderable = this.renderable()
-    $(@el).html(LDB.ViewRenderers[@view_path](renderable))
+    $(@el).html(this.getBars()(renderable))
     cb() for cb in renderable._afterCallbacks if renderable._afterCallbacks?
     return this
 
+  # Internal method to find the compiled Handlebars template.
+  getBars: ->
+    LDB.ViewRenderers[@view_path]
+
+# Default handlebars helpers
+Handlebars.registerHelper 'after', (fn, args...) ->
+  self = this
+  this._afterCallbacks ||= []
+  this._afterCallbacks.push -> fn.apply(self, args)
+
+# Growl style notifications for the user
 LDB.notify = (textOrOptions) ->
   options =
     timeout: 4

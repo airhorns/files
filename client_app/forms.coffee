@@ -103,10 +103,5 @@ Handlebars.registerHelper 'form_for', (name, fn) ->
   CURRENT_FORM = false
   return out
 
-Handlebars.registerHelper 'after', (fn, args...) ->
-  self = this
-  this._afterCallbacks ||= []
-  this._afterCallbacks.push -> fn.apply(self, args)
-
 Handlebars.registerHelper 'helperMissing', (name, fn) ->
   throw "No helper by the name of #{name}!"

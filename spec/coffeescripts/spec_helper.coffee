@@ -6,7 +6,7 @@
 # Chrome, and to log them to the console so that they can be fixed easier and the line 
 # numbers become clickable.
 
-require '/javascripts/jquery/jquery.js', '/lib/underscore/underscore.js', '/lib/inflections.js', ->
+require '/lib/jquery.js', '/lib/underscore/underscore.js', '/lib/inflections.js', ->
   testBed = null
 
   window.$testBed = ->
@@ -14,6 +14,13 @@ require '/javascripts/jquery/jquery.js', '/lib/underscore/underscore.js', '/lib/
 
   window.testBed = ->
     window.$testBed()[0]
+  
+  beforeEach ->
+    this.addMatchers
+      toHaveHTML: (expected) ->
+        expected = expected.innerHTML if expected.innerHTML?
+        actual = if this.actual.innerHTML? then this.actual.innerHTML else this.actual
+        return actual == expected
 
   old = jasmine.ExpectationResult
 

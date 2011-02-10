@@ -1,5 +1,5 @@
 (function() {
-  require('/javascripts/jquery/jquery.js', '/lib/underscore/underscore.js', '/lib/inflections.js', function() {
+  require('/lib/jquery.js', '/lib/underscore/underscore.js', '/lib/inflections.js', function() {
     var old, testBed;
     testBed = null;
     window.$testBed = function() {
@@ -8,6 +8,18 @@
     window.testBed = function() {
       return window.$testBed()[0];
     };
+    beforeEach(function() {
+      return this.addMatchers({
+        toHaveHTML: function(expected) {
+          var actual;
+          if (expected.innerHTML != null) {
+            expected = expected.innerHTML;
+          }
+          actual = this.actual.innerHTML != null ? this.actual.innerHTML : this.actual;
+          return actual === expected;
+        }
+      });
+    });
     old = jasmine.ExpectationResult;
     jasmine.ExpectationResult = function(params) {
       this.type = 'expect';

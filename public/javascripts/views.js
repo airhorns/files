@@ -7,7 +7,7 @@
     child.prototype = new ctor;
     child.__super__ = parent.prototype;
     return child;
-  };
+  }, __slice = Array.prototype.slice;
   window.LDB = {
     Views: {},
     ViewRenderers: {},
@@ -45,7 +45,7 @@
     View.prototype.render = function() {
       var cb, renderable, _i, _len, _ref;
       renderable = this.renderable();
-      $(this.el).html(LDB.ViewRenderers[this.view_path](renderable));
+      $(this.el).html(this.getBars()(renderable));
       if (renderable._afterCallbacks != null) {
         _ref = renderable._afterCallbacks;
         for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -55,8 +55,20 @@
       }
       return this;
     };
+    View.prototype.getBars = function() {
+      return LDB.ViewRenderers[this.view_path];
+    };
     return View;
   })();
+  Handlebars.registerHelper('after', function() {
+    var args, fn, self;
+    fn = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
+    self = this;
+    this._afterCallbacks || (this._afterCallbacks = []);
+    return this._afterCallbacks.push(function() {
+      return fn.apply(self, args);
+    });
+  });
   LDB.notify = function(textOrOptions) {
     var options;
     options = {

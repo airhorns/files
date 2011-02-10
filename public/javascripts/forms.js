@@ -1,6 +1,5 @@
 (function() {
   var CURRENT_FORM, FormBuilder, name, ss, _fn, _i, _len, _ref;
-  var __slice = Array.prototype.slice;
   CURRENT_FORM = false;
   ss = function(str) {
     return new Handlebars.SafeString(str);
@@ -133,15 +132,6 @@
     out = CURRENT_FORM.form_for(fn);
     CURRENT_FORM = false;
     return out;
-  });
-  Handlebars.registerHelper('after', function() {
-    var args, fn, self;
-    fn = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
-    self = this;
-    this._afterCallbacks || (this._afterCallbacks = []);
-    return this._afterCallbacks.push(function() {
-      return fn.apply(self, args);
-    });
   });
   Handlebars.registerHelper('helperMissing', function(name, fn) {
     throw "No helper by the name of " + name + "!";
