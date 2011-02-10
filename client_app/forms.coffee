@@ -68,14 +68,26 @@ class FormBuilder
   date: (name) ->
     id = "#{@name}_#{name}"
     Handlebars.helpers.after.call @context, ->
-      $(id).datepicker
+      jQuery("##{id}").datepicker
         changeMonth: true
         changeYear: true
         showButtonPanel: true
 
-    ss "<input id=\"#{id}\" name=\"#{@name}[#{name}]\" value=\"#{this.getValue(name)}\" data-datepicker=\"true\"/>"
+    ss "<input type=\"date\" id=\"#{id}\" name=\"#{@name}[#{name}]\" value=\"#{this.getValue(name)}\"/>"
 
-for name in ['field', 'label', 'text', 'select', 'option', 'hidden', 'date']
+  # Time input helper
+  time: (name) ->
+    id = "#{@name}_#{name}"
+    Handlebars.helpers.after.call @context, ->
+      jQuery("##{id}").timePicker
+        startTime: "00:00"
+        endTime: "23:59"
+        show24Hours: false
+        step: 30
+      
+    ss "<input type=\"time\" id=\"#{id}\" name=\"#{@name}[#{name}]\" value=\"#{this.getValue(name)}\"/>"
+
+for name in ['field', 'label', 'text', 'select', 'option', 'hidden', 'date', 'time']
   do (name) ->
     Handlebars.registerHelper name, () ->
       unless CURRENT_FORM
@@ -92,8 +104,9 @@ Handlebars.registerHelper 'form_for', (name, fn) ->
   return out
 
 Handlebars.registerHelper 'after', (fn, args...) ->
+  self = this
   this._afterCallbacks ||= []
-  this._afterCallbacks.push -> fn.apply(this, args)
+  this._afterCallbacks.push -> fn.apply(self, args)
 
 Handlebars.registerHelper 'helperMissing', (name, fn) ->
   throw "No helper by the name of #{name}!"

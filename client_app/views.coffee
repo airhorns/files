@@ -38,5 +38,5 @@ class LDB.View extends Backbone.View
   render: ->
     renderable = this.renderable()
     $(@el).html(LDB.ViewRenderers[@view_path](renderable))
-    cb() for cb of renderable._afterCallbacks if renderable._afterCallbacks?
+    cb() for cb in renderable._afterCallbacks if renderable._afterCallbacks?
     return this

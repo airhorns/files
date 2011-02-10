@@ -87,17 +87,30 @@
       var id;
       id = "" + this.name + "_" + name;
       Handlebars.helpers.after.call(this.context, function() {
-        return $(id).datepicker({
+        return jQuery("#" + id).datepicker({
           changeMonth: true,
           changeYear: true,
           showButtonPanel: true
         });
       });
-      return ss("<input id=\"" + id + "\" name=\"" + this.name + "[" + name + "]\" value=\"" + (this.getValue(name)) + "\" data-datepicker=\"true\"/>");
+      return ss("<input type=\"date\" id=\"" + id + "\" name=\"" + this.name + "[" + name + "]\" value=\"" + (this.getValue(name)) + "\"/>");
+    };
+    FormBuilder.prototype.time = function(name) {
+      var id;
+      id = "" + this.name + "_" + name;
+      Handlebars.helpers.after.call(this.context, function() {
+        return jQuery("#" + id).timePicker({
+          startTime: "00:00",
+          endTime: "23:59",
+          show24Hours: false,
+          step: 30
+        });
+      });
+      return ss("<input type=\"time\" id=\"" + id + "\" name=\"" + this.name + "[" + name + "]\" value=\"" + (this.getValue(name)) + "\"/>");
     };
     return FormBuilder;
   })();
-  _ref = ['field', 'label', 'text', 'select', 'option', 'hidden', 'date'];
+  _ref = ['field', 'label', 'text', 'select', 'option', 'hidden', 'date', 'time'];
   _fn = function(name) {
     return Handlebars.registerHelper(name, function() {
       if (!CURRENT_FORM) {
@@ -122,11 +135,12 @@
     return out;
   });
   Handlebars.registerHelper('after', function() {
-    var args, fn;
+    var args, fn, self;
     fn = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
+    self = this;
     this._afterCallbacks || (this._afterCallbacks = []);
     return this._afterCallbacks.push(function() {
-      return fn.apply(this, args);
+      return fn.apply(self, args);
     });
   });
   Handlebars.registerHelper('helperMissing', function(name, fn) {

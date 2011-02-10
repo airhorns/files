@@ -3,14 +3,9 @@
 @import blueprint/reset
 // To configure blueprint, edit the partials/base.sass file.
 @import partials/base
-
 // Import all the default blueprint modules so that we can access their mixins.
 @import blueprint
 
-// Import the custom one column layout
-//@import partials/one_col
-
-//@import "fancy-buttons"
 
 // Elements
 h1,h2,h3,h4,h5,h6
@@ -21,117 +16,136 @@ h1,h2,h3,h4,h5,h6
 @import "compass/layout/sticky-footer"
 @include sticky-footer(54px, "#container", "#container_footer", "#footer")
 
-body.bp
-  // Blueprint business
-  +blueprint-typography(true)
-  +blueprint-utilities
-  +blueprint-debug
-  +blueprint-interaction
+// Blueprint business
++blueprint-typography
++blueprint-utilities
++blueprint-debug
++blueprint-interaction
 
-  // For alert key flash mesages
-  .alert 
-    +error
+// For alert key flash mesages
+.alert 
+  +error
 
-  // Container setup
+// ------------------------------
+// Container, header, and content
+// ------------------------------
+body
   background-color: #EEE
-  #container
-    // Don't change the bottom margin on the container, its set by the sticky footer call which
-    // makes the footer stick to the bottom of the page regardless of the height of the content.
-    // See http://compass-style.org/docs/reference/compass/layout/sticky_footer/
-    +clearfix
-    #content
-      padding: 20px
-    
-     
-  header
-    z-index: 10
-    display: inline
-    position: absolute
-    top: 15px
-    right: 20px
-    a, a:visited
-      color: #222
-      text-decoration: none      
-
-    a:hover
-      text-decoration: underline
-      color: #666
-
-    h1
-      margin-left: 10px
-      font-size: 20px    
-      display: inline
-      a:hover
-        text-decoration: none
-       
-
-  #footer
-    padding: 0px 20px
-    margin: 0 auto
-    +clearfix
- 
+#container
+  // Don't change the bottom margin on the container, its set by the sticky footer call which
+  // makes the footer stick to the bottom of the page regardless of the height of the content.
+  // See http://compass-style.org/docs/reference/compass/layout/sticky_footer/
+  +clearfix
   #content
-    .pane, .window
-      +border-radius(5px)
-      background-color: #FFF
-    
-    .window
-      width: 100%
-    .pane
-      width: 50%
-      &.right
-        margin-right: -1px
-        float: right !important
+    padding: 20px
+  
+   
+header
+  z-index: 10
+  display: inline
+  position: absolute
+  top: 15px
+  right: 20px
+  a, a:visited
+    color: #222
+    text-decoration: none      
 
-  .actions
+  a:hover
+    text-decoration: underline
+    color: #666
+
+  h1
+    margin-left: 10px
+    font-size: 20px    
+    display: inline
+    a:hover
+      text-decoration: none
+     
+
+#footer
+  padding: 0px 20px
+  margin: 0 auto
+  +clearfix
+
+#content
+  .pane, .window
+    +border-radius(5px)
+    background-color: #FFF
+  
+  .window
     width: 100%
-    padding-top: 20px
-    clear: both
+  .pane
+    width: 50%
+    &.right
+      margin-right: -1px
+      float: right !important
+
+.actions
+  width: 100%
+  padding-top: 20px
+  clear: both
 
 
-  // Form setup
-  form
-    +blueprint-form
- 
-    &.inline
-      +blueprint-inline-form
-    .input
+// ---------------------------
+// Forms and Form Elements
+// ---------------------------
+form
+  +blueprint-form
 
-      label
-        width: 80px
-        padding: 10px 10px 0px 0px
-        float: left
+  &.inline
+    +blueprint-inline-form
+  .input
 
-      &.field_with_errors 
-        input
-          border: 2px solid #FBC2C4
-          margin-bottom: 0px
+    label
+      width: 80px
+      padding: 10px 10px 0px 0px
+      float: left
 
-        .error
-          display: block
-          border-top: 0px
-          margin-left: 90px
-          width: 293px
+    &.field_with_errors 
+      input
+        border: 2px solid #FBC2C4
+        margin-bottom: 0px
 
-  // Buttons
-  //a.button, button  
-    //+fancy-button-structure   
-    //+fancy-button-colors-matte(#ddd)
+      .error
+        display: block
+        border-top: 0px
+        margin-left: 90px
+        width: 293px
 
-    //margin: 0 2px   
-    //vertical-align: middle  
-    //font-family: $blueprint-font-family
-    //text-decoration: none
+// Time picker
+div
+  &.time-picker
+    position: absolute
+    background: #fff
+    z-index: 99
+    -moz-box-shadow: 0 4px 8px rgba(0,0,0,0.5)
+    -webkit-box-shadow: 0 4px 8px rgba(0,0,0,0.5)
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5)    
+    ul
+      list-style-type: none
+      overflow: auto
+      width: 110px
+      height: 191px
+    li
+      cursor: pointer
+      &.selected a
+        font-weight: normal
+        margin: -1px
+        background: #5f83b9
+        color: #FFFFFF
+        text-shadow: 0px 1px 1px #234386
+        border-color: #466086
+        -moz-border-radius: 0
+        -webkit-border-radius: 0
+        border-radius: 0
 
-    //&.big
-      //width: 80%
-      //margin: 0px auto
-      //display: block
-      //text-align: center
-
-  // Specific places in the app
+// -------------------------
+// Specific places in the app
+// -------------------------
+body 
   .application-tabs
     background: transparent
     & > .ui-tabs-panel
       background: white
-  // Dashboard
+
+// Dashboard

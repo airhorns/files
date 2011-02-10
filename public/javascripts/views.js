@@ -43,11 +43,13 @@
       }
     };
     View.prototype.render = function() {
-      var cb, renderable;
+      var cb, renderable, _i, _len, _ref;
       renderable = this.renderable();
       $(this.el).html(LDB.ViewRenderers[this.view_path](renderable));
       if (renderable._afterCallbacks != null) {
-        for (cb in renderable._afterCallbacks) {
+        _ref = renderable._afterCallbacks;
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          cb = _ref[_i];
           cb();
         }
       }

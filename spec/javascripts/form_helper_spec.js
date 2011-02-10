@@ -186,10 +186,22 @@
                       {{date "show_start"}}\
                   {{/form_for}}';
         output = '<form accept-charset="UTF-8" action="#" class="new_log">\
-                    <input id="log_show_start" name="log[show_start]" value="10/20/2011" data-datepicker="true"/>\
+                    <input type="date" id="log_show_start" name="log[show_start]" value="10/20/2011"/>\
                 </form>';
         return expect(template).toRenderTo(output, {
           show_start: '10/20/2011'
+        });
+      });
+      it("should render a time field", function() {
+        var output, template;
+        template = '{{#form_for "log"}}\
+                      {{time "show_start"}}\
+                  {{/form_for}}';
+        output = '<form accept-charset="UTF-8" action="#" class="new_log">\
+                    <input type="time" id="log_show_start" name="log[show_start]" value="10:27 AM"/>\
+                </form>';
+        return expect(template).toRenderTo(output, {
+          show_start: '10:27 AM'
         });
       });
       return true;
