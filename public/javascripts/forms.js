@@ -107,9 +107,15 @@
       });
       return ss("<input type=\"time\" id=\"" + id + "\" name=\"" + this.name + "[" + name + "]\" value=\"" + (this.getValue(name)) + "\"/>");
     };
+    FormBuilder.prototype.checkbox = function(name) {
+      var checked, id;
+      id = "" + this.name + "_" + name;
+      checked = this.getValue(name) ? ' checked="checked"' : '';
+      return ss("<input type=\"checkbox\" id=\"" + id + "\" name=\"" + this.name + "[" + name + "]\" value=\"true\"" + checked + "/>");
+    };
     return FormBuilder;
   })();
-  _ref = ['field', 'label', 'text', 'select', 'option', 'hidden', 'date', 'time'];
+  _ref = ['field', 'label', 'text', 'select', 'option', 'hidden', 'date', 'time', 'checkbox'];
   _fn = function(name) {
     return Handlebars.registerHelper(name, function() {
       if (!CURRENT_FORM) {

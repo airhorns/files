@@ -2,7 +2,8 @@ fmt = (str) ->
   (str || "").replace(/\s{2,}/g, ' ').replace(/\n/g, ' ').replace(/>\s*</g,'><')
 
 require '/lib/handlebars/handlebars.js', '/lib/backbone/backbone.js', '/javascripts/forms.js', ->
-
+  
+  Handlebars.registerHelper 'after', jQuery.noop
   describe "Handlebars Form Helpers", ->
     beforeEach ->
       this.addMatchers
@@ -154,4 +155,19 @@ require '/lib/handlebars/handlebars.js', '/lib/backbone/backbone.js', '/javascri
                     <input type="time" id="log_show_start" name="log[show_start]" value="10:27 AM"/>
                 </form>'
       expect(template).toRenderTo(output, {show_start: '10:27 AM'})
+
+    it "should render a checkbox", ->
+      template = '{{#form_for "log"}}
+                      {{checkbox "pre_recorded"}}
+                  {{/form_for}}'
+      outputTrue = '<form accept-charset="UTF-8" action="#" class="new_log">
+                  <input type="checkbox" id="log_pre_recorded" name="log[pre_recorded]" value="true" checked="checked"/>
+                </form>'
+      outputFalse = '<form accept-charset="UTF-8" action="#" class="new_log">
+                  <input type="checkbox" id="log_pre_recorded" name="log[pre_recorded]" value="true"/>
+                </form>'
+      
+      expect(template).toRenderTo(outputTrue, {pre_recorded: true})
+      expect(template).toRenderTo(outputFalse, {pre_recorded: false})
+      
     true

@@ -12,7 +12,10 @@ class FormBuilder
     @context = context
   
   getValue: (name) ->
-    if @context[name]? then @context[name] else ''
+    if @context[name]?
+      @context[name]
+    else
+      ''
 
   # Form block wrapper, must enclose calls to the other helpers in one of these
   form_for: (fn) ->
@@ -86,8 +89,13 @@ class FormBuilder
         step: 30
       
     ss "<input type=\"time\" id=\"#{id}\" name=\"#{@name}[#{name}]\" value=\"#{this.getValue(name)}\"/>"
+  
+  checkbox: (name) ->
+    id = "#{@name}_#{name}"
+    checked = if this.getValue(name) then ' checked="checked"' else ''
+    ss "<input type=\"checkbox\" id=\"#{id}\" name=\"#{@name}[#{name}]\" value=\"true\"#{checked}/>"
 
-for name in ['field', 'label', 'text', 'select', 'option', 'hidden', 'date', 'time']
+for name in ['field', 'label', 'text', 'select', 'option', 'hidden', 'date', 'time', 'checkbox']
   do (name) ->
     Handlebars.registerHelper name, () ->
       unless CURRENT_FORM

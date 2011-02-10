@@ -4,6 +4,7 @@
     return (str || "").replace(/\s{2,}/g, ' ').replace(/\n/g, ' ').replace(/>\s*</g, '><');
   };
   require('/lib/handlebars/handlebars.js', '/lib/backbone/backbone.js', '/javascripts/forms.js', function() {
+    Handlebars.registerHelper('after', jQuery.noop);
     return describe("Handlebars Form Helpers", function() {
       beforeEach(function() {
         return this.addMatchers({
@@ -202,6 +203,24 @@
                 </form>';
         return expect(template).toRenderTo(output, {
           show_start: '10:27 AM'
+        });
+      });
+      it("should render a checkbox", function() {
+        var outputFalse, outputTrue, template;
+        template = '{{#form_for "log"}}\
+                      {{checkbox "pre_recorded"}}\
+                  {{/form_for}}';
+        outputTrue = '<form accept-charset="UTF-8" action="#" class="new_log">\
+                  <input type="checkbox" id="log_pre_recorded" name="log[pre_recorded]" value="true" checked="checked"/>\
+                </form>';
+        outputFalse = '<form accept-charset="UTF-8" action="#" class="new_log">\
+                  <input type="checkbox" id="log_pre_recorded" name="log[pre_recorded]" value="true"/>\
+                </form>';
+        expect(template).toRenderTo(outputTrue, {
+          pre_recorded: true
+        });
+        return expect(template).toRenderTo(outputFalse, {
+          pre_recorded: false
         });
       });
       return true;

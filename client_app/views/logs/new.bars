@@ -16,6 +16,7 @@
   {{/field}}
   {{#field}}
     {{label "pre_recorded"}}
+    {{checkbox "pre_recorded"}}
   {{/field}}
 
   <div class='actions'> 

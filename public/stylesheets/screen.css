@@ -592,67 +592,6 @@ header nav {
   clear: both;
 }
 
-/* line 18, ../../../../.rvm/gems/ruby-1.9.2-p0@logdb/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_form.scss */
-form label {
-  font-weight: bold;
-}
-/* line 19, ../../../../.rvm/gems/ruby-1.9.2-p0@logdb/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_form.scss */
-form fieldset {
-  padding: 1.4em;
-  margin: 0 0 1.5em 0;
-}
-/* line 20, ../../../../.rvm/gems/ruby-1.9.2-p0@logdb/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_form.scss */
-form legend {
-  font-weight: bold;
-  font-size: 1.2em;
-}
-/* line 26, ../../../../.rvm/gems/ruby-1.9.2-p0@logdb/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_form.scss */
-form input.text, form input.title, form input[type=email], form input[type=text], form input[type=password] {
-  margin: 0.5em 0;
-  background-color: white;
-  padding: 5px;
-}
-/* line 27, ../../../../.rvm/gems/ruby-1.9.2-p0@logdb/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_form.scss */
-form input.title {
-  font-size: 1.5em;
-}
-/* line 31, ../../../../.rvm/gems/ruby-1.9.2-p0@logdb/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_form.scss */
-form input[type=checkbox], form input.checkbox, form input[type=radio], form input.radio {
-  position: relative;
-  top: 0.25em;
-}
-/* line 33, ../../../../.rvm/gems/ruby-1.9.2-p0@logdb/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_form.scss */
-form textarea {
-  margin: 0.5em 0;
-  padding: 5px;
-}
-/* line 34, ../../../../.rvm/gems/ruby-1.9.2-p0@logdb/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_form.scss */
-form select {
-  margin: 0.5em 0;
-}
-/* line 59, ../../../../.rvm/gems/ruby-1.9.2-p0@logdb/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_form.scss */
-form fieldset {
-  border: 1px solid #cccccc;
-}
-/* line 62, ../../../../.rvm/gems/ruby-1.9.2-p0@logdb/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_form.scss */
-form input.text, form input.title, form input[type=email], form input[type=text], form input[type=password],
-form textarea, form select {
-  border: 1px solid #bbbbbb;
-}
-/* line 64, ../../../../.rvm/gems/ruby-1.9.2-p0@logdb/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_form.scss */
-form input.text:focus, form input.title:focus, form input[type=email]:focus, form input[type=text]:focus, form input[type=password]:focus,
-form textarea:focus, form select:focus {
-  border: 1px solid #666666;
-}
-/* line 48, ../../../../.rvm/gems/ruby-1.9.2-p0@logdb/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_form.scss */
-form input.text, form input.title, form input[type=email], form input[type=text], form input[type=password] {
-  width: 300px;
-}
-/* line 50, ../../../../.rvm/gems/ruby-1.9.2-p0@logdb/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_form.scss */
-form textarea {
-  width: 390px;
-  height: 250px;
-}
 /* line 106, ../../app/stylesheets/screen.sass */
 form.inline {
   line-height: 3;
@@ -661,26 +600,49 @@ form.inline {
 form.inline p {
   margin-bottom: 0;
 }
-/* line 110, ../../app/stylesheets/screen.sass */
-form .input label {
-  width: 80px;
-  padding: 10px 10px 0px 0px;
+/* line 108, ../../app/stylesheets/screen.sass */
+form .field {
+  width: 100%;
+  height: 32px;
+}
+/* line 111, ../../app/stylesheets/screen.sass */
+form .field label {
+  width: 100px;
+  padding-top: 5px;
+  display: block;
   float: left;
 }
 /* line 116, ../../app/stylesheets/screen.sass */
-form .input.field_with_errors input {
+form .field input {
+  float: left;
+  display: block;
+}
+/* line 119, ../../app/stylesheets/screen.sass */
+form .field input[type="checkbox"] {
+  margin-top: 8px;
+}
+/* line 121, ../../app/stylesheets/screen.sass */
+form .field input[type="date"] {
+  width: 110px;
+}
+/* line 123, ../../app/stylesheets/screen.sass */
+form .field input[type="time"] {
+  width: 90px;
+}
+/* line 126, ../../app/stylesheets/screen.sass */
+form .field.field_with_errors input {
   border: 2px solid #fbc2c4;
   margin-bottom: 0px;
 }
-/* line 120, ../../app/stylesheets/screen.sass */
-form .input.field_with_errors .error {
+/* line 130, ../../app/stylesheets/screen.sass */
+form .field.field_with_errors .error {
   display: block;
   border-top: 0px;
   margin-left: 90px;
   width: 293px;
 }
 
-/* line 128, ../../app/stylesheets/screen.sass */
+/* line 138, ../../app/stylesheets/screen.sass */
 div.time-picker {
   position: absolute;
   background: white;
@@ -689,18 +651,18 @@ div.time-picker {
   -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
-/* line 135, ../../app/stylesheets/screen.sass */
+/* line 145, ../../app/stylesheets/screen.sass */
 div.time-picker ul {
   list-style-type: none;
   overflow: auto;
   width: 110px;
   height: 191px;
 }
-/* line 140, ../../app/stylesheets/screen.sass */
+/* line 150, ../../app/stylesheets/screen.sass */
 div.time-picker li {
   cursor: pointer;
 }
-/* line 142, ../../app/stylesheets/screen.sass */
+/* line 152, ../../app/stylesheets/screen.sass */
 div.time-picker li.selected a {
   font-weight: normal;
   margin: -1px;
@@ -713,19 +675,19 @@ div.time-picker li.selected a {
   border-radius: 0;
 }
 
-/* line 157, ../../app/stylesheets/screen.sass */
+/* line 167, ../../app/stylesheets/screen.sass */
 body.application .flash {
   display: none;
 }
-/* line 160, ../../app/stylesheets/screen.sass */
+/* line 170, ../../app/stylesheets/screen.sass */
 body.application .application-tabs {
   background: transparent;
 }
-/* line 162, ../../app/stylesheets/screen.sass */
+/* line 172, ../../app/stylesheets/screen.sass */
 body.application .application-tabs > .ui-tabs-panel {
   background: white;
 }
-/* line 166, ../../app/stylesheets/screen.sass */
+/* line 176, ../../app/stylesheets/screen.sass */
 body.application .achtung {
   text-shadow: none;
   font-style: normal;
