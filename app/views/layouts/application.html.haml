@@ -13,17 +13,21 @@
       = include_javascripts :main
 
     = csrf_meta_tag  
-  %body.bp
+  %body(class="#{yield :body_class}")
     #container
       #content
         %header
-          = link_to "Sign Out", sign_out_path
-          |
-          = link_to "Feedback", "#"
           %h1 
             = link_to "Log DB", root_path
+          %nav
+            - if user_signed_in?
+              = link_to "Sign Out", sign_out_path
+              |
+              = link_to "Feedback", "#"
+            - else
+              = link_to "Sign In", sign_in_path    
         - [:error, :notice, :success, :alert].select {|f| flash[f].present? }.each do |f|
-          %div(class=f)
+          %div(class="#{f} flash")
             = flash[f]
 
         = yield

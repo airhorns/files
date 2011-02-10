@@ -21,6 +21,7 @@ LDB.view = (name) ->
 # The function below compiles the raw view code into a function which will render the 
 # view out as HTML.
 compiledCounter = -1
+
 LDB.renderTemplate = (templateString) ->
   i = compiledCounter++ # close over index
   return (data, fallback)->
@@ -40,3 +41,13 @@ class LDB.View extends Backbone.View
     $(@el).html(LDB.ViewRenderers[@view_path](renderable))
     cb() for cb in renderable._afterCallbacks if renderable._afterCallbacks?
     return this
+
+LDB.notify = (textOrOptions) ->
+  if _.isString(textOrOptions)
+    options =
+      timeout: 0
+      icon: 'ui-icon-info'
+      message: textOrOptions
+  else
+    options = textOrOptions
+  $.achtung options

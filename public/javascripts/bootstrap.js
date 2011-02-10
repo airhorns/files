@@ -6,6 +6,11 @@
     $('#application').append(LDB.rootView.el);
     new LDB.DashboardController();
     new LDB.LogsController();
-    return Backbone.history.start();
+    Backbone.history.start();
+    LDB.notify("Signed in successfully.");
+    return $('.flash').each(function(e) {
+      LDB.notify(this.innerHTML);
+      return $(this).remove();
+    });
   });
 }).call(this);

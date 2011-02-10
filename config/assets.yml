@@ -20,6 +20,7 @@ javascripts:
     - public/lib/slickgrid/slick.core.js
     - public/lib/slickgrid/slick.grid.js
     - public/lib/slickgrid/slick.editors.js
+    - public/lib/achtung/src/ui.achtung.js
     - public/lib/underscore/underscore.js
     - public/lib/backbone/backbone.js
     - public/lib/handlebars/handlebars.js
@@ -37,6 +38,7 @@ stylesheets:
     - public/stylesheets/screen.css
     - public/stylesheets/aristo.jquery-ui.custom.css
     - public/lib/slickgrid/slick.grid.css
+    - public/lib/achtung/src/ui.achtung.css
   print:
     - public/stylesheets/print.css
   ie:

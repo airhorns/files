@@ -10,3 +10,6 @@
 [submodule "public/lib/underscore"]
 	path = public/lib/underscore
 	url = https://github.com/documentcloud/underscore.git
+[submodule "public/lib/achtung"]
+	path = public/lib/achtung
+	url = https://github.com/voxwerk/jquery-achtung.git

@@ -57,4 +57,17 @@
     };
     return View;
   })();
+  LDB.notify = function(textOrOptions) {
+    var options;
+    if (_.isString(textOrOptions)) {
+      options = {
+        timeout: 0,
+        icon: 'ui-icon-info',
+        message: textOrOptions
+      };
+    } else {
+      options = textOrOptions;
+    }
+    return $.achtung(options);
+  };
 }).call(this);

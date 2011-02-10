@@ -32,6 +32,13 @@ h1,h2,h3,h4,h5,h6
 body
   background-color: #EEE
 #container
+  width: 600px
+  margin-left: auto
+  margin-right: auto
+  .application &
+    width: 100%
+    margin-left: 0
+    margin-right: 0
   // Don't change the bottom margin on the container, its set by the sticky footer call which
   // makes the footer stick to the bottom of the page regardless of the height of the content.
   // See http://compass-style.org/docs/reference/compass/layout/sticky_footer/
@@ -39,28 +46,31 @@ body
   #content
     padding: 20px
   
-   
 header
   z-index: 10
-  display: inline
-  position: absolute
-  top: 15px
-  right: 20px
   a, a:visited
     color: #222
     text-decoration: none      
-
   a:hover
     text-decoration: underline
     color: #666
-
   h1
-    margin-left: 10px
-    font-size: 20px    
     display: inline
     a:hover
       text-decoration: none
-     
+  nav
+    float: right
+
+  .application &
+    position: absolute
+    top: 15px
+    right: 20px
+    nav
+      float: left
+    h1
+      display: inline
+      margin-left: 10px
+      font-size: 20px   
 
 #footer
   padding: 0px 20px
@@ -142,10 +152,17 @@ div
 // -------------------------
 // Specific places in the app
 // -------------------------
-body 
+body.application
+  .flash
+    // Hide flash messages so they can be displayed by the app.
+    display: none 
   .application-tabs
     background: transparent
     & > .ui-tabs-panel
       background: white
 
+  // Notifications
+  .achtung
+    text-shadow: none
+    font-style: normal
 // Dashboard
