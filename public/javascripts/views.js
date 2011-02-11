@@ -8,11 +8,11 @@
     child.__super__ = parent.prototype;
     return child;
   }, __slice = Array.prototype.slice;
-  window.LDB = {
+  _.extend(LDB, {
     Views: {},
     ViewRenderers: {},
     _compiledHandlebars: {}
-  };
+  });
   LDB.registerView = function(name, klass) {
     klass.prototype.view_path = name;
     return LDB.Views[name] = klass;
@@ -50,8 +50,11 @@
         _ref = renderable._afterCallbacks;
         for (_i = 0, _len = _ref.length; _i < _len; _i++) {
           cb = _ref[_i];
-          cb();
+          cb(renderable);
         }
+      }
+      if (this.afterRender != null) {
+        this.afterRender(renderable);
       }
       return this;
     };

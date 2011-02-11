@@ -6,7 +6,7 @@
 # Chrome, and to log them to the console so that they can be fixed easier and the line 
 # numbers become clickable.
 
-require '/lib/jquery.js', '/lib/underscore/underscore.js', '/lib/inflections.js', ->
+require '/javascripts/paths.js', '/lib/jquery.js', '/lib/underscore/underscore.js', '/lib/inflections.js', ->
   testBed = null
 
   window.$testBed = ->

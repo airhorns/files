@@ -32,34 +32,59 @@
           return ViewKlass;
         })();
       });
-      it("should render the view", function() {
-        var view;
-        view = new this.klass;
-        view.render();
-        return expect(view.el).toHaveHTML("Value: y");
-      });
-      return it("should fire the after callbacks", function() {
-        var AfterTestClass, afterCallback, helperTestTemplate, klass, view;
-        afterCallback = jasmine.createSpy();
-        helperTestTemplate = Handlebars.compile("Test: {{test}}");
-        Handlebars.registerHelper("test", function() {
-          Handlebars.helpers.after.call(this, afterCallback);
-          return "123";
+      describe('rendering', function() {
+        it("should render the view", function() {
+          var view;
+          view = new this.klass;
+          view.render();
+          return expect(view.el).toHaveHTML("Value: y");
         });
-        klass = AfterTestClass = (function() {
-          function AfterTestClass() {
-            AfterTestClass.__super__.constructor.apply(this, arguments);
-          }
-          __extends(AfterTestClass, this.klass);
-          AfterTestClass.prototype.getBars = function() {
-            return helperTestTemplate;
-          };
-          return AfterTestClass;
-        }).call(this);
-        view = new klass;
-        view.render();
-        expect(view.el).toHaveHTML("Test: 123");
-        return expect(afterCallback).toHaveBeenCalled();
+        return it("should be chainable when rendering", function() {
+          var view;
+          view = new this.klass;
+          return expect(view.render()).toEqual(view);
+        });
+      });
+      return describe('callbacks', function() {
+        it("should fire the class level after callback and pass the renderable", function() {
+          var AfteRenderClass, afterCallback, klass;
+          afterCallback = jasmine.createSpy();
+          klass = AfteRenderClass = (function() {
+            function AfteRenderClass() {
+              AfteRenderClass.__super__.constructor.apply(this, arguments);
+            }
+            __extends(AfteRenderClass, this.klass);
+            AfteRenderClass.prototype.afterRender = afterCallback;
+            return AfteRenderClass;
+          }).call(this);
+          (new klass).render();
+          return expect(afterCallback).toHaveBeenCalledWith({
+            x: "y"
+          });
+        });
+        return it("should fire the after callbacks set in helpers", function() {
+          var AfterTestClass, afterCallback, helperTestTemplate, klass, view;
+          afterCallback = jasmine.createSpy();
+          Handlebars.registerHelper("test", function() {
+            Handlebars.helpers.after.call(this, afterCallback, "an_argument", "another");
+            return "123";
+          });
+          helperTestTemplate = Handlebars.compile("Test: {{test}}");
+          klass = AfterTestClass = (function() {
+            function AfterTestClass() {
+              AfterTestClass.__super__.constructor.apply(this, arguments);
+            }
+            __extends(AfterTestClass, this.klass);
+            AfterTestClass.prototype.getBars = function() {
+              return helperTestTemplate;
+            };
+            return AfterTestClass;
+          }).call(this);
+          view = new klass;
+          view.render();
+          expect(view.el).toHaveHTML("Test: 123");
+          return expect(afterCallback).toHaveBeenCalledWith("an_argument", "another");
+        });
       });
     });
   });

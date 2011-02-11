@@ -6,6 +6,7 @@ template_function: 'LDB.renderTemplate'
 
 javascripts:
   main:
+    - public/javascripts/paths.js
     - public/lib/jquery.js
     - public/lib/jqueryui/ui/jquery.ui.core.js
     - public/lib/jqueryui/ui/jquery.ui.widget.js

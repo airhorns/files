@@ -1,5 +1,5 @@
 (function() {
-  require('/lib/jquery.js', '/lib/underscore/underscore.js', '/lib/inflections.js', function() {
+  require('/javascripts/paths.js', '/lib/jquery.js', '/lib/underscore/underscore.js', '/lib/inflections.js', function() {
     var old, testBed;
     testBed = null;
     window.$testBed = function() {

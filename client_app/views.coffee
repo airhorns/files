@@ -1,5 +1,5 @@
 # Path setup
-window.LDB =
+_.extend LDB,
   Views: {}
   ViewRenderers: {}
   _compiledHandlebars: {}
@@ -50,7 +50,8 @@ class LDB.View extends Backbone.View
   render: ->
     renderable = this.renderable()
     $(@el).html(this.getBars()(renderable))
-    cb() for cb in renderable._afterCallbacks if renderable._afterCallbacks?
+    cb(renderable) for cb in renderable._afterCallbacks if renderable._afterCallbacks?
+    this.afterRender(renderable) if this.afterRender?
     return this
 
   # Internal method to find the compiled Handlebars template.

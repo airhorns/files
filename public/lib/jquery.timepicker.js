@@ -202,7 +202,7 @@
     startTime: new Date(0, 0, 0, 0, 0, 0),
     endTime: new Date(0, 0, 0, 23, 30, 0),
     separator: ':',
-    show24Hours: true
+    show24Hours: false
   };
 
   // Private functions.
@@ -227,6 +227,7 @@
     return formatNumber(hours) + settings.separator + formatNumber(minutes) + (settings.show24Hours ? '' : ((h < 12) ? ' AM' : ' PM'));
   }
 
+
   function formatNumber(value) {
     return (value < 10 ? '0' : '') + value;
   }
@@ -234,6 +235,9 @@
   function timeToDate(input, settings) {
     return (typeof input == 'object') ? normaliseTime(input) : timeStringToDate(input, settings);
   }
+
+  LDB.fmt.formatTime = function(time) { return formatTime(time, $.fn.timePicker.defaults);}
+  LDB.fmt.timeToDate = function(time) { return timeToDate(time,$.fn.timePicker.defaults);}
 
   function timeStringToDate(input, settings) {
     if (input) {
@@ -265,4 +269,3 @@
   }
 
 })(jQuery);
-

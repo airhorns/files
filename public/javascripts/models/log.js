@@ -7,20 +7,6 @@
     child.__super__ = parent.prototype;
     return child;
   };
-  LDB.parseTime = function(timeString) {
-    var d, time, _ref;
-    if (timeString === '') {
-      return null;
-    }
-    d = new Date;
-    time = timeString.match(/(\d+)(:(\d\d))?\s*(p?)/i);
-    d.setHours(parseInt(time[1], 10) + ((_ref = parseInt(time[1], 10) < 12 && time[4]) != null ? _ref : {
-      12: 0
-    }));
-    d.setMinutes(parseInt(time[3], 10) || 0);
-    d.setSeconds(0, 0);
-    return d;
-  };
   LDB.Log = (function() {
     function Log() {
       Log.__super__.constructor.apply(this, arguments);
@@ -29,9 +15,10 @@
     Log.prototype.initialize = function() {
       var now;
       now = new Date;
+      now.setMinutes(now.getMinutes() - now.getMinutes() % 30);
       return this.set({
-        startDate: now,
-        endDate: new Date(now.getYear(), now.getMonth(), now.getDate(), now.getHours() + 1, now.getMinutes())
+        start_date: now,
+        end_date: new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours() + 1, now.getMinutes())
       });
     };
     return Log;
