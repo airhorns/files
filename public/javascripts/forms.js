@@ -113,9 +113,26 @@
       checked = this.getValue(name) ? ' checked="checked"' : '';
       return ss("<input type=\"checkbox\" id=\"" + id + "\" name=\"" + this.name + "[" + name + "]\" value=\"true\"" + checked + "/>");
     };
+    FormBuilder.prototype.button = function(text, type) {
+      var id;
+      if (type == null) {
+        type = "submit";
+      }
+      id = "" + this.name + "_" + type;
+      Handlebars.helpers.after.call(this.context, function() {
+        return $("#" + id).button();
+      });
+      return ss("<input id=\"" + id + "\" type=\"submit\" value=\"" + text + "\"/>");
+    };
+    FormBuilder.prototype.submit = function(text) {
+      if (text == null) {
+        text = "Save";
+      }
+      return this.button(text, "submit");
+    };
     return FormBuilder;
   })();
-  _ref = ['field', 'label', 'text', 'select', 'option', 'hidden', 'date', 'time', 'checkbox'];
+  _ref = ['field', 'label', 'text', 'select', 'option', 'hidden', 'date', 'time', 'checkbox', 'button', 'submit'];
   _fn = function(name) {
     return Handlebars.registerHelper(name, function() {
       if (!CURRENT_FORM) {

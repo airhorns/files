@@ -223,6 +223,15 @@
           pre_recorded: false
         });
       });
+      it("should render a checkbox", function() {
+        var output, template;
+        template = '{{#form_for "log"}}\
+                      {{submit "Go"}}\
+                  {{/form_for}}';
+        return output = '<form accept-charset="UTF-8" action="#" class="new_log">\
+                  <input id="log_submit" type="submit" value="Go"/> \
+                </form>';
+      });
       return true;
     });
   });

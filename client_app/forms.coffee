@@ -95,7 +95,18 @@ class FormBuilder
     checked = if this.getValue(name) then ' checked="checked"' else ''
     ss "<input type=\"checkbox\" id=\"#{id}\" name=\"#{@name}[#{name}]\" value=\"true\"#{checked}/>"
 
-for name in ['field', 'label', 'text', 'select', 'option', 'hidden', 'date', 'time', 'checkbox']
+  button: (text, type="submit") ->
+    id ="#{@name}_#{type}"
+
+    Handlebars.helpers.after.call @context, ->
+      $("##{id}").button()
+
+    ss "<input id=\"#{id}\" type=\"submit\" value=\"#{text}\"/>"
+  
+  submit: (text="Save") ->
+    this.button(text, "submit")
+
+for name in ['field', 'label', 'text', 'select', 'option', 'hidden', 'date', 'time', 'checkbox', 'button', 'submit']
   do (name) ->
     Handlebars.registerHelper name, () ->
       unless CURRENT_FORM

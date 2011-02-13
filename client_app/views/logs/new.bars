@@ -20,6 +20,6 @@
   {{/field}}
 
   <div class='actions'> 
-    <input id="log_submit" name="commit" type="submit" value="Save" /> 
+    {{submit "Save"}}
   </div> 
 {{/form_for}}

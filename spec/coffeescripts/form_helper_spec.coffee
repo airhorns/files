@@ -169,5 +169,13 @@ require '/lib/handlebars/handlebars.js', '/lib/backbone/backbone.js', '/javascri
       
       expect(template).toRenderTo(outputTrue, {pre_recorded: true})
       expect(template).toRenderTo(outputFalse, {pre_recorded: false})
-      
+    
+    it "should render a checkbox", ->
+      template = '{{#form_for "log"}}
+                      {{submit "Go"}}
+                  {{/form_for}}'
+      output = '<form accept-charset="UTF-8" action="#" class="new_log">
+                  <input id="log_submit" type="submit" value="Go"/> 
+                </form>'
+
     true
