@@ -18,7 +18,11 @@ LDB.registerView "logs/new", class LDB.NewLogView extends LDB.View
     return new Date(d.getFullYear(), d.getMonth(),d.getDate(), t.getHours(), t.getMinutes())
 
   _setDateTime: (time, n) ->
-    $.timePicker("#log_#{n}_time").setTime(time)
+    # Timepicker modifies the time it gets when you set it! Clone the object to keep the actual
+    # date around. Goddamnit.
+    x = new Date
+    x.setTime(time.valueOf())
+    $.timePicker("#log_#{n}_time").setTime(x)
     $("#log_#{n}_date").datepicker('setDate', time)
   
   # I want to curry these but I don't know what to bind them to
@@ -34,11 +38,15 @@ LDB.registerView "logs/new", class LDB.NewLogView extends LDB.View
   afterRender: (renderable) ->
     # Define the Google Calendar like behaviour of changing the end date if the user changes
     # the start date
-    duration = this.model.get('end_date') - this.model.get('start_date') # Initial duration
-    this.$('#log_end_date').change (e) =>
-      duration = this.getEndDateTime() - this.getStartDateTime()
+    duration = this._roundMs(this.model.get('end_date') - this.model.get('start_date')) # Initial duration
+    this.$('#log_end_date, #log_end_time').change (e) =>
+      duration = this._roundMs(this.getEndDateTime() - this.getStartDateTime())
 
-    this.$('#log_start_date').change (e) =>
+    this.$('#log_start_date, #log_start_time').change (e) =>
       newEnd = new Date
       newEnd.setTime(this.getStartDateTime().getTime() + duration)
       this.setEndDateTime(newEnd)
+
+
+  _roundMs: (x) ->
+    (Math.round x/60000)*60000

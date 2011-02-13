@@ -46,7 +46,10 @@
       return new Date(d.getFullYear(), d.getMonth(), d.getDate(), t.getHours(), t.getMinutes());
     };
     NewLogView.prototype._setDateTime = function(time, n) {
-      $.timePicker("#log_" + n + "_time").setTime(time);
+      var x;
+      x = new Date;
+      x.setTime(time.valueOf());
+      $.timePicker("#log_" + n + "_time").setTime(x);
       return $("#log_" + n + "_date").datepicker('setDate', time);
     };
     NewLogView.prototype.getEndDateTime = function() {
@@ -63,16 +66,19 @@
     };
     NewLogView.prototype.afterRender = function(renderable) {
       var duration;
-      duration = this.model.get('end_date') - this.model.get('start_date');
-      this.$('#log_end_date').change(__bind(function(e) {
-        return duration = this.getEndDateTime() - this.getStartDateTime();
+      duration = this._roundMs(this.model.get('end_date') - this.model.get('start_date'));
+      this.$('#log_end_date, #log_end_time').change(__bind(function(e) {
+        return duration = this._roundMs(this.getEndDateTime() - this.getStartDateTime());
       }, this));
-      return this.$('#log_start_date').change(__bind(function(e) {
+      return this.$('#log_start_date, #log_start_time').change(__bind(function(e) {
         var newEnd;
         newEnd = new Date;
         newEnd.setTime(this.getStartDateTime().getTime() + duration);
         return this.setEndDateTime(newEnd);
       }, this));
+    };
+    NewLogView.prototype._roundMs = function(x) {
+      return (Math.round(x / 60000)) * 60000;
     };
     return NewLogView;
   })());
