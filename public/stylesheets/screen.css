@@ -592,57 +592,67 @@ header nav {
   clear: both;
 }
 
-/* line 106, ../../app/stylesheets/screen.sass */
-form.inline {
-  line-height: 3;
-}
-/* line 6, ../../../../.rvm/gems/ruby-1.9.2-p0@logdb/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_form.scss */
-form.inline p {
-  margin-bottom: 0;
-}
 /* line 108, ../../app/stylesheets/screen.sass */
 form .field {
-  width: 100%;
-  height: 32px;
+  margin-right: 10px;
 }
-/* line 111, ../../app/stylesheets/screen.sass */
+/* line 110, ../../app/stylesheets/screen.sass */
+form .field.inline {
+  float: left;
+}
+/* line 112, ../../app/stylesheets/screen.sass */
 form .field label {
-  width: 100px;
+  width: 150px;
   padding-top: 5px;
   display: block;
-  float: left;
 }
-/* line 116, ../../app/stylesheets/screen.sass */
+/* line 117, ../../app/stylesheets/screen.sass */
 form .field input {
+  margin-bottom: 10px;
   float: left;
   display: block;
 }
-/* line 119, ../../app/stylesheets/screen.sass */
+/* line 121, ../../app/stylesheets/screen.sass */
+form .field input[type="text"], form .field input[type="password"], form .field input[type="date"], form .field input[type="time"] {
+  margin: 4px 0px;
+  height: 20px;
+  border: 1px #cccccc solid;
+}
+/* line 125, ../../app/stylesheets/screen.sass */
 form .field input[type="checkbox"] {
   margin-top: 8px;
 }
-/* line 121, ../../app/stylesheets/screen.sass */
+/* line 127, ../../app/stylesheets/screen.sass */
 form .field input[type="date"] {
   width: 110px;
 }
-/* line 123, ../../app/stylesheets/screen.sass */
+/* line 129, ../../app/stylesheets/screen.sass */
 form .field input[type="time"] {
   width: 90px;
 }
-/* line 126, ../../app/stylesheets/screen.sass */
+/* line 132, ../../app/stylesheets/screen.sass */
 form .field.field_with_errors input {
   border: 2px solid #fbc2c4;
   margin-bottom: 0px;
 }
-/* line 130, ../../app/stylesheets/screen.sass */
+/* line 136, ../../app/stylesheets/screen.sass */
 form .field.field_with_errors .error {
   display: block;
   border-top: 0px;
   margin-left: 90px;
   width: 293px;
 }
+/* line 141, ../../app/stylesheets/screen.sass */
+form .actions {
+  clear: both;
+  width: 100%;
+}
+/* line 145, ../../app/stylesheets/screen.sass */
+form div.selector {
+  margin-bottom: 4px;
+}
 
-/* line 138, ../../app/stylesheets/screen.sass */
+/* line 148, ../../app/stylesheets/screen.sass */
 div.time-picker {
   position: absolute;
   background: white;
@@ -651,18 +661,18 @@ div.time-picker {
   -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
-/* line 145, ../../app/stylesheets/screen.sass */
+/* line 155, ../../app/stylesheets/screen.sass */
 div.time-picker ul {
   list-style-type: none;
   overflow: auto;
   width: 110px;
   height: 191px;
 }
-/* line 150, ../../app/stylesheets/screen.sass */
+/* line 160, ../../app/stylesheets/screen.sass */
 div.time-picker li {
   cursor: pointer;
 }
-/* line 152, ../../app/stylesheets/screen.sass */
+/* line 162, ../../app/stylesheets/screen.sass */
 div.time-picker li.selected a {
   font-weight: normal;
   margin: -1px;
@@ -675,19 +685,19 @@ div.time-picker li.selected a {
   border-radius: 0;
 }
 
-/* line 167, ../../app/stylesheets/screen.sass */
+/* line 177, ../../app/stylesheets/screen.sass */
 body.application .flash {
   display: none;
 }
-/* line 170, ../../app/stylesheets/screen.sass */
+/* line 180, ../../app/stylesheets/screen.sass */
 body.application .application-tabs {
   background: transparent;
 }
-/* line 172, ../../app/stylesheets/screen.sass */
+/* line 182, ../../app/stylesheets/screen.sass */
 body.application .application-tabs > .ui-tabs-panel {
   background: white;
 }
-/* line 176, ../../app/stylesheets/screen.sass */
+/* line 186, ../../app/stylesheets/screen.sass */
 body.application .achtung {
   text-shadow: none;
   font-style: normal;

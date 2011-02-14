@@ -13,3 +13,6 @@
 [submodule "public/lib/achtung"]
 	path = public/lib/achtung
 	url = https://github.com/voxwerk/jquery-achtung.git
+[submodule "public/lib/uniform"]
+	path = public/lib/uniform
+	url = https://github.com/pixelmatrix/uniform.git

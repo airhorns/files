@@ -32,6 +32,16 @@
       }
       return ss("<div class=\"field\">" + out + "</div>");
     };
+    FormBuilder.prototype.inline_field = function(nameOrFn) {
+      var out;
+      if (_.isString(nameOrFn)) {
+        out = this.label(nameOrFn);
+        out += "\n" + this.text(nameOrFn);
+      } else {
+        out = nameOrFn(this.context);
+      }
+      return ss("<div class=\"field inline\">" + out + "</div>");
+    };
     FormBuilder.prototype.label = function(name, title) {
       title || (title = name.replace('_', ' ').replace(' id', '').titleize());
       return ss("<label for=\"" + this.name + "_" + name + "\">" + title + "</label>");
@@ -40,7 +50,7 @@
       return ss("<input id=\"" + this.name + "_" + name + "\" name=\"" + this.name + "[" + name + "]\" value=\"" + (this.getValue(name)) + "\"/>");
     };
     FormBuilder.prototype.select = function(name, options, fn) {
-      var option, out;
+      var id, option, out;
       if (options == null) {
         throw "Select needs options!";
       }
@@ -67,7 +77,11 @@
         }).call(this);
       }
       this.current_select = false;
-      return ss("<select id=\"" + this.name + "_" + name + "\" name=\"" + this.name + "[" + name + "]\">" + (out.join('')) + "</select>");
+      id = "" + this.name + "_" + name;
+      Handlebars.helpers.after.call(this.context, function() {
+        return jQuery("#" + id).uniform();
+      });
+      return ss("<select id=\"" + id + "\" name=\"" + this.name + "[" + name + "]\">" + (out.join('')) + "</select>");
     };
     FormBuilder.prototype.option = function(name, value, selected) {
       var selected_text, selected_value, value_text;
@@ -110,6 +124,9 @@
     FormBuilder.prototype.checkbox = function(name) {
       var checked, id;
       id = "" + this.name + "_" + name;
+      Handlebars.helpers.after.call(this.context, function() {
+        return jQuery("#" + id).uniform();
+      });
       checked = this.getValue(name) ? ' checked="checked"' : '';
       return ss("<input type=\"checkbox\" id=\"" + id + "\" name=\"" + this.name + "[" + name + "]\" value=\"true\"" + checked + "/>");
     };
@@ -132,7 +149,7 @@
     };
     return FormBuilder;
   })();
-  _ref = ['field', 'label', 'text', 'select', 'option', 'hidden', 'date', 'time', 'checkbox', 'button', 'submit'];
+  _ref = ['field', 'inline_field', 'label', 'text', 'select', 'option', 'hidden', 'date', 'time', 'checkbox', 'button', 'submit'];
   _fn = function(name) {
     return Handlebars.registerHelper(name, function() {
       if (!CURRENT_FORM) {

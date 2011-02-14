@@ -1,19 +1,19 @@
 <h1>New Log</h1>
 {{#form_for "log"}}
-  {{#field}}
+  {{#inline_field}}
     {{label "show_id"}}
     {{select "show_id" shows}}
-  {{/field}}
-  {{#field}}
+  {{/inline_field}}
+  {{#inline_field}}
     {{label "start_date"}}
     {{date "start_date"}}
     {{time "start_time"}}
-  {{/field}}
-  {{#field}}
+  {{/inline_field}}
+  {{#inline_field}}
     {{label "end_date"}}
     {{date "end_date"}}
     {{time "end_time"}}
-  {{/field}}
+  {{/inline_field}}
   {{#field}}
     {{label "pre_recorded"}}
     {{checkbox "pre_recorded"}}

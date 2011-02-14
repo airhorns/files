@@ -33,6 +33,18 @@ class FormBuilder
 
     ss "<div class=\"field\">#{out}</div>"
   
+  # Field renderer, can either be the wrapper div or as a shortcut do the whole field as a text input
+  inline_field: (nameOrFn) ->
+    if _.isString(nameOrFn)
+      # {{field "something"}} shortcut style calling, parameter is a name
+      out = this.label(nameOrFn)
+      out += "\n" + this.text(nameOrFn)
+    else
+      # {{#field}}...{{/field}} style calling, parameter is a function
+      out = nameOrFn(@context)
+
+    ss "<div class=\"field inline\">#{out}</div>"
+
   # Label renderer
   label: (name, title) ->
     title ||= name.replace('_', ' ').replace(' id','').titleize()
@@ -44,16 +56,23 @@ class FormBuilder
 
   # Select input helper
   select: (name, options, fn) ->
+
+    # Block setup and helper
     throw "Select needs options!" unless options?
     @current_select = name # Set this value for use in option select
     if fn?
-      # {{#select name options}} block helper which allows inline option rendering
+      # {{#select name options}} ... {{/select}} block helper which allows option rendering. Renders the block for each option
       out = (fn(option) for option in options)
     else
       # {{select "name" path}} shortcut helper which renders its own options
       out = (this.option(option.name, option.value, option.selected) for option in options)
     @current_select = false
-    ss "<select id=\"#{@name}_#{name}\" name=\"#{@name}[#{name}]\">#{out.join('')}</select>"
+
+    id = "#{@name}_#{name}"
+    Handlebars.helpers.after.call @context, ->
+      jQuery("##{id}").uniform()
+
+    ss "<select id=\"#{id}\" name=\"#{@name}[#{name}]\">#{out.join('')}</select>"
   
   # Option tag helper. Value and Selected tag optional
   option: (name, value, selected) ->
@@ -92,6 +111,8 @@ class FormBuilder
   
   checkbox: (name) ->
     id = "#{@name}_#{name}"
+    Handlebars.helpers.after.call @context, ->
+      jQuery("##{id}").uniform()
     checked = if this.getValue(name) then ' checked="checked"' else ''
     ss "<input type=\"checkbox\" id=\"#{id}\" name=\"#{@name}[#{name}]\" value=\"true\"#{checked}/>"
 
@@ -106,7 +127,7 @@ class FormBuilder
   submit: (text="Save") ->
     this.button(text, "submit")
 
-for name in ['field', 'label', 'text', 'select', 'option', 'hidden', 'date', 'time', 'checkbox', 'button', 'submit']
+for name in ['field', 'inline_field', 'label', 'text', 'select', 'option', 'hidden', 'date', 'time', 'checkbox', 'button', 'submit']
   do (name) ->
     Handlebars.registerHelper name, () ->
       unless CURRENT_FORM

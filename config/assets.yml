@@ -18,6 +18,7 @@ javascripts:
     #- public/lib/jqueryui/ui/jquery.effects.core.js
     #- public/lib/jqueryui/ui/jquery.effects.*.js
     - public/lib/jquery.timePicker.js
+    - public/lib/uniform/jquery.uniform.js
     - public/lib/slickgrid/lib/jquery.event.drag-2.0.min.js
     - public/lib/slickgrid/slick.core.js
     - public/lib/slickgrid/slick.grid.js
@@ -39,10 +40,10 @@ stylesheets:
   screen:
     - public/stylesheets/screen.css
     - public/stylesheets/aristo.jquery-ui.custom.css
+    - public/stylesheets/uniform.aristo.css
     - public/lib/slickgrid/slick.grid.css
     - public/lib/achtung/src/ui.achtung.css
   print:
     - public/stylesheets/print.css
   ie:
     - public/stylesheets/ie.css
-

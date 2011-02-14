@@ -100,22 +100,28 @@ header
 // ---------------------------
 // Forms and Form Elements
 // ---------------------------
+$input-bottom-margin: 10px
 form
   //+blueprint-form
-
-  &.inline
-    +blueprint-inline-form
+  //&.inline
+    //+blueprint-inline-form
   .field
-    width: 100%
-    height: 32px
+    margin-right: 10px
+    &.inline
+      float: left
     label
-      width: 100px
+      width: 150px
       padding-top: 5px
       display: block
-      float: left
+      //float: left
     input
+      margin-bottom: $input-bottom-margin  
       float: left
       display: block
+      &[type="text"], &[type="password"], &[type="date"], &[type="time"]
+        margin: 4px 0px
+        height: 20px
+        border: 1px #CCC solid
       &[type="checkbox"]
         margin-top: 8px
       &[type="date"]
@@ -132,33 +138,37 @@ form
         border-top: 0px
         margin-left: 90px
         width: 293px
+  .actions
+    clear: both
+    width: 100%
 
-// Time picker
-div
-  &.time-picker
-    position: absolute
-    background: #fff
-    z-index: 99
-    -moz-box-shadow: 0 4px 8px rgba(0,0,0,0.5)
-    -webkit-box-shadow: 0 4px 8px rgba(0,0,0,0.5)
-    box-shadow: 0 4px 8px rgba(0,0,0,0.5)    
-    ul
-      list-style-type: none
-      overflow: auto
-      width: 110px
-      height: 191px
-    li
-      cursor: pointer
-      &.selected a
-        font-weight: normal
-        margin: -1px
-        background: #5f83b9
-        color: #FFFFFF
-        text-shadow: 0px 1px 1px #234386
-        border-color: #466086
-        -moz-border-radius: 0
-        -webkit-border-radius: 0
-        border-radius: 0
+  div.selector
+    margin-bottom: $input-bottom-margin - 6px
+
+div.time-picker
+  position: absolute
+  background: #fff
+  z-index: 99
+  -moz-box-shadow: 0 4px 8px rgba(0,0,0,0.5)
+  -webkit-box-shadow: 0 4px 8px rgba(0,0,0,0.5)
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5)    
+  ul
+    list-style-type: none
+    overflow: auto
+    width: 110px
+    height: 191px
+  li
+    cursor: pointer
+    &.selected a
+      font-weight: normal
+      margin: -1px
+      background: #5f83b9
+      color: #FFFFFF
+      text-shadow: 0px 1px 1px #234386
+      border-color: #466086
+      -moz-border-radius: 0
+      -webkit-border-radius: 0
+      border-radius: 0
 
 // -------------------------
 // Specific places in the app
