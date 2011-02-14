@@ -18,7 +18,10 @@
     {{label "pre_recorded"}}
     {{checkbox "pre_recorded"}}
   {{/field}}
-
+  
+  {{#field}}
+    <div id="log_log_items_grid" style="display:none;"/>
+  {{/field}}
   <div class='actions'> 
     {{submit "Save"}}
   </div> 
