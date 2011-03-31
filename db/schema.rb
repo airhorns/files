@@ -10,44 +10,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110202183018) do
-
-  create_table "log_lines", :force => true do |t|
-    t.time     "start_time"
-    t.time     "duration"
-    t.string   "type"
-    t.string   "artist"
-    t.string   "album"
-    t.string   "song"
-    t.string   "description"
-    t.string   "category"
-    t.boolean  "canadian"
-    t.boolean  "new_release"
-    t.boolean  "french"
-    t.boolean  "request"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "artist_mbid"
-    t.string   "album_mbid"
-    t.string   "song_mbid"
-  end
-
-  create_table "logs", :force => true do |t|
-    t.integer  "show_id"
-    t.datetime "start"
-    t.datetime "end"
-    t.boolean  "pre_recorded"
-    t.text     "notes"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(:version => 20110331022036) do
 
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
     t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
-    t.string   "password_salt",                       :default => "", :null => false
     t.string   "reset_password_token"
-    t.string   "remember_token"
     t.datetime "remember_created_at"
     t.integer  "sign_in_count",                       :default => 0
     t.datetime "current_sign_in_at"

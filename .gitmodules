@@ -16,3 +16,6 @@
 [submodule "public/lib/uniform"]
 	path = public/lib/uniform
 	url = https://github.com/pixelmatrix/uniform.git
+[submodule "public/lib/treeTable"]
+	path = public/lib/treeTable
+	url = https://github.com/ludo/jquery-plugins.git

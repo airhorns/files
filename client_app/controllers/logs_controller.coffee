@@ -1,13 +1,13 @@
-class LDB.LogsController extends Backbone.Controller
+class FDB.LogsController extends Backbone.Controller
   views: {}
   routes:
     '/logs/new': 'new'
 
   new: ->
     unless @views.new?
-      @views.new = new (LDB.view('logs/new'))
-      LDB.rootView.panel('new_log').append @views.new.el
+      @views.new = new (FDB.view('logs/new'))
+      FDB.rootView.panel('new_log').append @views.new.el
 
-    log = new LDB.Log()
+    log = new FDB.Log()
     @views.new.model = log
     @views.new.render()

@@ -1,4 +1,4 @@
-class LDB.Log extends Backbone.Model
+class FDB.Log extends Backbone.Model
   initialize: ->
     now = new Date
     now.setMinutes(now.getMinutes() - now.getMinutes() % 30)

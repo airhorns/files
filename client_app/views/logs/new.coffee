@@ -1,4 +1,4 @@
-LDB.registerView "logs/new", class LDB.NewLogView extends LDB.View
+FDB.registerView "logs/new", class FDB.NewLogView extends FDB.View
   renderable: ->
     attrs = super # get the attributes from the log
 
@@ -6,7 +6,7 @@ LDB.registerView "logs/new", class LDB.NewLogView extends LDB.View
     for x in ["start", "end"]
       v = attrs["#{x}_date"]
       attrs["#{x}_date"] = jQuery.datepicker.formatDate('mm/dd/yy', v)
-      attrs["#{x}_time"] = LDB.fmt.formatTime(v) # defined in public/lib/jquery.timepicker.js
+      attrs["#{x}_time"] = FDB.fmt.formatTime(v) # defined in public/lib/jquery.timepicker.js
 
     # Add the shows list for the select. This is temporary, probably should become an autocomplete
     attrs.shows = [{name:"A", value:1},{name:"C",value:2},{name:"D",value:3},{name:"E", value:4}]

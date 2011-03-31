@@ -1,2 +1,2 @@
-LDB.registerView 'dashboard/dashboard', class LDB.DashboardView extends LDB.View
+FDB.registerView 'dashboard/dashboard', class FDB.DashboardView extends FDB.View
   

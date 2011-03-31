@@ -4,4 +4,4 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
-Logdb::Application.load_tasks
+Files::Application.load_tasks

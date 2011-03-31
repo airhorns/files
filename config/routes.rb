@@ -1,12 +1,15 @@
-Logdb::Application.routes.draw do
+Files::Application.routes.draw do
   devise_for :users do
     get "sign_in", :to => "devise/sessions#new"
     get "sign_out", :to => "devise/sessions#destroy"
   end    
-
-  resources :logs
-
+  
+  scope "/api/1" do
+    match "/files/*path.:ext" => "files#get"
+    match "/files(/*path)" => "files#index"
+  end
   root :to => "dashboard#index"
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

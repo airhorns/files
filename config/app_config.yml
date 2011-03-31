@@ -1,0 +1,6 @@
+common:
+
+production:
+
+development:
+  files_path: '/Users/hornairs/Sites/files/files'

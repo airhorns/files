@@ -1,4 +1,4 @@
-class LDB.DashboardController extends Backbone.Controller
+class FDB.DashboardController extends Backbone.Controller
   views: {}
   routes:
     '':           'index'
@@ -9,6 +9,6 @@ class LDB.DashboardController extends Backbone.Controller
 
   dashboard: ->
     unless @views.dashboard?
-      @views.dashboard = new (LDB.view('dashboard/dashboard'))
+      @views.dashboard = new (FDB.view('dashboard/dashboard'))
       @views.dashboard.render()
-      LDB.rootView.panel('dashboard').append @views.dashboard.el
+      FDB.rootView.panel('dashboard').append @views.dashboard.el

@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env) if defined?(Bundler)
 
-module Logdb
+module Files
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -37,5 +37,10 @@ module Logdb
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+
+    yml = YAML.load_file("#{Rails.root}/config/app_config.yml") || {}
+    app_config = yml['common'] || {}
+    app_config.update(yml[Rails.env] || {})
+    Files::Config = OpenStruct.new(app_config)
   end
 end

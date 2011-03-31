@@ -1,4 +1,4 @@
-LDB.registerView "application/application", class LDB.ApplicationView extends LDB.View
+FDB.registerView "application/application", class FDB.ApplicationView extends FDB.View
   className: "application-tabs"
   _panels: {}
   tabs: [{
