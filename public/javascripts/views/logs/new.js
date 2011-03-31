@@ -7,11 +7,11 @@
     child.__super__ = parent.prototype;
     return child;
   }, __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
-  LDB.registerView("logs/new", LDB.NewLogView = (function() {
+  FDB.registerView("logs/new", FDB.NewLogView = (function() {
     function NewLogView() {
       NewLogView.__super__.constructor.apply(this, arguments);
     }
-    __extends(NewLogView, LDB.View);
+    __extends(NewLogView, FDB.View);
     NewLogView.prototype.renderable = function() {
       var attrs, v, x, _i, _len, _ref;
       attrs = NewLogView.__super__.renderable.apply(this, arguments);
@@ -20,7 +20,7 @@
         x = _ref[_i];
         v = attrs["" + x + "_date"];
         attrs["" + x + "_date"] = jQuery.datepicker.formatDate('mm/dd/yy', v);
-        attrs["" + x + "_time"] = LDB.fmt.formatTime(v);
+        attrs["" + x + "_time"] = FDB.fmt.formatTime(v);
       }
       attrs.shows = [
         {

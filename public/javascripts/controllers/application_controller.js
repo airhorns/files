@@ -7,7 +7,7 @@
     child.__super__ = parent.prototype;
     return child;
   };
-  LDB.ApplicationController = (function() {
+  FDB.ApplicationController = (function() {
     function ApplicationController() {
       ApplicationController.__super__.constructor.apply(this, arguments);
     }

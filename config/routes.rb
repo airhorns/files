@@ -8,6 +8,8 @@ Files::Application.routes.draw do
     match "/files/*path.:ext" => "files#get"
     match "/files(/*path)" => "files#index"
   end
+
+  post "/secret_message" => "dashboard#secret_message"
   root :to => "dashboard#index"
 
 

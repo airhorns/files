@@ -7,12 +7,12 @@
     child.__super__ = parent.prototype;
     return child;
   };
-  LDB.registerView("application/application", LDB.ApplicationView = (function() {
+  FDB.registerView("application/application", FDB.ApplicationView = (function() {
     function ApplicationView() {
       this.tabChanged = __bind(this.tabChanged, this);;
       this.tabShown = __bind(this.tabShown, this);;      ApplicationView.__super__.constructor.apply(this, arguments);
     }
-    __extends(ApplicationView, LDB.View);
+    __extends(ApplicationView, FDB.View);
     ApplicationView.prototype.className = "application-tabs";
     ApplicationView.prototype._panels = {};
     ApplicationView.prototype.tabs = [
@@ -20,6 +20,10 @@
         name: "Dashboard",
         anchor: "dashboard",
         route: "/dashboard"
+      }, {
+        name: "Files",
+        anchor: "files",
+        route: "/files"
       }, {
         name: "New Log",
         anchor: "new_log",

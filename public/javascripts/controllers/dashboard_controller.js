@@ -7,7 +7,7 @@
     child.__super__ = parent.prototype;
     return child;
   };
-  LDB.DashboardController = (function() {
+  FDB.DashboardController = (function() {
     function DashboardController() {
       DashboardController.__super__.constructor.apply(this, arguments);
     }
@@ -22,9 +22,9 @@
     };
     DashboardController.prototype.dashboard = function() {
       if (this.views.dashboard == null) {
-        this.views.dashboard = new (LDB.view('dashboard/dashboard'));
+        this.views.dashboard = new (FDB.view('dashboard/dashboard'));
         this.views.dashboard.render();
-        return LDB.rootView.panel('dashboard').append(this.views.dashboard.el);
+        return FDB.rootView.panel('dashboard').append(this.views.dashboard.el);
       }
     };
     return DashboardController;

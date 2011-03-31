@@ -236,8 +236,8 @@
     return (typeof input == 'object') ? normaliseTime(input) : timeStringToDate(input, settings);
   }
 
-  LDB.fmt.formatTime = function(time) { return formatTime(time, $.fn.timePicker.defaults);}
-  LDB.fmt.timeToDate = function(time) { return timeToDate(time,$.fn.timePicker.defaults);}
+  FDB.fmt.formatTime = function(time) { return formatTime(time, $.fn.timePicker.defaults);}
+  FDB.fmt.timeToDate = function(time) { return timeToDate(time,$.fn.timePicker.defaults);}
 
   function timeStringToDate(input, settings) {
     if (input) {

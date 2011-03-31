@@ -7,11 +7,11 @@
     child.__super__ = parent.prototype;
     return child;
   };
-  LDB.registerView('dashboard/dashboard', LDB.DashboardView = (function() {
+  FDB.registerView('dashboard/dashboard', FDB.DashboardView = (function() {
     function DashboardView() {
       DashboardView.__super__.constructor.apply(this, arguments);
     }
-    __extends(DashboardView, LDB.View);
+    __extends(DashboardView, FDB.View);
     return DashboardView;
   })());
 }).call(this);

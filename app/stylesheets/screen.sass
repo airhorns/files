@@ -14,7 +14,7 @@ h1,h2,h3,h4,h5,h6
 
 //Footer
 @import "compass/layout/sticky-footer"
-@include sticky-footer(54px, "#container", "#container_footer", "#footer")
+@include sticky-footer(30px, "#container", "#container_footer", "#footer")
 
 // Blueprint business
 +blueprint-typography
@@ -44,7 +44,7 @@ body
   // See http://compass-style.org/docs/reference/compass/layout/sticky_footer/
   +clearfix
   #content
-    padding: 20px
+    padding: 10px 20px 10px 20px
   
 header
   z-index: 10
@@ -195,5 +195,25 @@ body.application
 #log_log_items_grid
   height: 600px
   width: 100%
+
+.grid
   border: 1px solid #B6B6B6
   border-top: 0px
+
+#browse_grid
+  height: 600px
+
+span.toggle
+  width: 16px
+  height: 16px
+  margin-top: 1px
+  background: url('/images/icons/page_white.png') no-repeat top left
+  display: inline-block
+  &.dir
+    background-image: url('/images/icons/folder.png')
+  &.video
+    background-image: url('/images/icons/television.png')
+  &.audio
+    background-image: url('/images/icons/sound_low.png')
+  &.archive
+    background-image: url('/images/icons/page_white_zip.png')

@@ -7,7 +7,7 @@
     child.__super__ = parent.prototype;
     return child;
   };
-  LDB.LogsController = (function() {
+  FDB.LogsController = (function() {
     function LogsController() {
       LogsController.__super__.constructor.apply(this, arguments);
     }
@@ -19,10 +19,10 @@
     LogsController.prototype["new"] = function() {
       var log;
       if (this.views["new"] == null) {
-        this.views["new"] = new (LDB.view('logs/new'));
-        LDB.rootView.panel('new_log').append(this.views["new"].el);
+        this.views["new"] = new (FDB.view('logs/new'));
+        FDB.rootView.panel('new_log').append(this.views["new"].el);
       }
-      log = new LDB.Log();
+      log = new FDB.Log();
       this.views["new"].model = log;
       return this.views["new"].render();
     };

@@ -22,8 +22,6 @@
           %nav
             - if user_signed_in?
               = link_to "Sign Out", sign_out_path
-              |
-              = link_to "Feedback", "#"
             - else
               = link_to "Sign In", sign_in_path    
         - [:error, :notice, :success, :alert].select {|f| flash[f].present? }.each do |f|
@@ -33,4 +31,4 @@
         = yield
         #container_footer &nbsp;
     #footer
-      <p>yar</p>
+      %p#secretedit= SystemValue["footer_message"].value

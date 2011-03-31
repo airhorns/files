@@ -3,6 +3,7 @@ db/*.sqlite3
 log/*.log
 tmp/**/*
 .rvmrc
+files/*
 
 *.swp
 *.swo

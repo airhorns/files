@@ -7,7 +7,7 @@
     child.__super__ = parent.prototype;
     return child;
   };
-  LDB.Log = (function() {
+  FDB.Log = (function() {
     function Log() {
       Log.__super__.constructor.apply(this, arguments);
     }

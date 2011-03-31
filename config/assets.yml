@@ -1,8 +1,8 @@
 #embed_assets: on
 
 template_extension: 'bars'
-template_namespace: 'LDB.ViewRenderers'
-template_function: 'LDB.renderTemplate'
+template_namespace: 'FDB.ViewRenderers'
+template_function: 'FDB.renderTemplate'
 
 javascripts:
   main:
@@ -18,11 +18,13 @@ javascripts:
     #- public/lib/jqueryui/ui/jquery.effects.core.js
     #- public/lib/jqueryui/ui/jquery.effects.*.js
     - public/lib/jquery.timePicker.js
+    - public/lib/jquery.editable.js
     - public/lib/uniform/jquery.uniform.js
     - public/lib/slickgrid/lib/jquery.event.drag-2.0.min.js
     - public/lib/slickgrid/slick.core.js
     - public/lib/slickgrid/slick.grid.js
     - public/lib/slickgrid/slick.editors.js
+    - public/lib/slickgrid/slick.dataview.js
     - public/lib/achtung/src/ui.achtung.js
     - public/lib/underscore/underscore.js
     - public/lib/backbone/backbone.js
