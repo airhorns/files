@@ -4,15 +4,14 @@ class FDB.File extends Backbone.Model
  
   toDataRow: () ->
     segments = this.get("id").split("/")
+    depth = segments.length-1
     exts = this.get("id").split(".")
-    row =
-      id: this.get("id")
+    row = _.extend this.toJSON(),
       type: "file"
       ext: exts[exts.length-1]
-      name: segments[segments.length-1]
-      modified: this.get("modified")
-      size: this.get("size")
+      name: segments[depth]
       obj: this
+      indent: depth - 1
 
 class FDB.FileCollection extends Backbone.Collection
 

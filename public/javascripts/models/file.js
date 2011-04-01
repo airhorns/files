@@ -16,18 +16,17 @@
       return this.url = "/api/1/files" + this.id;
     };
     File.prototype.toDataRow = function() {
-      var exts, row, segments;
+      var depth, exts, row, segments;
       segments = this.get("id").split("/");
+      depth = segments.length - 1;
       exts = this.get("id").split(".");
-      return row = {
-        id: this.get("id"),
+      return row = _.extend(this.toJSON(), {
         type: "file",
         ext: exts[exts.length - 1],
-        name: segments[segments.length - 1],
-        modified: this.get("modified"),
-        size: this.get("size"),
-        obj: this
-      };
+        name: segments[depth],
+        obj: this,
+        indent: depth - 1
+      });
     };
     return File;
   })();

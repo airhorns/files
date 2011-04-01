@@ -6,26 +6,35 @@ wrapError = (onError, model, options) ->
     else
       model.trigger('error', model, resp, options)
 
+# -------------------
+# Directory Class - represents a folder on the file system
+# -------------------
 class FDB.Directory extends Backbone.Model
+
   initialize: ->
     @url = "/api/1/files#{@id}"
 
+  # Overridden backbone method to have the hook in the middle
   fetch: (options) ->
     options || (options = {})
     model = this
     success = options.success
+
     options.success = (resp) ->
       parsed_resp = model.parse(resp)
       normalize_resp = (x) -> x.id = x.path; x
+      # Setup files and dirs
       if files = parsed_resp['files']
         delete parsed_resp['files']
         model.files = new FDB.FileCollection(_(files).chain().map(normalize_resp).map((x) -> new FDB.File(x)).value())
+        model._changed = true
 
       if directories = parsed_resp['directories']
         delete parsed_resp['directories']
         model.directories = new FDB.DirectoryCollection(_(directories).chain().map(normalize_resp).map((x) -> new FDB.Directory(x)).value())
+        model._changed = true
 
-      return false if (!model.set(model.parse(resp), options))
+      return false if (!model.set(parsed_resp, options))
       model.fetched = true
       success(model, resp) if (success)
     options.error = wrapError(options.error, model, options)
@@ -33,37 +42,35 @@ class FDB.Directory extends Backbone.Model
     return this
 
   # Recursively traverses the loaded file tree, spitting out a 1D array suitable for use by SlickGrid
-  toDataView: (parent_id = null, indent = 0) ->
+  toDataView: (parent_id = null) ->
     tree = []
-    row = _.extend(this.toDataRow(), {indent: indent, parent: parent_id}) # Get this row's representation
+    row = _.extend(this.toDataRow(), {parent: parent_id}) # Get this row's representation
     tree.push row if parent_id?
-    tree = tree.concat(this.subDataView(row.id, indent+1))
+    tree = tree.concat(this.subDataView(row.id))
     tree
   
-  subDataView: (parent_row_id = this.toDataRow().id, indent) ->
+  subDataView: (parent_row_id = this.toDataRow().id) ->
     tree = []
     # Add subdirs to the tree
     if @directories?
       @directories.each (dir) ->
-        tree = tree.concat dir.toDataView(parent_row_id, indent)
+        tree = tree.concat dir.toDataView(parent_row_id)
 
     # Add files in this dir to the tree
     if @files?
       @files.each (file) ->
         file = file.toDataRow()
-        tree.push _.extend(file, {parent: parent_row_id, indent: indent})
+        tree.push _.extend(file, {parent: parent_row_id})
     tree
 
   # Data object for SlickGrid representing this bad boy
   toDataRow: () ->
-    row =
-      id: this.get("id")
+    row = _.extend this.toJSON(),
       type: "dir"
-      _collapsed: true
       name: this.name()
-      modified: this.get("modified")
-      size: this.get("size")
       obj: this
+      indent: this.get("id").split("/").length - 2
+        
   
   name: () ->
     segments = this.get("id").split("/")

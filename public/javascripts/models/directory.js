@@ -42,14 +42,16 @@
           model.files = new FDB.FileCollection(_(files).chain().map(normalize_resp).map(function(x) {
             return new FDB.File(x);
           }).value());
+          model._changed = true;
         }
         if (directories = parsed_resp['directories']) {
           delete parsed_resp['directories'];
           model.directories = new FDB.DirectoryCollection(_(directories).chain().map(normalize_resp).map(function(x) {
             return new FDB.Directory(x);
           }).value());
+          model._changed = true;
         }
-        if (!model.set(model.parse(resp), options)) {
+        if (!model.set(parsed_resp, options)) {
           return false;
         }
         model.fetched = true;
@@ -61,26 +63,22 @@
       (this.sync || Backbone.sync)('read', this, options);
       return this;
     };
-    Directory.prototype.toDataView = function(parent_id, indent) {
+    Directory.prototype.toDataView = function(parent_id) {
       var row, tree;
       if (parent_id == null) {
         parent_id = null;
       }
-      if (indent == null) {
-        indent = 0;
-      }
       tree = [];
       row = _.extend(this.toDataRow(), {
-        indent: indent,
         parent: parent_id
       });
       if (parent_id != null) {
         tree.push(row);
       }
-      tree = tree.concat(this.subDataView(row.id, indent + 1));
+      tree = tree.concat(this.subDataView(row.id));
       return tree;
     };
-    Directory.prototype.subDataView = function(parent_row_id, indent) {
+    Directory.prototype.subDataView = function(parent_row_id) {
       var tree;
       if (parent_row_id == null) {
         parent_row_id = this.toDataRow().id;
@@ -88,15 +86,14 @@
       tree = [];
       if (this.directories != null) {
         this.directories.each(function(dir) {
-          return tree = tree.concat(dir.toDataView(parent_row_id, indent));
+          return tree = tree.concat(dir.toDataView(parent_row_id));
         });
       }
       if (this.files != null) {
         this.files.each(function(file) {
           file = file.toDataRow();
           return tree.push(_.extend(file, {
-            parent: parent_row_id,
-            indent: indent
+            parent: parent_row_id
           }));
         });
       }
@@ -104,15 +101,12 @@
     };
     Directory.prototype.toDataRow = function() {
       var row;
-      return row = {
-        id: this.get("id"),
+      return row = _.extend(this.toJSON(), {
         type: "dir",
-        _collapsed: true,
         name: this.name(),
-        modified: this.get("modified"),
-        size: this.get("size"),
-        obj: this
-      };
+        obj: this,
+        indent: this.get("id").split("/").length - 2
+      });
     };
     Directory.prototype.name = function() {
       var s, segments;

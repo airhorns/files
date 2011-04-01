@@ -5,8 +5,9 @@ Files::Application.routes.draw do
   end    
   
   scope "/api/1" do
-    match "/files/*path.:ext" => "files#get"
-    match "/files(/*path)" => "files#index"
+    get "/files(/*path)" => "files#index"    
+    get "/files/*path.:ext" => "files#get"
+    put "/files(/*path)" => "files#update"
   end
 
   post "/secret_message" => "dashboard#secret_message"

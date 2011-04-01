@@ -722,28 +722,31 @@ body.application .achtung {
 #browse_grid {
   height: 600px;
 }
-
-/* line 206, ../../app/stylesheets/screen.sass */
-span.toggle {
+/* line 207, ../../app/stylesheets/screen.sass */
+#browse_grid span.undownloaded {
+  font-weight: bold;
+}
+/* line 211, ../../app/stylesheets/screen.sass */
+#browse_grid span.icon {
   width: 16px;
   height: 16px;
   margin-top: 1px;
   background: url("/images/icons/page_white.png") no-repeat top left;
   display: inline-block;
 }
-/* line 212, ../../app/stylesheets/screen.sass */
-span.toggle.dir {
+/* line 217, ../../app/stylesheets/screen.sass */
+#browse_grid span.icon.dir {
   background-image: url("/images/icons/folder.png");
 }
-/* line 214, ../../app/stylesheets/screen.sass */
-span.toggle.video {
+/* line 219, ../../app/stylesheets/screen.sass */
+#browse_grid span.icon.video {
   background-image: url("/images/icons/television.png");
 }
-/* line 216, ../../app/stylesheets/screen.sass */
-span.toggle.audio {
+/* line 221, ../../app/stylesheets/screen.sass */
+#browse_grid span.icon.audio {
   background-image: url("/images/icons/sound_low.png");
 }
-/* line 218, ../../app/stylesheets/screen.sass */
-span.toggle.archive {
+/* line 223, ../../app/stylesheets/screen.sass */
+#browse_grid span.icon.archive {
   background-image: url("/images/icons/page_white_zip.png");
 }

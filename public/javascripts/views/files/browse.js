@@ -36,7 +36,7 @@
     }
     __extends(FilesBrowseView, FDB.View);
     FilesBrowseView.prototype.render = function() {
-      var columns, downloadLink, nameFormatter, options;
+      var columns, downloadLink, markAsDownloadedLink, nameFormatter, options;
       FilesBrowseView.__super__.render.apply(this, arguments);
       options = {
         enableCellNavigation: true,
@@ -44,18 +44,20 @@
         forceFitColumns: true
       };
       nameFormatter = __bind(function(row, cell, value, columnDef, dataContext) {
-        var idx, spacer;
-        spacer = "<span style='display:inline-block;height:1px;width:" + (15 * dataContext["indent"]) + "px'></span>";
+        var idx, s;
+        s = "<span style='display:inline-block;height:1px;width:" + (15 * dataContext["indent"]) + "px'></span>";
         idx = this.dataView.getIdxById(dataContext.id);
         if (dataContext.type === "dir") {
           if (dataContext._collapsed) {
-            return spacer + " <span class='toggle dir expand'></span>&nbsp;" + value;
+            s += " <span class='icon toggle dir expand'></span>&nbsp;";
           } else {
-            return spacer + " <span class='toggle dir collapse'></span>&nbsp;" + value;
+            s += " <span class='icon toggle dir collapse'></span>&nbsp;";
           }
         } else {
-          return spacer + (" <span class='toggle file " + dataContext.ext + " " + (suggestedType(dataContext.ext)) + "'></span>&nbsp;") + value;
+          s += " <span class='icon file " + dataContext.ext + " " + (suggestedType(dataContext.ext)) + "'></span>&nbsp;";
         }
+        s += "<span class='" + (dataContext.downloaded ? "" : "un") + "downloaded'>" + value + "</span>";
+        return s;
       }, this);
       downloadLink = function(row, cell, value, columnDef, file) {
         if (file.type === "file") {
@@ -63,6 +65,9 @@
         } else {
           return "";
         }
+      };
+      markAsDownloadedLink = function(row, cell, value, columnDef, file) {
+        return "<a class='toggle_downloaded' href='#'>" + (file.downloaded ? "U" : "") + "MK</a>";
       };
       columns = [
         {
@@ -82,9 +87,12 @@
           id: "download",
           name: "DL",
           formatter: downloadLink
+        }, {
+          id: "mark",
+          name: "MK",
+          formatter: markAsDownloadedLink
         }
       ];
-      this.dataView = new Slick.Data.DataView();
       this.grid = new Slick.Grid("#browse_grid", this.dataView, columns, options);
       this.dataView.onRowCountChanged.subscribe(__bind(function(e, args) {
         this.grid.updateRowCount();
@@ -95,20 +103,21 @@
         return this.grid.render();
       }, this));
       this.grid.onClick.subscribe(__bind(function(e, args) {
-        var item;
-        if ($(e.target).hasClass("toggle")) {
-          item = this.dataView.getItem(args.row);
-          if (item) {
-            if (!item._collapsed) {
-              item._collapsed = true;
-            } else {
-              item._collapsed = false;
-            }
+        var $$, item;
+        $$ = $(e.target);
+        item = this.dataView.getItem(args.row);
+        if (item) {
+          if ($$.hasClass("toggle")) {
+            item._collapsed = !item._collapsed;
             this.dataView.updateItem(item.id, item);
+            this.trigger("rowToggled", item, args, e);
+          } else if ($$.hasClass("toggle_downloaded")) {
+            this.trigger("toggleDownloadedClicked", item, args, e);
           }
-          e.stopImmediatePropagation();
-          return this.trigger("rowClicked", item, args, e);
         }
+        e.stopImmediatePropagation();
+        e.preventDefault();
+        return false;
       }, this));
       return true;
     };

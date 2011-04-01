@@ -4,13 +4,13 @@ class FilesController < ApplicationController
   
   # List info about one file
   def get
-    filename = File.join(Files::Config.files_path, params[:path], '.', params[:ext])
+    filename = build_file_path(params[:path], params[:ext])
     respond_with filename
   end
 
   # List files in a dir
   def index
-    contents = Dir.glob(File.join(Files::Config.files_path, params[:path] || "", "*"))
+    contents = Dir.glob(File.join(build_dir_path(params[:path]), "*"))
 
     agg = contents.inject({:files => [], :directories => []}) do |acc, content|
       if File.directory?(content)
@@ -22,8 +22,30 @@ class FilesController < ApplicationController
     end
     respond_with agg
   end
-  
+ 
+  def update
+    path = build_dir_path(params[:path])
+    unless File.directory?(path)
+      current_user.mark_as_downloaded(path, params[:downloaded])
+    else
+      Dir.glob(File.join(path, "**")).each do |file|
+        next if File.directory?(file)
+        current_user.mark_as_downloaded(path, params[:downloaded])
+      end
+    end
+    render :nothing => true
+  end
+
   private
+  
+  def build_file_path(path, ext)
+    File.join(Files::Config.files_path, path, '.', ext)
+  end
+
+  def build_dir_path(path = nil)
+    path ||= ""
+    File.join(Files::Config.files_path, path)
+  end
 
   def strip_path(path)
     path[Files::Config.files_path.length..-1]
@@ -31,12 +53,13 @@ class FilesController < ApplicationController
 
   def file_details(path)
     f = File.new(path)
-    {:modified => f.mtime, :size => readable_file_size(f.size), :path => strip_path(f.path)}
+    {:modified => f.mtime, :size => readable_file_size(f.size), :path => strip_path(f.path), :downloaded => current_user.downloaded?(path)}
   end
   
   def directory_details(path)
     f = File.new(path)
-    {:modified => f.mtime, :size => "--", :path => strip_path(f.path)}
+    #current_user.downloaded?(path)
+    {:modified => f.mtime, :size => "--", :path => strip_path(f.path), :downloaded => false}
   end
 
   GIGA_SIZE = 1073741824.0

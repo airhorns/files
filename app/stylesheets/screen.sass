@@ -202,18 +202,23 @@ body.application
 
 #browse_grid
   height: 600px
+  
+  // Downloaded/undownloaded
+  span.undownloaded
+    font-weight: bold
 
-span.toggle
-  width: 16px
-  height: 16px
-  margin-top: 1px
-  background: url('/images/icons/page_white.png') no-repeat top left
-  display: inline-block
-  &.dir
-    background-image: url('/images/icons/folder.png')
-  &.video
-    background-image: url('/images/icons/television.png')
-  &.audio
-    background-image: url('/images/icons/sound_low.png')
-  &.archive
-    background-image: url('/images/icons/page_white_zip.png')
+  // File types
+  span.icon
+    width: 16px
+    height: 16px
+    margin-top: 1px
+    background: url('/images/icons/page_white.png') no-repeat top left
+    display: inline-block
+    &.dir
+      background-image: url('/images/icons/folder.png')
+    &.video
+      background-image: url('/images/icons/television.png')
+    &.audio
+      background-image: url('/images/icons/sound_low.png')
+    &.archive
+      background-image: url('/images/icons/page_white_zip.png')

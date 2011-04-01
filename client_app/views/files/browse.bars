@@ -1,3 +1,4 @@
 <h1>Browse Files</h1>
 <div id="browse_grid" class="grid" style="height:600px;"></div>
+<a href="#" class="mark_all_as_downloaded">Mark all as downloaded</a>
 <div class="clear"></div>
