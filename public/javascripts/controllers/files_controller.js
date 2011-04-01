@@ -49,14 +49,18 @@
     FilesController.prototype.updateLog = function(item, args, e) {
       var insert, toggle;
       insert = __bind(function() {
-        var i, indexOfOpened, items, newItem;
-        this.view.dataView.beginUpdate();
-        items = item.obj.subDataView(item.id, item.indent + 1);
+        var i, indexOfOpened, items, newItem, updatedItem;
         indexOfOpened = this.view.dataView.getIdxById(item.id);
+        items = item.obj.subDataView(item.id, item.indent + 1);
+        updatedItem = _.extend(item.obj.toDataRow(), {
+          indent: item.indent
+        });
+        this.view.dataView.beginUpdate();
         for (i in items) {
           newItem = items[i];
           this.view.dataView.insertItem(indexOfOpened + 1, items[items.length - 1 - i]);
         }
+        this.view.dataView.updateItem(item.id, updatedItem);
         return this.view.dataView.endUpdate();
       }, this);
       toggle = __bind(function() {}, this);

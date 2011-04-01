@@ -18,12 +18,15 @@ class FDB.Directory extends Backbone.Model
       parsed_resp = model.parse(resp)
       normalize_resp = (x) -> x.id = x.path; x
       if files = parsed_resp['files']
+        delete parsed_resp['files']
         model.files = new FDB.FileCollection(_(files).chain().map(normalize_resp).map((x) -> new FDB.File(x)).value())
 
       if directories = parsed_resp['directories']
+        delete parsed_resp['directories']
         model.directories = new FDB.DirectoryCollection(_(directories).chain().map(normalize_resp).map((x) -> new FDB.Directory(x)).value())
 
       return false if (!model.set(model.parse(resp), options))
+      model.fetched = true
       success(model, resp) if (success)
     options.error = wrapError(options.error, model, options)
     (this.sync || Backbone.sync)('read', this, options)
@@ -32,7 +35,7 @@ class FDB.Directory extends Backbone.Model
   # Recursively traverses the loaded file tree, spitting out a 1D array suitable for use by SlickGrid
   toDataView: (parent_id = null, indent = 0) ->
     tree = []
-    row = _.extend(this.toDataRow(), {indent: indent, obj: this, parent: parent_id}) # Get this row's representation
+    row = _.extend(this.toDataRow(), {indent: indent, parent: parent_id}) # Get this row's representation
     tree.push row if parent_id?
     tree = tree.concat(this.subDataView(row.id, indent+1))
     tree
@@ -53,14 +56,20 @@ class FDB.Directory extends Backbone.Model
 
   # Data object for SlickGrid representing this bad boy
   toDataRow: () ->
-    segments = this.get("id").split("/")
     row =
       id: this.get("id")
       type: "dir"
       _collapsed: true
-      name: segments[segments.length - 1]
+      name: this.name()
       modified: this.get("modified")
       size: this.get("size")
+      obj: this
+  
+  name: () ->
+    segments = this.get("id").split("/")
+    s = segments[segments.length - 1]
+    s += " (empty)" if @fetched and @directories.length == 0 and @files.length == 0
+    s
 
 class FDB.DirectoryCollection extends Backbone.Collection
   model: FDB.Directory

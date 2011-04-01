@@ -29,11 +29,17 @@ class FDB.FilesBrowseView extends FDB.View
       else
         return spacer + " <span class='toggle file #{dataContext.ext} #{suggestedType(dataContext.ext)}'></span>&nbsp;" + value
  
+    downloadLink = (row, cell, value, columnDef, file) ->
+      if file.type == "file"
+        "<a class=\"download\" target=\"_blank\" href=\"#{FDB.Config.assetHost}#{file.id}\">DL</a>"
+      else
+        ""
+
     columns = [
       {id:"name", name:"Name", field:"name", formatter: nameFormatter},
       {id:"size", name:"Size", field:"size"},
       {id:"modified", name:"Date Modified", field:"modified"},
-      {id:"actions", name:"Actions", field:"actions"},
+      {id:"download", name:"DL", formatter: downloadLink},
     ]
 
     @dataView = new Slick.Data.DataView()

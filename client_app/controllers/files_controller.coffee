@@ -32,11 +32,16 @@ class FDB.FilesController extends Backbone.Controller
   # Adds a newly toggled dir to the tree (well, into the log)
   updateLog: (item, args, e) =>
     insert = () =>
-      @view.dataView.beginUpdate()
-      items = item.obj.subDataView(item.id, item.indent+1)
       indexOfOpened = @view.dataView.getIdxById(item.id)
+      # New items for insertion
+      items = item.obj.subDataView(item.id, item.indent+1)
+      # Old item with updated properties after fetch
+      updatedItem = _.extend(item.obj.toDataRow(), {indent: item.indent})
+
+      @view.dataView.beginUpdate()
       for i, newItem of items
-        @view.dataView.insertItem(indexOfOpened+1, items[items.length-1-i])
+        @view.dataView.insertItem(indexOfOpened+1, items[items.length-1-i]) # Add all new items (in reverse order)
+      @view.dataView.updateItem(item.id, updatedItem) # Update this item
       @view.dataView.endUpdate()
 
     toggle = () =>

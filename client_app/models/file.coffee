@@ -12,6 +12,7 @@ class FDB.File extends Backbone.Model
       name: segments[segments.length-1]
       modified: this.get("modified")
       size: this.get("size")
+      obj: this
 
 class FDB.FileCollection extends Backbone.Collection
 

@@ -1,9 +1,15 @@
-class SystemValue < ActiveRecord::Base
-  def self.[](key)
-    self.find_by_key(key)
+class SystemValue < ActiveRedis
+  property :identifier, String, :unique => true, :index => true
+  property :value, String
+  def self.[](id)
+    self.first(:identifier => id)
   end
 
-  def self.[]=(key, value)
-    self.find_by_key(key).update_attributes(:value => value)
+  def self.[]=(id, value)
+    if row = self.first(:identifier => id)
+      row.update(:value => value)
+    else
+      raise "Couldn't find SystemValue with key #{id}"
+    end
   end
 end

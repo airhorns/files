@@ -36,7 +36,7 @@
     }
     __extends(FilesBrowseView, FDB.View);
     FilesBrowseView.prototype.render = function() {
-      var columns, nameFormatter, options;
+      var columns, downloadLink, nameFormatter, options;
       FilesBrowseView.__super__.render.apply(this, arguments);
       options = {
         enableCellNavigation: true,
@@ -57,6 +57,13 @@
           return spacer + (" <span class='toggle file " + dataContext.ext + " " + (suggestedType(dataContext.ext)) + "'></span>&nbsp;") + value;
         }
       }, this);
+      downloadLink = function(row, cell, value, columnDef, file) {
+        if (file.type === "file") {
+          return "<a class=\"download\" target=\"_blank\" href=\"" + FDB.Config.assetHost + file.id + "\">DL</a>";
+        } else {
+          return "";
+        }
+      };
       columns = [
         {
           id: "name",
@@ -72,9 +79,9 @@
           name: "Date Modified",
           field: "modified"
         }, {
-          id: "actions",
-          name: "Actions",
-          field: "actions"
+          id: "download",
+          name: "DL",
+          formatter: downloadLink
         }
       ];
       this.dataView = new Slick.Data.DataView();

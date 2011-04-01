@@ -1,11 +1,19 @@
 source 'http://rubygems.org'
 
+# Datamapper
+gem 'dm-core',           '~> 1.0.2'
+gem 'dm-redis-adapter',  '~> 0.3.0'
+gem 'dm-serializer',     '~> 1.0.2'
+gem 'dm-timestamps',     '~> 1.0.2'
+gem 'dm-devise',         '~> 1.1.4'
+gem 'active-redis',      :git => "git@github.com:arbarlow/active-redis.git"
+gem 'redis-objects',     :require => "redis/objects" # LIKE A ZILLION ORMS MAN
+
 gem 'rails'
-gem 'sqlite3-ruby', :require => 'sqlite3'
-gem 'mysql2'
-gem "devise"
-gem "jammit" # Javascript packager and helper
-gem "thwart", "0.0.4"
+gem 'devise'
+gem 'jammit' 
+# Javascript packager and helper
+#gem "thwart", "0.0.4"
 
 group :development, :test do
   # Language manipulation stack

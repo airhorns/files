@@ -38,11 +38,13 @@
           return x;
         };
         if (files = parsed_resp['files']) {
+          delete parsed_resp['files'];
           model.files = new FDB.FileCollection(_(files).chain().map(normalize_resp).map(function(x) {
             return new FDB.File(x);
           }).value());
         }
         if (directories = parsed_resp['directories']) {
+          delete parsed_resp['directories'];
           model.directories = new FDB.DirectoryCollection(_(directories).chain().map(normalize_resp).map(function(x) {
             return new FDB.Directory(x);
           }).value());
@@ -50,6 +52,7 @@
         if (!model.set(model.parse(resp), options)) {
           return false;
         }
+        model.fetched = true;
         if (success) {
           return success(model, resp);
         }
@@ -69,7 +72,6 @@
       tree = [];
       row = _.extend(this.toDataRow(), {
         indent: indent,
-        obj: this,
         parent: parent_id
       });
       if (parent_id != null) {
@@ -101,16 +103,25 @@
       return tree;
     };
     Directory.prototype.toDataRow = function() {
-      var row, segments;
-      segments = this.get("id").split("/");
+      var row;
       return row = {
         id: this.get("id"),
         type: "dir",
         _collapsed: true,
-        name: segments[segments.length - 1],
+        name: this.name(),
         modified: this.get("modified"),
-        size: this.get("size")
+        size: this.get("size"),
+        obj: this
       };
+    };
+    Directory.prototype.name = function() {
+      var s, segments;
+      segments = this.get("id").split("/");
+      s = segments[segments.length - 1];
+      if (this.fetched && this.directories.length === 0 && this.files.length === 0) {
+        s += " (empty)";
+      }
+      return s;
     };
     return Directory;
   })();

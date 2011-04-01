@@ -25,7 +25,8 @@
         ext: exts[exts.length - 1],
         name: segments[segments.length - 1],
         modified: this.get("modified"),
-        size: this.get("size")
+        size: this.get("size"),
+        obj: this
       };
     };
     return File;

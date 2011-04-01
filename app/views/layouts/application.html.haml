@@ -10,6 +10,13 @@
     /[if lt IE 8]
       = include_stylesheets :ie, :media => 'screen, projection'
     - if user_signed_in?
+      :javascript
+        var FDB = {
+          fmt: {},
+          Config: {
+            assetHost: "#{Files::Config.asset_host}"
+          }
+        };
       = include_javascripts :main
 
     = csrf_meta_tag  

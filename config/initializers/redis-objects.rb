@@ -1,0 +1,1 @@
+Redis::Objects.redis = DataMapper.repository(:default).adapter.instance_variable_get(:@redis)
