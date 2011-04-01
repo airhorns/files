@@ -74,17 +74,23 @@ class FDB.FilesController extends Backbone.Controller
     item.obj.set
       downloaded: ! item.obj.get('downloaded')
     item.obj.save()
-    
+
     # Loop over subordinates, setting them to the same. This is also done on the backend.
     length = @dataView.getLength()
     i = @dataView.getIdxById(item.id)
     fix = item.obj.get('downloaded')
-    while ++i < length
-      sub = @dataView.getItemByIdx(i)
-      break if sub.parent == item.parent # Loop is over if we've found an item with the same parent as this, ie a sibling, not a child
+    for sub in this.subordinatesOf(item)
       sub.obj.set
         downloaded: fix
 
+    # Loop over parents, checking to see if their state has changed
+    parent = @dataView.getItemById(item.parent)
+    while parent?
+      allBelowDownloaded = _(this.childrenOf(parent)).all((x) -> x.downloaded == true)
+      parent.obj.set
+        downloaded: allBelowDownloaded
+      parent = @dataView.getItemById(parent.parent)
+    
     @dataView.endUpdate()
 
   insertSubordinateRows: (item) ->
@@ -103,3 +109,17 @@ class FDB.FilesController extends Backbone.Controller
   observeFileSystemObject: (model) ->
     model.bind 'change', =>
       @dataView.updateItem(model.id, _.extend({}, @view.dataView.getItemById(model.id), model.toDataRow()))
+
+  subordinatesOf: (item) ->
+    length = @dataView.getLength()
+    i = @dataView.getIdxById(item.id)
+    subs = []
+    while ++i < length
+      sub = @dataView.getItemByIdx(i)
+      break if sub.indent <= item.indent # Loop is over if we've found an item with the same parent as this, ie a sibling, not a child
+      subs.push sub
+    subs
+
+  childrenOf: (item) ->
+    targetIndent = item.indent + 1
+    _(this.subordinatesOf(item)).select((x) -> x.indent == targetIndent)

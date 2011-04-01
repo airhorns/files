@@ -97,7 +97,7 @@
       }
     };
     FilesController.prototype.toggleDownloaded = function(item, args, e) {
-      var fix, i, length, sub;
+      var allBelowDownloaded, fix, i, length, parent, sub, _i, _len, _ref;
       this.dataView.beginUpdate();
       item.obj.set({
         downloaded: !item.obj.get('downloaded')
@@ -106,14 +106,22 @@
       length = this.dataView.getLength();
       i = this.dataView.getIdxById(item.id);
       fix = item.obj.get('downloaded');
-      while (++i < length) {
-        sub = this.dataView.getItemByIdx(i);
-        if (sub.parent === item.parent) {
-          break;
-        }
+      _ref = this.subordinatesOf(item);
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        sub = _ref[_i];
         sub.obj.set({
           downloaded: fix
         });
+      }
+      parent = this.dataView.getItemById(item.parent);
+      while (parent != null) {
+        allBelowDownloaded = _(this.childrenOf(parent)).all(function(x) {
+          return x.downloaded === true;
+        });
+        parent.obj.set({
+          downloaded: allBelowDownloaded
+        });
+        parent = this.dataView.getItemById(parent.parent);
       }
       return this.dataView.endUpdate();
     };
@@ -139,6 +147,27 @@
       return model.bind('change', __bind(function() {
         return this.dataView.updateItem(model.id, _.extend({}, this.view.dataView.getItemById(model.id), model.toDataRow()));
       }, this));
+    };
+    FilesController.prototype.subordinatesOf = function(item) {
+      var i, length, sub, subs;
+      length = this.dataView.getLength();
+      i = this.dataView.getIdxById(item.id);
+      subs = [];
+      while (++i < length) {
+        sub = this.dataView.getItemByIdx(i);
+        if (sub.indent <= item.indent) {
+          break;
+        }
+        subs.push(sub);
+      }
+      return subs;
+    };
+    FilesController.prototype.childrenOf = function(item) {
+      var targetIndent;
+      targetIndent = item.indent + 1;
+      return _(this.subordinatesOf(item)).select(function(x) {
+        return x.indent === targetIndent;
+      });
     };
     return FilesController;
   })();
