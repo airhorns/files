@@ -25,13 +25,7 @@ class FilesController < ApplicationController
  
   def update
     path = build_dir_path(params[:path])
-    unless File.directory?(path)
-      current_user.mark_as_downloaded(path, params[:downloaded])
-    else
-      files_underneath(path).each do |file|
-        current_user.mark_as_downloaded(file, params[:downloaded])
-      end
-    end
+    current_user.mark_as_downloaded(path, params[:downloaded])
     render :nothing => true
   end
 
@@ -55,14 +49,9 @@ class FilesController < ApplicationController
     {:modified => f.mtime, :size => readable_file_size(f.size), :path => strip_path(f.path), :downloaded => current_user.downloaded?(path)}
   end
   
-  def files_underneath(path)
-    Dir.glob(File.join(path, "**", "*")).reject {|f| File.directory?(f)}
-  end
-
   def directory_details(path)
-    f = File.new(path)
-    #current_user.downloaded?(path)
-    {:modified => f.mtime, :size => "--", :path => strip_path(f.path), :downloaded => files_underneath(path).all? {|f| current_user.downloaded?(f)}}
+    dir = File.new(path)
+    {:modified => dir.mtime, :size => "--", :path => strip_path(dir.path), :downloaded => current_user.downloaded?(dir)}
   end
 
   GIGA_SIZE = 1073741824.0

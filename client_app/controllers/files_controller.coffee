@@ -3,6 +3,8 @@ class FDB.FilesController extends Backbone.Controller
     @root = new FDB.Directory({id:"/"})
     @root.fetch
       success: -> @fetched = true
+
+
   views: {}
   routes:
     '/files': 'browse'
@@ -27,7 +29,9 @@ class FDB.FilesController extends Backbone.Controller
 
       @view.bind "rowToggled", this.toggleRow
       @view.bind "toggleDownloadedClicked", this.toggleDownloaded
-      $('.mark_all_as_downloaded', @view.el).click => this.toggleDownloaded(@root)
+      $('.mark_all_as_downloaded', @view.el).click (e) =>
+        this.toggleDownloaded(@root.toDataRow())
+        e.preventDefault()
 
   # Performs the first generation of the tree
   generateData: () =>
@@ -84,7 +88,7 @@ class FDB.FilesController extends Backbone.Controller
         downloaded: fix
 
     # Loop over parents, checking to see if their state has changed
-    parent = @dataView.getItemById(item.parent)
+    parent = @dataView.getItemById(item.parent) if item.parent?
     while parent?
       allBelowDownloaded = _(this.childrenOf(parent)).all((x) -> x.downloaded == true)
       parent.obj.set

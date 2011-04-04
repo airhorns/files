@@ -7,20 +7,19 @@
 @import blueprint
 
 
-// Elements
-h1,h2,h3,h4,h5,h6
-  clear: both
-  width: 100%
-
-//Footer
-@import "compass/layout/sticky-footer"
-@include sticky-footer(30px, "#container", "#container_footer", "#footer")
 
 // Blueprint business
 +blueprint-typography
 +blueprint-utilities
 +blueprint-debug
 +blueprint-interaction
+
+// -----------------------------
+// Generic elements
+// -----------------------------
+h1,h2,h3,h4,h5,h6
+  clear: both
+  width: 100%
 
 // For alert key flash mesages
 .alert 
@@ -96,6 +95,9 @@ header
   padding-top: 20px
   clear: both
 
+//Footer
+@import "compass/layout/sticky-footer"
+@include sticky-footer(30px, "#container", "#container_footer", "#footer")
 
 // ---------------------------
 // Forms and Form Elements

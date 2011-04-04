@@ -44,8 +44,9 @@
         }
         this.view.bind("rowToggled", this.toggleRow);
         this.view.bind("toggleDownloadedClicked", this.toggleDownloaded);
-        return $('.mark_all_as_downloaded', this.view.el).click(__bind(function() {
-          return this.toggleDownloaded(this.root);
+        return $('.mark_all_as_downloaded', this.view.el).click(__bind(function(e) {
+          this.toggleDownloaded(this.root.toDataRow());
+          return e.preventDefault();
         }, this));
       }
     };
@@ -113,7 +114,9 @@
           downloaded: fix
         });
       }
-      parent = this.dataView.getItemById(item.parent);
+      if (item.parent != null) {
+        parent = this.dataView.getItemById(item.parent);
+      }
       while (parent != null) {
         allBelowDownloaded = _(this.childrenOf(parent)).all(function(x) {
           return x.downloaded === true;

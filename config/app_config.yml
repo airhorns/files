@@ -3,5 +3,5 @@ common:
 production:
 
 development:
-  files_path: '/Users/hornairs/Sites/files/files'
+  files_path: '/Users/hornairs/Sites'
   asset_host: 'http://localhost/files/files'

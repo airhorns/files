@@ -1,3 +1,15 @@
+class File
+  class << self
+    def all_underneath(path)
+      Dir.glob(File.join(path, "**", "*"))
+    end
+
+    def all_immediately_underneath(path)
+      Dir.glob(File.join(path, "*"))   
+    end
+  end
+end
+
 class User < ActiveRedis
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
@@ -12,6 +24,11 @@ class User < ActiveRedis
   set :downloads
   
   def downloaded?(path)
+    # Normalize for directories with or without trailing slashes
+    if File.directory?(path)
+      path = File.join(path, "")
+    end
+
     self.downloads.member?(path)
   end
 
@@ -20,8 +37,31 @@ class User < ActiveRedis
   end
 
   def mark_as_downloaded(path, downloaded = true)
-    puts "Marking #{path} as downloaded"
-    if downloaded
+    if File.directory?(path)
+      File.all_underneath(path).each do |f|
+        mark_path(f, downloaded)
+      end
+    end
+    mark_path(path, downloaded)
+
+    # Set state of containing directories
+    until (path = File.dirname(path)) == Files::Config.files_path 
+      if File.all_immediately_underneath(path).all? {|f| self.downloaded?(f) }
+        mark_path(path, true)
+      else
+        mark_path(path, false)
+      end
+    end
+    return downloaded
+  end
+
+  private
+  def mark_path(path, state)
+    # Normalize for directories with or without trailing slashes
+    if File.directory?(path)
+      path = File.join(path, "")
+    end
+    if state
       downloads.add path
     else
       downloads.delete path
