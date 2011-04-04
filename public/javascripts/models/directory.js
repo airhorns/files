@@ -51,10 +51,10 @@
           }).value());
           model._changed = true;
         }
+        model.fetched = true;
         if (!model.set(parsed_resp, options)) {
           return false;
         }
-        model.fetched = true;
         if (success) {
           return success(model, resp);
         }
@@ -105,13 +105,13 @@
         type: "dir",
         name: this.name(),
         obj: this,
-        indent: this.get("id").split("/").length - 2
+        indent: this.get("id").split("/").length - 3
       });
     };
     Directory.prototype.name = function() {
       var s, segments;
       segments = this.get("id").split("/");
-      s = segments[segments.length - 1];
+      s = segments[segments.length - 2];
       if (this.fetched && this.directories.length === 0 && this.files.length === 0) {
         s += " (empty)";
       }

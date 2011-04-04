@@ -7,7 +7,7 @@ module FileCache
     end
 
     def below(path)
-      Redis::Set.new("files_#{path}")
+      Redis::Set.new("files_#{File.join(path,"")}")
     end
 
     def build
@@ -22,18 +22,34 @@ module FileCache
         path_set.clear
         Dir.glob(File.join(path, "*")).each do |f|
           if File.directory?(f)
-            f += "/"
+            f = File.join(f, "") # All directory entries in the system have a trailing slash for recognition as a dir
             q << f
           end
-          all << f
-          path_set << f
+          all.add f
+          path_set.add f
         end
       end
       return count
     end
 
     def directory?(path)
-      $redis.exists(File.join(path, ""))
+      #$redis.exists("files_" + File.join(path, ""))
+      path[-1] == "/"
+    end
+
+    def all_underneath(path)
+      s = []
+      q = [path]
+      until q.empty?
+        contents = self.below(q.pop)
+        s.concat contents
+        q.concat contents.select {|x| self.directory?(path)}
+      end
+      s
+    end
+
+    def all_immediately_underneath(path)
+      self.below(path).to_a
     end
   end
 end

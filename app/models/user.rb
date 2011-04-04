@@ -1,15 +1,3 @@
-class File
-  class << self
-    def all_underneath(path)
-      Dir.glob(File.join(path, "**", "*"))
-    end
-
-    def all_immediately_underneath(path)
-      Dir.glob(File.join(path, "*"))   
-    end
-  end
-end
-
 class User < ActiveRedis
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable

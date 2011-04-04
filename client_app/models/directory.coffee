@@ -33,9 +33,9 @@ class FDB.Directory extends Backbone.Model
         delete parsed_resp['directories']
         model.directories = new FDB.DirectoryCollection(_(directories).chain().map(normalize_resp).map((x) -> new FDB.Directory(x)).value())
         model._changed = true
+      model.fetched = true
 
       return false if (!model.set(parsed_resp, options))
-      model.fetched = true
       success(model, resp) if (success)
     options.error = wrapError(options.error, model, options)
     (this.sync || Backbone.sync)('read', this, options)
@@ -69,12 +69,12 @@ class FDB.Directory extends Backbone.Model
       type: "dir"
       name: this.name()
       obj: this
-      indent: this.get("id").split("/").length - 2
+      indent: this.get("id").split("/").length - 3
         
   
   name: () ->
     segments = this.get("id").split("/")
-    s = segments[segments.length - 1]
+    s = segments[segments.length - 2]
     s += " (empty)" if @fetched and @directories.length == 0 and @files.length == 0
     s
 

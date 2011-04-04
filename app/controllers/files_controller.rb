@@ -10,10 +10,10 @@ class FilesController < ApplicationController
 
   # List files in a dir
   def index
-    contents = Dir.glob(File.join(build_dir_path(params[:path]), "*"))
+    contents = FileCache.all_immediately_underneath(build_dir_path(params[:path])).sort
 
     agg = contents.inject({:files => [], :directories => []}) do |acc, content|
-      if File.directory?(content)
+      if FileCache.directory?(content)
         acc[:directories].push directory_details(content) 
       else
         acc[:files].push file_details(content)
