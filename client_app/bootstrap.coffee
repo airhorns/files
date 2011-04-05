@@ -10,7 +10,6 @@ jQuery(($) ->
 
   # Create controllers
   new FDB.DashboardController()
-  new FDB.LogsController()
   new FDB.FilesController()
   new FDB.SecretEditController()
   

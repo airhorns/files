@@ -5,7 +5,6 @@
     FDB.rootView.render();
     $('#application').append(FDB.rootView.el);
     new FDB.DashboardController();
-    new FDB.LogsController();
     new FDB.FilesController();
     new FDB.SecretEditController();
     Backbone.history.start();

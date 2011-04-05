@@ -1,5 +1,7 @@
 source 'http://rubygems.org'
 
+gem 'rails'
+
 # Datamapper
 gem 'dm-core',           '~> 1.0.2'
 gem 'dm-redis-adapter',  '~> 0.3.0'
@@ -9,11 +11,16 @@ gem 'dm-devise',         '~> 1.1.4'
 gem 'active-redis',      :git => "git@github.com:arbarlow/active-redis.git"
 gem 'redis-objects',     :require => "redis/objects" # LIKE A ZILLION ORMS MAN
 
-gem 'rails'
+# Authentication
 gem 'devise'
-gem 'jammit' 
-# Javascript packager and helper
 #gem "thwart", "0.0.4"
+
+# Media Info APIs
+gem 'rockstar'
+gem 'imdb', :git => "git://github.com/tolosa/imdb.git"
+
+# Tooling
+gem 'jammit'
 
 group :development, :test do
   # Language manipulation stack
@@ -30,7 +37,9 @@ group :development, :test do
   
   # RSpec for unit tests
   gem "rspec-rails", ">= 2.0.1"
-  
+  gem "webmock"
+  gem "vcr"
+
   # Steak + Capybara for integration tests
   gem "steak", ">= 1.0.0.rc.1"
   gem "capybara"

@@ -24,10 +24,6 @@
         name: "Files",
         anchor: "files",
         route: "/files"
-      }, {
-        name: "New Log",
-        anchor: "new_log",
-        route: "/logs/new"
       }
     ];
     ApplicationView.prototype.renderable = function() {

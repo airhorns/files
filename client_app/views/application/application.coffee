@@ -9,10 +9,6 @@ FDB.registerView "application/application", class FDB.ApplicationView extends FD
     name: "Files"
     anchor: "files"
     route: "/files"
-  },{
-    name: "New Log"
-    anchor: "new_log"
-    route: "/logs/new"
   }]
 
   renderable: ->

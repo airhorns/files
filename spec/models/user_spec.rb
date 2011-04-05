@@ -1,14 +1,6 @@
 require 'spec_helper'
 require 'set'
 
-old = Files::Config.files_path
-Files::Config.files_path = File.join(Rails.root, 'spec', 'files')
-
-# Massage path function
-def mp(p)
-  File.join(Files::Config::files_path, p)
-end
-
 def new_user_with_downloaded(dls)
   u = User.new
   u.downloads.clear
@@ -18,10 +10,12 @@ def new_user_with_downloaded(dls)
   u
 end
 
-
-
 describe User do
   describe "downloads tracking" do
+    before(:all) do
+      FileCache.build!
+    end
+
     it "should report a file correctly" do
       user = new_user_with_downloaded(['/a.rb', '/b.rb'])  
       user.downloaded?(mp '/a.rb').should == true
@@ -35,7 +29,7 @@ describe User do
       user.downloaded?(mp '/b').should == false
     end
     
-    it "should mark subordinate files when marking a directory" do
+    it "should recursively mark subordinate files when marking a directory" do
       user = new_user_with_downloaded([])
       user.downloaded?(mp '/b/4.rb').should == false
       user.downloaded?(mp '/b/e/5.rb').should == false
@@ -69,5 +63,3 @@ describe User do
     end
   end
 end
-
-Files::Config.files_path

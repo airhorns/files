@@ -8,19 +8,15 @@ class FilesController < ApplicationController
     respond_with filename
   end
 
+  # List undownloaded files
+  def undownloaded
+    respond_with json_file_structure(FileCache.all - current_user.downloaded)
+  end
+
   # List files in a dir
   def index
     contents = FileCache.all_immediately_underneath(build_dir_path(params[:path])).sort
-
-    agg = contents.inject({:files => [], :directories => []}) do |acc, content|
-      if FileCache.directory?(content)
-        acc[:directories].push directory_details(content) 
-      else
-        acc[:files].push file_details(content)
-      end
-      acc
-    end
-    respond_with agg
+    respond_with json_file_structure(contents)
   end
  
   def update
@@ -67,5 +63,17 @@ class FilesController < ApplicationController
       when size < GIGA_SIZE then "%.#{precision}f MB" % (size / MEGA_SIZE)
       else "%.#{precision}f GB" % (size / GIGA_SIZE)
     end
+  end
+
+  def json_file_structure(contents)
+    agg = contents.inject({:files => [], :directories => []}) do |acc, content|
+      if FileCache.directory?(content)
+        acc[:directories].push directory_details(content) 
+      else
+        acc[:files].push file_details(content)
+      end
+      acc
+    end
+    agg
   end
 end

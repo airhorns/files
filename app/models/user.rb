@@ -26,7 +26,7 @@ class User < ActiveRedis
 
   def mark_as_downloaded(path, downloaded = true)
     if File.directory?(path)
-      File.all_underneath(path).each do |f|
+      FileCache.all_underneath(path).each do |f|
         mark_path(f, downloaded)
       end
     end
@@ -34,7 +34,7 @@ class User < ActiveRedis
 
     # Set state of containing directories
     until (path = File.dirname(path)) == Files::Config.files_path 
-      if File.all_immediately_underneath(path).all? {|f| self.downloaded?(f) }
+      if FileCache.all_immediately_underneath(path).all? {|f| self.downloaded?(f) }
         mark_path(path, true)
       else
         mark_path(path, false)

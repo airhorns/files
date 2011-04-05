@@ -10,10 +10,10 @@ module FileCache
       Redis::Set.new("files_#{File.join(path,"")}")
     end
 
-    def build
+    def build!
       q = [Files::Config.files_path]
+      self.clear!
       all = self.all
-      all.clear
       count = 0
       until q.empty?
         path = q.pop
@@ -41,15 +41,22 @@ module FileCache
       s = []
       q = [path]
       until q.empty?
-        contents = self.below(q.pop)
+        contents = self.below(q.pop).to_a
         s.concat contents
-        q.concat contents.select {|x| self.directory?(path)}
+        q.concat contents.select {|x| self.directory?(x)}
       end
       s
     end
 
     def all_immediately_underneath(path)
       self.below(path).to_a
+    end
+
+    def clear!
+      self.all.clear
+      $redis.keys("files_*").each do |k|
+        $redis.del(k)
+      end
     end
   end
 end
