@@ -1,0 +1,10 @@
+<div class="movie thumb" id="movie_thumb_{{attributes.id}}">
+  <div class="nail">
+    <img src="{{attributes.poster_thumb_url}}" alt="Poster"/>
+    <div class="actions" style="display: none;">&nbsp;&nbsp;Info Download Stream</div>
+  </div>
+  <div class="title">
+    {{attributes.title}}
+  </div>
+</div>
+

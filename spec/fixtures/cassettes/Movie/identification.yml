@@ -1353,3 +1353,253 @@
       </body>\n\
       </html>\n"
     http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://app.imdb.com:80/title/maindetails?tconst=tt1217613
+    body: 
+    headers: 
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      date: 
+      - Tue, 05 Apr 2011 14:45:19 GMT
+      server: 
+      - Server
+      cache-control: 
+      - private
+      expires: 
+      - Tue, 05 Apr 2011 15:45:19 GMT
+      content-type: 
+      - application/json
+      set-cookie: 
+      - session-id-time=1459694719;path=/;domain=.imdb.com;expires=Sun, 03 Apr 2016 07:45:19 GMT
+      - session-id=083-2014719-0008423;path=/;domain=.imdb.com;expires=Sun, 03 Apr 2016 07:45:19 GMT
+      - uu=BCYkkDEFPmFYRfsZ-JXV1BoiiCz7_55cRwodFyx5Uh_y4iJOSof-1q18LBF2bgJg-K3z_vs0qrA6ozAfsWI8RDE1AHX0vWlX1frD5JjSEquybHG7mSQu0XX2eeoeT2j-YxNtyS87TFyzjAAyGKTTQRShDGSgPuqz7P3q5be5nQHRrRg;expires=Thu, 30 Dec 2037 00:00:00 GMT;path=/;domain=.imdb.com
+      vary: 
+      - Accept-Encoding,User-Agent
+      p3p: 
+      - policyref="http://i.imdb.com/images/p3p.xml",CP="CAO DSP LAW CUR ADM IVAo IVDo CONo OTPo OUR DELi PUBi OTRi BUS PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA HEA PRE LOC GOV OTC "
+      transfer-encoding: 
+      - chunked
+    body: "{\"exp\":1302018319,\"data\":{\"photos\":[{\"image\":{\"width\":2048,\"url\":\"http://ia.media-imdb.com/images/M/MV5BMTkzNzY3OTE3MV5BMl5BanBnXkFtZTcwMjY1NTk0NA@@._V1_.jpg\",\"height\":1152}},{\"image\":{\"width\":2048,\"url\":\"http://ia.media-imdb.com/images/M/MV5BMjM1Mjc1OTY3MV5BMl5BanBnXkFtZTcwMjkxNzk0NA@@._V1_.jpg\",\"height\":861}},{\"image\":{\"width\":1432,\"url\":\"http://ia.media-imdb.com/images/M/MV5BMTY3OTI1ODQwMF5BMl5BanBnXkFtZTcwMjg2OTU2NA@@._V1_.jpg\",\"height\":2048}},{\"image\":{\"width\":2048,\"url\":\"http://ia.media-imdb.com/images/M/MV5BMTA1NDQyMzM2NzZeQTJeQWpwZ15BbWU3MDQxNzIwNzQ@._V1_.jpg\",\"height\":860}},{\"image\":{\"width\":2048,\"url\":\"http://ia.media-imdb.com/images/M/MV5BMjI5MzMyODU2NV5BMl5BanBnXkFtZTcwMTE1ODA0NA@@._V1_.jpg\",\"height\":860}},{\"image\":{\"width\":2048,\"url\":\"http://ia.media-imdb.com/images/M/MV5BMTM2MDQxMzYzMV5BMl5BanBnXkFtZTcwMDU4NzgzNA@@._V1_.jpg\",\"height\":1365}}],\"directors_summary\":[{\"name\":{\"nconst\":\"nm0509448\",\"name\":\"Jonathan Liebesman\",\"image\":{\"width\":485,\"url\":\"http://ia.media-imdb.com/images/M/MV5BMTE5MTYyMzE0OF5BMl5BanBnXkFtZTYwMzc5NTc2._V1_.jpg\",\"height\":318}}}],\"user_comment\":{\"user_rating\":8,\"date\":\"2011-03-12\",\"status\":\"G\",\"user_name\":\"rgkarim\",\"summary\":\"Battle LA:  All action and war\",\"user_score\":43,\"text\":\"Okay this is not a movie about story, but surely it's obvious to see that in the trailers. This movie is about taking a location that is not really used for anything except soap operas and chick flicks and turning it into a battlefield. If you can cope with that then this movie isn't awful like a lot of people are saying. This movie has a lot of strengths for action lovers. The marines jump right into the fray within the first fifteen minutes or so and the action continues to pour in throughout most of the movie. Firefights, marine maneuvers, communication and motions, and actual strategies are incorporated into this movie, which was the director's goal in this project. Yes, there are some obvious solutions to the problem, aka nuke the zone, but then that wouldn't be a really long movie would it? Continuing on, another key factor that is seen is the brotherhood that soldiers have between their own platoon and the friendships that they make. Combine that with the action and you get the suspense that makes you connect with the characters hoping each one survives. Heck you may even pick a favorite character to root for in hopes they survive. Another strong point is that the movie keeps going, with very little slow scenes in the mix, so again action lovers will love it. Yes it kind of causes the story line to be narrowed out, but again you shouldn't expect a story from this kind of movie. \\n\\nWeak points from this movie start with the choppy camera action used to record this movie. It's filmed with moving with the soldiers and is really quick and spastic. If you get motion sickness, then you may not want to watch this movie. Next up the dialogue is very cheesy at some points. They try to bring comedy relief in the intense situation to keep you from getting too depressed in the film. But let's face it dialogue today isn't really written in the best sense, aka half the lines on Glee and other comedies of today. Get past that and again the movie isn't that bad, in fact you can actually laugh at how ridiculous the lines are which lightens the mood a little. Again I've already mentioned there is no real story to it, but again it's one of the action film fan's audience. Not too mention it really is hard to get a good alien invasion storyline that hasn't been done or isn't a marvel comic. Another weakness can be a little of the poor acting in this movie and the overacting at certain scenes. The parts where aliens aren't trying to blow your head off can make you roll your eyes, but that's with any movie really. Another weakness is there is some predictability to it, especially when it comes to death scenes and as a result you may guess who is going to die next. However, what movie doesn't have some predictability to it. The last thing to comment on is the graphics of the movie. For the most part the aliens are obviously CGI, but they are done pretty well from what I can tell. I'm no expert in the field, but it looks pretty decent and I have to say I don't have the eye to tell green screen from actual models. \\n\\nOverall I enjoyed the movie, I've been an action lover for a long time, but have branched out in recent years mind you. This movie is exciting, action packed, and has a strong message of brotherhood in the marine life. I think it captures some military lifestyles and situations, but again I don't know. Yes, I know nuclear warfare is obvious, but again you want a movie you go for the more extreme case. As long as you can get over the cheesy dialogue and the lack of story, then I think you will enjoy this movie. Overall I give it an 8 out of 10.\",\"user_location\":\"United States\",\"user_score_count\":80},\"certificate\":{\"certificate\":\"PG-13\",\"attr\":\"(certificate #45863)\"},\"has\":[\"more_cast\",\"trivia\",\"goofs\",\"quotes\",\"more_plot\",\"parentalguide\",\"synopsis\",\"user_comments\",\"external_reviews\",\"photos\"],\"writers_summary\":[{\"as\":\"(as Chris Bertolini)\",\"name\":{\"nconst\":\"nm0078203\",\"name\":\"Christopher Bertolini\"},\"attr\":\"(written by)\"}],\"rating\":6.3,\"num_votes\":16984,\"tconst\":\"tt1217613\",\"genres\":[\"Action\",\"Sci-Fi\",\"Thriller\"],\"quote\":{\"lines\":[{\"quote\":\"We are not dying here, Lockett!\",\"chars\":[{\"nconst\":\"nm0001173\",\"char\":\"SSgt. Michael Nantz\"}]}],\"qconst\":\"qt1455821\"},\"can_rate\":true,\"trailer\":{\"encodings\":{\"HD 480p\":{\"format\":\"HD 480p\",\"url\":\"http://video-http.media-imdb.com/MV5BNzEwNzY3MTQ5Nl5BMTFeQW1wNF5BbWU3MDk0MTEwNTQ@.mp4?Expires=1302024916&Signature=GvB6pJ4MfTLqHFqd8N1OftY3ycObLiH~ORFtP5OfQ6jWxhkv5ARl-zNMHwklQYQZttKElp8h1RGWjYISjEatTAAnsXWm-9TFKkLX6un~l0nDbKJy~4vE~bQmhKLxGsrkt0BSdOD8juIU14uY2rRhcwas8M7hEB~WEiV2ApkEVCo_&Key-Pair-Id=APKAILW5I44IHKUN2DYA\"},\"HD 720p\":{\"format\":\"HD 720p\",\"url\":\"http://video-http.media-imdb.com/MV5BNTAyOTgxNTE4MF5BMTFeQW1wNF5BbWU3MDc3MTEwNTQ@.mp4?Expires=1302024916&Signature=j7xGlp7Ohxc2j7Jk7nFvoc5p2F98YWa7ipjZu5a~b2oPg20IIo-5Iby7bw4Hmy0iuCleCK8Z7~wodker9C9q9uec0XdEZs9~JXlgd4N7-UzPTAQO08xu5zrKGI1OZMBc0~MGhvmkgwjHZxMYfCa2H7t488CJnr0A0IQnu04gw-Q_&Key-Pair-Id=APKAILW5I44IHKUN2DYA\"},\"iPhone 3G\":{\"format\":\"iPhone 3G\",\"url\":\"http://video-http.media-imdb.com/MV5BMjEyODA1ODcyNl5BMTFeQW1wNF5BbWU3MDA0MTEwNTQ@.mp4?Expires=1302024916&Signature=4GZ75lekd8Ulr9B7JScskoqcJvz3DlG-81GKuyZOieI0H9io7kN0PTYU2IwvY9N~XdcPksXMMNxD9LtwlFKL6fjDpBI3NmVXNnpkxoEnpX2MxkFfI6CwwjZDcvlsjn8kFwbnXubcdUXseq8q3Bp5HMX2zFg3N1Y93K-aLnatNM0_&Key-Pair-Id=APKAILW5I44IHKUN2DYA\"}},\"relatedTitle\":{\"type\":\"feature\",\"title\":\"Battle: Los Angeles\",\"image\":{\"width\":1382,\"url\":\"http://ia.media-imdb.com/images/M/MV5BMjA2MjQ2MzMwMV5BMl5BanBnXkFtZTcwMjIwODgzNA@@._V1_.jpg\",\"height\":2048},\"year\":\"2011\",\"title_id\":\"tt1217613\"},\"description\":\"Watch an exclusive trailer for the new film Battle: Los Angeles.\",\"duration_seconds\":64,\"slates\":[{\"width\":640,\"url\":\"http://ia.media-imdb.com/images/M/MV5BMjI2MTk3MjA1OV5BMl5BanBnXkFtZTcwMjQxMTA1NA@@._V1_.jpg\",\"height\":480}],\"content_type\":\"Trailer\",\"relatedName\":{\"nconst\":\"nm0001173\",\"name\":\"Aaron Eckhart\",\"image\":{\"width\":286,\"url\":\"http://ia.media-imdb.com/images/M/MV5BMTc4MTAyNzMzNF5BMl5BanBnXkFtZTcwMzQ5MzQzMg@@._V1_.jpg\",\"height\":400}},\"id\":\"vi3897661977\",\"title\":\"Battle: Los Angeles - Nothing Can Prepare You\",\"@type\":\"mobile.media.video\"},\"trivium\":\"The movie will be released on 03/11/11. 0311 is the Marine Corps Military Occupational Specialty (MOS) for Infantry Riflemen.\",\"release_date\":{\"normal\":\"2011-03-11\"},\"goof\":\"In the final battle scene, SSgt. Nantz can be seen advancing, in profile, firing with his pistol. In the next shot, from the front, he is using his rifle, which he then discards and draws his pistol.\",\"image\":{\"width\":1382,\"url\":\"http://ia.media-imdb.com/images/M/MV5BMjA2MjQ2MzMwMV5BMl5BanBnXkFtZTcwMjIwODgzNA@@._V1_.jpg\",\"height\":2048},\"runtime\":{\"time\":6960},\"cast_summary\":[{\"char\":\"Sgt. Michael Nantz\",\"name\":{\"nconst\":\"nm0001173\",\"name\":\"Aaron Eckhart\",\"image\":{\"width\":286,\"url\":\"http://ia.media-imdb.com/images/M/MV5BMTc4MTAyNzMzNF5BMl5BanBnXkFtZTcwMzQ5MzQzMg@@._V1_.jpg\",\"height\":400}}},{\"char\":\"TSgt. Elena Santos\",\"name\":{\"nconst\":\"nm0735442\",\"name\":\"Michelle Rodriguez\",\"image\":{\"width\":299,\"url\":\"http://ia.media-imdb.com/images/M/MV5BNDEzODQ1OTA0Nl5BMl5BanBnXkFtZTcwNjU2MDc1Mw@@._V1_.jpg\",\"height\":400}}},{\"char\":\"Michele\",\"name\":{\"nconst\":\"nm0005256\",\"name\":\"Bridget Moynahan\",\"image\":{\"width\":266,\"url\":\"http://ia.media-imdb.com/images/M/MV5BMTc0Nzc3ODE3OF5BMl5BanBnXkFtZTcwNDQxOTU3MQ@@._V1_.jpg\",\"height\":400}}},{\"char\":\"2nd Lt. William Martinez\",\"name\":{\"nconst\":\"nm1913125\",\"name\":\"Ramon Rodriguez\",\"image\":{\"width\":353,\"url\":\"http://ia.media-imdb.com/images/M/MV5BMTc0MTg4NDE0OF5BMl5BanBnXkFtZTcwOTYwNjA4NA@@._V1_.jpg\",\"height\":439}}}],\"plot\":{\"more\":1,\"outline\":\"A Marine Staff Sergeant who has just had his retirement approved goes back into the line of duty in order to assist a 2nd Lieutenant and his platoon as they fight to reclaim the city of Los Angeles from alien invaders.\"},\"news\":{\"channel\":\"tt1217613\",\"total\":1849,\"sources\":{\"ns0000257\":{\"logo\":\"http://ia.media-imdb.com/images/M/MV5BMTg0NjA1MjQ1NF5BMl5BanBnXkFtZTcwODI3OTM1Mg@@._V1._SY140_.jpg\",\"url\":\"http://blogs.coventrytelegraph\",\"label\":\"The Geek Files\"},\"ns0012032\":{\"logo\":\"http://ia.media-imdb.com/images/M/MV5BMTUyNjM4MDA2M15BMl5BanBnXkFtZTcwMDQzOTE1NA@@._V1.jpg\",\"url\":\"http://www.obsessedwithfilm.com\",\"label\":\"Obsessed with Film\"},\"ns0000241\":{\"logo\":\"http://ia.media-imdb.com/images/M/MV5BMTU4Njk0NjM2M15BMl5BanBnXkFtZTcwNTIzMjY2Mg@@._V1._SY140_.jpg\",\"url\":\"http://www.thehdroom.com/\",\"label\":\"TheHDRoom\"}},\"markup\":\"flat\",\"label\":\"Battle: Los Angeles\",\"limit\":3,\"items\":[{\"source\":\"ns0012032\",\"head\":\"Box Office: Easter Friendly Kids Movie Hops To $37 Million, Sucker Punch Limping Below Budget\",\"id\":\"ni9265732\",\"datetime\":\"2011-04-04T19:54:00Z\"},{\"source\":\"ns0000257\",\"head\":\"Nicole Kidman's Oscar-nominated Rabbit Hole coming to DVD\",\"id\":\"ni9262623\",\"datetime\":\"2011-04-04T18:07:00Z\"},{\"source\":\"ns0000241\",\"head\":\"Hop is Box Office Champ with $38.1 Million\",\"id\":\"ni9257171\",\"datetime\":\"2011-04-04T14:56:00Z\"}],\"@type\":\"mobile.news.list\",\"start\":0},\"type\":\"feature\",\"title\":\"Battle: Los Angeles\",\"year\":\"2011\"},\"copyright\":\"For use only by clients authorized in writing by IMDb.  Authors and users of unauthorized clients accept full legal exposure/liability for their actions.\"}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://app.imdb.com:80/find?q=Battle%20Los%20Angeles%20R5%205%201%20NEW%20AUDIO%20Hive%20CM8%20avi
+    body: 
+    headers: 
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      date: 
+      - Tue, 05 Apr 2011 23:18:41 GMT
+      server: 
+      - Server
+      cache-control: 
+      - private
+      content-type: 
+      - application/json
+      set-cookie: 
+      - session-id-time=1459725521;path=/;domain=.imdb.com;expires=Sun, 03 Apr 2016 16:18:41 GMT
+      - session-id=860-2045521-5928681;path=/;domain=.imdb.com;expires=Sun, 03 Apr 2016 16:18:41 GMT
+      - uu=BCYq67AF-VbdCOUXJF7NX29gUo1M3ZzU4W09gSP_GHoyAnbcGsmJjAgervQO1opbfjWsECLdbPfuuYF8gvpju9ai-Nnm8BP2O8Bwp4isYtzOTB8iZmN6zeAQ3y7I17od2XT_Rz_pPSPzSN_LAw9Mf5P7h3toQfSXsOHgsJeHoZew9iA;expires=Thu, 30 Dec 2037 00:00:00 GMT;path=/;domain=.imdb.com
+      vary: 
+      - Accept-Encoding,User-Agent
+      p3p: 
+      - policyref="http://i.imdb.com/images/p3p.xml",CP="CAO DSP LAW CUR ADM IVAo IVDo CONo OTPo OUR DELi PUBi OTRi BUS PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA HEA PRE LOC GOV OTC "
+      transfer-encoding: 
+      - chunked
+    body: "{\"data\":{\"fields\":[\"title\",\"name\"],\"q\":\"Battle Los Angeles R5 5 1 NEW AUDIO Hive CM8 avi\"},\"@type\":\"mobile.find.results\",\"copyright\":\"For use only by clients authorized in writing by IMDb.  Authors and users of unauthorized clients accept full legal exposure/liability for their actions.\"}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://app.imdb.com:80/find?q=Battle%20Los%20Angeles%20R5%205%201%20NEW%20AUDIO%20Hive%20CM8
+    body: 
+    headers: 
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      date: 
+      - Tue, 05 Apr 2011 23:18:47 GMT
+      server: 
+      - Server
+      cache-control: 
+      - private
+      content-type: 
+      - application/json
+      set-cookie: 
+      - session-id-time=1459725527;path=/;domain=.imdb.com;expires=Sun, 03 Apr 2016 16:18:47 GMT
+      - session-id=611-2045527-9204841;path=/;domain=.imdb.com;expires=Sun, 03 Apr 2016 16:18:47 GMT
+      - uu=BCYtHs4mNpM3y5jc8D_7fj-dMCwhFNIPa1zTOwgxDuFLMwUtlg9omkZlKwdhwzhNUtQOWQsw0cfMqHu9778NIkVsOJXWWm5t3SUdrp_-x2RDL0-__c2nMPZFnwltHHIRTd6fJnc-uUSLPkJgyLNlSeKMohI2YsP7asvk7sfuwBBozbI;expires=Thu, 30 Dec 2037 00:00:00 GMT;path=/;domain=.imdb.com
+      vary: 
+      - Accept-Encoding,User-Agent
+      p3p: 
+      - policyref="http://i.imdb.com/images/p3p.xml",CP="CAO DSP LAW CUR ADM IVAo IVDo CONo OTPo OUR DELi PUBi OTRi BUS PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA HEA PRE LOC GOV OTC "
+      transfer-encoding: 
+      - chunked
+    body: "{\"data\":{\"fields\":[\"title\",\"name\"],\"q\":\"Battle Los Angeles R5 5 1 NEW AUDIO Hive CM8\"},\"@type\":\"mobile.find.results\",\"copyright\":\"For use only by clients authorized in writing by IMDb.  Authors and users of unauthorized clients accept full legal exposure/liability for their actions.\"}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://app.imdb.com:80/find?q=Battle%20Los%20Angeles%20R5%205%201%20NEW%20AUDIO%20Hive
+    body: 
+    headers: 
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      date: 
+      - Tue, 05 Apr 2011 23:18:50 GMT
+      server: 
+      - Server
+      cache-control: 
+      - private
+      content-type: 
+      - application/json
+      set-cookie: 
+      - session-id-time=1459725531;path=/;domain=.imdb.com;expires=Sun, 03 Apr 2016 16:18:51 GMT
+      - session-id=765-2045531-7001386;path=/;domain=.imdb.com;expires=Sun, 03 Apr 2016 16:18:51 GMT
+      - uu=BCYglEYzJfDucYqiTy6FmweuXCwhFNIPa1zTOwgxDuFLMwXO_ocicwqEKvWl1r5V6lg7b8jTsnnvS58PQynT50D4KUV3RLdZvytfdbfci2E2B8BF6Nfyx5_u_0N6o6poqkPUt7zhh--0pvtApCsMO4jFn08j7kbshpI21VQg2z7bJJg;expires=Thu, 30 Dec 2037 00:00:00 GMT;path=/;domain=.imdb.com
+      vary: 
+      - Accept-Encoding,User-Agent
+      p3p: 
+      - policyref="http://i.imdb.com/images/p3p.xml",CP="CAO DSP LAW CUR ADM IVAo IVDo CONo OTPo OUR DELi PUBi OTRi BUS PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA HEA PRE LOC GOV OTC "
+      transfer-encoding: 
+      - chunked
+    body: "{\"data\":{\"fields\":[\"title\",\"name\"],\"q\":\"Battle Los Angeles R5 5 1 NEW AUDIO Hive\",\"results\":[{\"label\":\"Titles (Approx Matches)\",\"list\":[{\"tconst\":\"tt0278662\",\"title\":\"Rage Against the Machine: The Battle of Los Angeles\",\"type\":\"video\",\"year\":\"2001\",\"principals\":[{\"nconst\":\"nm0209371\",\"name\":\"Zack De La Rocha\"},{\"nconst\":\"nm0603780\",\"name\":\"Tom Morello\"},{\"nconst\":\"nm0173876\",\"name\":\"Tim Commerford\"},{\"nconst\":\"nm0929014\",\"name\":\"Brad Wilk\"}]}]}]},\"@type\":\"mobile.find.results\",\"copyright\":\"For use only by clients authorized in writing by IMDb.  Authors and users of unauthorized clients accept full legal exposure/liability for their actions.\"}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://app.imdb.com:80/find?q=Battle%20Los%20Angeles%20R5%205%201%20NEW%20AUDIO
+    body: 
+    headers: 
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      date: 
+      - Tue, 05 Apr 2011 23:18:54 GMT
+      server: 
+      - Server
+      cache-control: 
+      - private
+      content-type: 
+      - application/json
+      set-cookie: 
+      - session-id-time=1459725534;path=/;domain=.imdb.com;expires=Sun, 03 Apr 2016 16:18:54 GMT
+      - session-id=891-2045534-4956084;path=/;domain=.imdb.com;expires=Sun, 03 Apr 2016 16:18:54 GMT
+      - uu=BCYp7iGl63uMZWnJDYoiWKswvz-9jg0GQnhqBp6U1RLgjk8_kqnNMtG6MqQ2g7zj_g2TA2VPzXnsKqkUA8wnIUdnphGKtCmyLjqK-Rk5P3tWXcsgSBzXd16AINin1aYkxebQxMfn3WbSUzRSZPkYaOh0-Fk0DU3jAwNKnwc1m0VrPns;expires=Thu, 30 Dec 2037 00:00:00 GMT;path=/;domain=.imdb.com
+      vary: 
+      - Accept-Encoding,User-Agent
+      p3p: 
+      - policyref="http://i.imdb.com/images/p3p.xml",CP="CAO DSP LAW CUR ADM IVAo IVDo CONo OTPo OUR DELi PUBi OTRi BUS PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA HEA PRE LOC GOV OTC "
+      transfer-encoding: 
+      - chunked
+    body: "{\"data\":{\"fields\":[\"title\",\"name\"],\"q\":\"Battle Los Angeles R5 5 1 NEW AUDIO\",\"results\":[{\"label\":\"Titles (Approx Matches)\",\"list\":[{\"tconst\":\"tt0278662\",\"title\":\"Rage Against the Machine: The Battle of Los Angeles\",\"type\":\"video\",\"year\":\"2001\",\"principals\":[{\"nconst\":\"nm0209371\",\"name\":\"Zack De La Rocha\"},{\"nconst\":\"nm0603780\",\"name\":\"Tom Morello\"},{\"nconst\":\"nm0173876\",\"name\":\"Tim Commerford\"},{\"nconst\":\"nm0929014\",\"name\":\"Brad Wilk\"}]},{\"tconst\":\"tt1217613\",\"title\":\"Battle: Los Angeles\",\"type\":\"feature\",\"year\":\"2011\",\"image\":{\"width\":1382,\"url\":\"http://ia.media-imdb.com/images/M/MV5BMjA2MjQ2MzMwMV5BMl5BanBnXkFtZTcwMjIwODgzNA@@._V1_.jpg\",\"height\":2048},\"principals\":[{\"nconst\":\"nm0001173\",\"name\":\"Aaron Eckhart\"},{\"nconst\":\"nm0735442\",\"name\":\"Michelle Rodriguez\"},{\"nconst\":\"nm0005256\",\"name\":\"Bridget Moynahan\"},{\"nconst\":\"nm1913125\",\"name\":\"Ramon Rodriguez\"}]},{\"tconst\":\"tt1598763\",\"title\":\"Battle Angels: New Years Resolution\",\"type\":\"video\",\"year\":\"2010\",\"principals\":[{\"nconst\":\"nm3798457\",\"name\":\"Tatyana Namen Gita\"},{\"nconst\":\"nm3798749\",\"name\":\"Ultimate Gojirah\"},{\"nconst\":\"nm3798885\",\"name\":\"Hazel\"},{\"nconst\":\"nm3787310\",\"name\":\"Karen Michelle Long\"}]},{\"tconst\":\"tt0102536\",\"title\":\"Night on Earth\",\"type\":\"feature\",\"year\":\"1991\",\"image\":{\"width\":505,\"url\":\"http://ia.media-imdb.com/images/M/MV5BNTgzMzQ3MDQ0Ml5BMl5BanBnXkFtZTcwNjcwNzM1MQ@@._V1_.jpg\",\"height\":715},\"principals\":[{\"nconst\":\"nm0000213\",\"name\":\"Winona Ryder\"},{\"nconst\":\"nm0001687\",\"name\":\"Gena Rowlands\"},{\"nconst\":\"nm0266170\",\"name\":\"Lisanne Falk\"},{\"nconst\":\"nm0778804\",\"name\":\"Alan Randolph Scott\"}]}]}]},\"@type\":\"mobile.find.results\",\"copyright\":\"For use only by clients authorized in writing by IMDb.  Authors and users of unauthorized clients accept full legal exposure/liability for their actions.\"}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://app.imdb.com:80/find?q=Battle%20Los%20Angeles%20R5%205%201%20NEW
+    body: 
+    headers: 
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      date: 
+      - Tue, 05 Apr 2011 23:18:59 GMT
+      server: 
+      - Server
+      cache-control: 
+      - private
+      content-type: 
+      - application/json
+      set-cookie: 
+      - session-id-time=1459725539;path=/;domain=.imdb.com;expires=Sun, 03 Apr 2016 16:18:59 GMT
+      - session-id=870-2045539-2296162;path=/;domain=.imdb.com;expires=Sun, 03 Apr 2016 16:18:59 GMT
+      - uu=BCYpdOojQR2q1wAsF-oCHhhh2z-9jg0GQnhqBp6U1RLgjk8_kqnNMtG6MqQ2g7zj_g2TPAihpE1JzUUjjZ6s5KcgXa7CGr727SUfQhwf4n-Bg5nlBGqBOYPFb_JNwm_pMO-p-ztKbII0nlanTKCG1hpPaelqdmsiRoB5q6rpNx0qz70;expires=Thu, 30 Dec 2037 00:00:00 GMT;path=/;domain=.imdb.com
+      vary: 
+      - Accept-Encoding,User-Agent
+      p3p: 
+      - policyref="http://i.imdb.com/images/p3p.xml",CP="CAO DSP LAW CUR ADM IVAo IVDo CONo OTPo OUR DELi PUBi OTRi BUS PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA HEA PRE LOC GOV OTC "
+      transfer-encoding: 
+      - chunked
+    body: "{\"data\":{\"fields\":[\"title\",\"name\"],\"q\":\"Battle Los Angeles R5 5 1 NEW\",\"results\":[{\"label\":\"Titles (Approx Matches)\",\"list\":[{\"tconst\":\"tt0278662\",\"title\":\"Rage Against the Machine: The Battle of Los Angeles\",\"type\":\"video\",\"year\":\"2001\",\"principals\":[{\"nconst\":\"nm0209371\",\"name\":\"Zack De La Rocha\"},{\"nconst\":\"nm0603780\",\"name\":\"Tom Morello\"},{\"nconst\":\"nm0173876\",\"name\":\"Tim Commerford\"},{\"nconst\":\"nm0929014\",\"name\":\"Brad Wilk\"}]},{\"tconst\":\"tt1217613\",\"title\":\"Battle: Los Angeles\",\"type\":\"feature\",\"year\":\"2011\",\"image\":{\"width\":1382,\"url\":\"http://ia.media-imdb.com/images/M/MV5BMjA2MjQ2MzMwMV5BMl5BanBnXkFtZTcwMjIwODgzNA@@._V1_.jpg\",\"height\":2048},\"principals\":[{\"nconst\":\"nm0001173\",\"name\":\"Aaron Eckhart\"},{\"nconst\":\"nm0735442\",\"name\":\"Michelle Rodriguez\"},{\"nconst\":\"nm0005256\",\"name\":\"Bridget Moynahan\"},{\"nconst\":\"nm1913125\",\"name\":\"Ramon Rodriguez\"}]},{\"tconst\":\"tt1598763\",\"title\":\"Battle Angels: New Years Resolution\",\"type\":\"video\",\"year\":\"2010\",\"principals\":[{\"nconst\":\"nm3798457\",\"name\":\"Tatyana Namen Gita\"},{\"nconst\":\"nm3798749\",\"name\":\"Ultimate Gojirah\"},{\"nconst\":\"nm3798885\",\"name\":\"Hazel\"},{\"nconst\":\"nm3787310\",\"name\":\"Karen Michelle Long\"}]},{\"tconst\":\"tt0102536\",\"title\":\"Night on Earth\",\"type\":\"feature\",\"year\":\"1991\",\"image\":{\"width\":505,\"url\":\"http://ia.media-imdb.com/images/M/MV5BNTgzMzQ3MDQ0Ml5BMl5BanBnXkFtZTcwNjcwNzM1MQ@@._V1_.jpg\",\"height\":715},\"principals\":[{\"nconst\":\"nm0000213\",\"name\":\"Winona Ryder\"},{\"nconst\":\"nm0001687\",\"name\":\"Gena Rowlands\"},{\"nconst\":\"nm0266170\",\"name\":\"Lisanne Falk\"},{\"nconst\":\"nm0778804\",\"name\":\"Alan Randolph Scott\"}]},{\"tconst\":\"tt1758570\",\"title\":\"Battle of Los Angeles\",\"type\":\"video\",\"year\":\"2011\",\"image\":{\"width\":464,\"url\":\"http://ia.media-imdb.com/images/M/MV5BMTM1MDUyNTMyMF5BMl5BanBnXkFtZTcwOTc0NTkzNA@@._V1_.jpg\",\"height\":650},\"principals\":[{\"nconst\":\"nm0005239\",\"name\":\"Kel Mitchell\"},{\"nconst\":\"nm0001604\",\"name\":\"Nia Peeples\"},{\"nconst\":\"nm1384079\",\"name\":\"Dylan Vox\"},{\"nconst\":\"nm2230938\",\"name\":\"Gerald Webb\"}]},{\"tconst\":\"tt1590846\",\"title\":\"Untitled: A Few Scenes from the Los Angeles Times Homicide Report\",\"type\":\"video\",\"year\":\"2009\",\"image\":{\"width\":720,\"url\":\"http://ia.media-imdb.com/images/M/MV5BMjE3MjcxNTk2OV5BMl5BanBnXkFtZTcwNTEwMjYxMw@@._V1_.jpg\",\"height\":480},\"principals\":[{\"nconst\":\"nm2035777\",\"name\":\"Timothy Holland\"}]}]}]},\"@type\":\"mobile.find.results\",\"copyright\":\"For use only by clients authorized in writing by IMDb.  Authors and users of unauthorized clients accept full legal exposure/liability for their actions.\"}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://app.imdb.com:80/find?q=Source%20Code%20DTRG%20SAFCuk009
+    body: 
+    headers: 
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      date: 
+      - Tue, 05 Apr 2011 23:19:03 GMT
+      server: 
+      - Server
+      cache-control: 
+      - private
+      content-type: 
+      - application/json
+      set-cookie: 
+      - session-id-time=1459725543;path=/;domain=.imdb.com;expires=Sun, 03 Apr 2016 16:19:03 GMT
+      - session-id=211-2045543-8654394;path=/;domain=.imdb.com;expires=Sun, 03 Apr 2016 16:19:03 GMT
+      - uu=BCYlgrZtN4-lfm9GX1KDUK6h4ywhFNIPa1zTOwgxDuFLMwW4qEL4jlmHovM39t4t48AsdCcm8gJxuEpU0Ywxzzz5_3ZPH_HQJV_zhkilNvIDBRBVkh5UEhalbUHzqopIoVGcpCsLn2e3Mqki5vfqPHm7CDWdiOokul-bH6XLuJwAVQ8;expires=Thu, 30 Dec 2037 00:00:00 GMT;path=/;domain=.imdb.com
+      vary: 
+      - Accept-Encoding,User-Agent
+      p3p: 
+      - policyref="http://i.imdb.com/images/p3p.xml",CP="CAO DSP LAW CUR ADM IVAo IVDo CONo OTPo OUR DELi PUBi OTRi BUS PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA HEA PRE LOC GOV OTC "
+      transfer-encoding: 
+      - chunked
+    body: "{\"data\":{\"fields\":[\"title\",\"name\"],\"q\":\"Source Code DTRG SAFCuk009\"},\"@type\":\"mobile.find.results\",\"copyright\":\"For use only by clients authorized in writing by IMDb.  Authors and users of unauthorized clients accept full legal exposure/liability for their actions.\"}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://app.imdb.com:80/find?q=Source%20Code%20DTRG
+    body: 
+    headers: 
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      date: 
+      - Tue, 05 Apr 2011 23:19:05 GMT
+      server: 
+      - Server
+      cache-control: 
+      - private
+      content-type: 
+      - application/json
+      set-cookie: 
+      - session-id-time=1459725545;path=/;domain=.imdb.com;expires=Sun, 03 Apr 2016 16:19:05 GMT
+      - session-id=043-2045545-2140047;path=/;domain=.imdb.com;expires=Sun, 03 Apr 2016 16:19:05 GMT
+      - uu=BCYhpO8cnSCgKCH-AIU33qevK8QJko4vfIVYXJVY68c-MWSRP0ZxD_iEFc57VSgFrLmEx9VVpb9zpIiGcEoxrUh7IGUF50IDxWuHoI2uD_xdQicPtjFQtKZzhbwTn1UY3GZRI6DOzOsUQ5ovJdWhfmJCrH7zEpvC-eQ23TpKgznbN_A;expires=Thu, 30 Dec 2037 00:00:00 GMT;path=/;domain=.imdb.com
+      vary: 
+      - Accept-Encoding,User-Agent
+      p3p: 
+      - policyref="http://i.imdb.com/images/p3p.xml",CP="CAO DSP LAW CUR ADM IVAo IVDo CONo OTPo OUR DELi PUBi OTRi BUS PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA HEA PRE LOC GOV OTC "
+      transfer-encoding: 
+      - chunked
+    body: "{\"data\":{\"fields\":[\"title\",\"name\"],\"q\":\"Source Code DTRG\",\"results\":[{\"label\":\"Titles (Approx Matches)\",\"list\":[{\"tconst\":\"tt0945513\",\"title\":\"Source Code\",\"type\":\"feature\",\"year\":\"2011\",\"image\":{\"width\":1382,\"url\":\"http://ia.media-imdb.com/images/M/MV5BMTY0MTc3MzMzNV5BMl5BanBnXkFtZTcwNDE4MjE0NA@@._V1_.jpg\",\"height\":2048},\"principals\":[{\"nconst\":\"nm0350453\",\"name\":\"Jake Gyllenhaal\"},{\"nconst\":\"nm1157358\",\"name\":\"Michelle Monaghan\"},{\"nconst\":\"nm0267812\",\"name\":\"Vera Farmiga\"},{\"nconst\":\"nm0942482\",\"name\":\"Jeffrey Wright\"}]},{\"tconst\":\"tt0356960\",\"title\":\"On the Come Up at the Source Awards\",\"type\":\"documentary\",\"year\":\"2001\",\"principals\":[{\"nconst\":\"nm1335799\",\"name\":\"Tamikko Spica\"},{\"nconst\":\"nm1116250\",\"name\":\"Oria Rodriguez\"},{\"nconst\":\"nm1336936\",\"name\":\"Nadine Lang\"},{\"nconst\":\"nm0004734\",\"name\":\"Tyson Beckford\"}]},{\"tconst\":\"tt1437423\",\"title\":\"Dark Force Renegade Vigilante Siege V: Code Name - Delta Lollipop\",\"type\":\"short\",\"year\":\"2004\",\"principals\":[{\"nconst\":\"nm1654713\",\"name\":\"Eddie Deirmenjian\"},{\"nconst\":\"nm1992792\",\"name\":\"Chris Hawkins\"},{\"nconst\":\"nm3457231\",\"name\":\"Jeff Bassing\"},{\"nconst\":\"nm2291674\",\"name\":\"Lauren Correia\"}]}]}]},\"@type\":\"mobile.find.results\",\"copyright\":\"For use only by clients authorized in writing by IMDb.  Authors and users of unauthorized clients accept full legal exposure/liability for their actions.\"}"
+    http_version: "1.1"

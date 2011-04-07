@@ -6,6 +6,7 @@
     $('#application').append(FDB.rootView.el);
     new FDB.DashboardController();
     new FDB.FilesController();
+    new FDB.MoviesController();
     new FDB.SecretEditController();
     Backbone.history.start();
     return $('.flash').each(function(e) {

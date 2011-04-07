@@ -1,6 +1,8 @@
 common:
+  movies_dir: 'movies'
+  tv_dir: 'tv'
+  music_dir: 'music'
 
-production:
 
 development:
   files_path: '/Users/hornairs/Sites/files/files'
@@ -8,3 +10,5 @@ development:
 
 test:
   files_path: '/Users/hornairs/Sites/files/spec/fixtures/files'
+
+production:

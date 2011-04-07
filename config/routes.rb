@@ -8,6 +8,8 @@ Files::Application.routes.draw do
     get "/files(/*path)" => "files#index"    
     get "/files/*path.:ext" => "files#get"
     put "/files(/*path)" => "files#update"
+
+    resources :movies, :only => [:index, :show, :update]
   end
 
   post "/secret_message" => "dashboard#secret_message"

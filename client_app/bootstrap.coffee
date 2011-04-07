@@ -11,6 +11,7 @@ jQuery(($) ->
   # Create controllers
   new FDB.DashboardController()
   new FDB.FilesController()
+  new FDB.MoviesController()
   new FDB.SecretEditController()
   
   # Dispatch primary route and get to work!

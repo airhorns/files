@@ -7,6 +7,7 @@ gem 'dm-core',           '~> 1.0.2'
 gem 'dm-redis-adapter',  '~> 0.3.0'
 gem 'dm-serializer',     '~> 1.0.2'
 gem 'dm-timestamps',     '~> 1.0.2'
+gem 'dm-accepts_nested_attributes'
 gem 'dm-devise',         '~> 1.1.4'
 gem 'active-redis',      :git => "git@github.com:arbarlow/active-redis.git"
 gem 'redis-objects',     :require => "redis/objects" # LIKE A ZILLION ORMS MAN
@@ -17,7 +18,12 @@ gem 'devise'
 
 # Media Info APIs
 gem 'rockstar'
-gem 'imdb', :git => "git://github.com/tolosa/imdb.git"
+#gem 'imdb', :git => "git://github.com/tolosa/imdb.git"
+gem 'movie_searcher', :path => "~/Code/MovieSearcher"
+#gem "paperclip", "~> 2.3"
+#gem "dm-paperclip", :git => "git://github.com/arbarlow/dm-paperclip.git"
+gem 'carrierwave'
+gem 'mini_magick'
 
 # Tooling
 gem 'jammit'
@@ -37,8 +43,7 @@ group :development, :test do
   
   # RSpec for unit tests
   gem "rspec-rails", ">= 2.0.1"
-  gem "webmock"
-  gem "vcr"
+  gem 'spork', '~> 0.9.0.rc'
 
   # Steak + Capybara for integration tests
   gem "steak", ">= 1.0.0.rc.1"
@@ -49,8 +54,14 @@ group :development, :test do
   gem "guard-rspec"
   gem "guard-coffeescript"
   gem "guard-compass"
+  gem "guard-spork"
   gem "growl"
 
   # ruby-debug 1.9 for ruby 1.9
   gem "ruby-debug19", :require => "ruby-debug"
+end
+
+group :test do
+  gem "webmock"
+  gem "vcr"
 end
