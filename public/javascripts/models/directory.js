@@ -72,9 +72,7 @@
       row = _.extend(this.toDataRow(), {
         parent: parent_id
       });
-      if (parent_id != null) {
-        tree.push(row);
-      }
+      tree.push(row);
       tree = tree.concat(this.subDataView(row.id));
       return tree;
     };

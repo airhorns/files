@@ -3,7 +3,7 @@ class Downloadable
   include DataMapper::Resource
 
   property :id, Serial
-  property :type, Discriminator
+  property :type, Discriminator, :index => true
 
   has n, :releases
   accepts_nested_attributes_for :releases

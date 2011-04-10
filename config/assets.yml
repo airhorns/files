@@ -11,13 +11,12 @@ javascripts:
     - public/lib/jqueryui/ui/jquery.ui.widget.js
     - public/lib/jqueryui/ui/jquery.ui.mouse.js
     - public/lib/jqueryui/ui/jquery.ui.tabs.js
-    - public/lib/jqueryui/ui/jquery.ui.datepicker.js
     - public/lib/jqueryui/ui/jquery.ui.button.js
     #- public/lib/jqueryui/ui/jquery.ui.*.js
     #- public/lib/jqueryui/ui/jquery.effects.core.js
     #- public/lib/jqueryui/ui/jquery.effects.*.js
-    - public/lib/jquery.timePicker.js
     - public/lib/jquery.editable.js
+    - public/lib/isotope/jquery.isotope.js
     - public/lib/uniform/jquery.uniform.js
     - public/lib/slickgrid/lib/jquery.event.drag-2.0.min.js
     - public/lib/slickgrid/slick.core.js

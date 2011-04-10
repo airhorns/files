@@ -1,0 +1,12 @@
+- @downloadable.releases.each do |release|
+  %h1= release.quality
+  - release.files.each do |file|
+    %object{:classid => "clsid:67DABFBF-D0AB-41fa-9C46-CC0F21721616", :codebase => "http://go.divx.com/plugin/DivXBrowserPlugin.cab", :height => "480", :width => "640"}
+      %param{:name => "custommode", :value => "none"}/
+      %param{:name => "autoPlay", :value => "false"}/
+      %param{:name => "src", :value => asset_link_to(file)}/
+      %embed{:autoPlay => "false", :custommode => "none", :height => "480", :pluginspage => "http://go.divx.com/plugin/download/", :src => asset_link_to(file), :type => "video/divx", :width => "640"}
+%p
+  No video
+  %a{:href => "http://www.divx.com/software/divx-plus/web-player", :target => "_blank"} Download the DivX Plus Web Player.
+%p Want to keep the file you are streaming? Right click on the player and click "Save video as...".

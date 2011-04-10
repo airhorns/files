@@ -10,13 +10,13 @@ class FilesController < ApplicationController
 
   # List undownloaded files
   def undownloaded
-    respond_with json_file_structure(FileCache.all - current_user.downloaded)
+    respond_with file_structure(FileCache.all - current_user.downloaded)
   end
 
   # List files in a dir
   def index
     contents = FileCache.all_immediately_underneath(build_dir_path(params[:path])).sort
-    respond_with json_file_structure(contents)
+    respond_with file_structure(contents)
   end
  
   def update
@@ -65,7 +65,7 @@ class FilesController < ApplicationController
     end
   end
 
-  def json_file_structure(contents)
+  def file_structure(contents)
     agg = contents.inject({:files => [], :directories => []}) do |acc, content|
       if FileCache.directory?(content)
         acc[:directories].push directory_details(content) 

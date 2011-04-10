@@ -755,40 +755,33 @@ body.application .achtung {
   float: left;
   margin-right: 10px;
   width: 230px;
+  height: 350px;
 }
 /* line 138, ../../../../.rvm/gems/ruby-1.9.2-p180/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html .thumb_explorer .thumb {
   overflow-x: hidden;
 }
-/* line 227, ../../app/stylesheets/screen.sass */
+/* line 228, ../../app/stylesheets/screen.sass */
 .thumb_explorer .thumb .nail {
   display: inline-block;
   position: relative;
   width: auto;
 }
-/* line 231, ../../app/stylesheets/screen.sass */
+/* line 232, ../../app/stylesheets/screen.sass */
 .thumb_explorer .thumb .nail .actions {
   position: absolute;
   left: 0px;
   bottom: 5px;
   padding: 5px 0px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+/* line 238, ../../app/stylesheets/screen.sass */
+.thumb_explorer .thumb .nail .actions a {
   font-weight: normal;
   font-size: 12px;
   color: white;
-  background-color: rgba(0, 0, 0, 0.5);
 }
-/* line 241, ../../app/stylesheets/screen.sass */
+/* line 243, ../../app/stylesheets/screen.sass */
 .thumb_explorer .thumb .title {
   font-weight: bold;
-}
-/* line 244, ../../app/stylesheets/screen.sass */
-.thumb_explorer .thumb:nth-child(4) {
-  display: inline;
-  float: left;
-  margin-right: 0;
-  width: 230px;
-}
-/* line 138, ../../../../.rvm/gems/ruby-1.9.2-p180/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html .thumb_explorer .thumb:nth-child(4) {
-  overflow-x: hidden;
 }

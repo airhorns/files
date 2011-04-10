@@ -30,30 +30,37 @@ class FDB.FilesController extends Backbone.Controller
       @view.bind "rowToggled", this.toggleRow
       @view.bind "toggleDownloadedClicked", this.toggleDownloaded
       $('.mark_all_as_downloaded', @view.el).click (e) =>
-        this.toggleDownloaded(@root.toDataRow())
+        this.toggleDownloaded(@rootItem)
         e.preventDefault()
 
   # Performs the first generation of the tree
   generateData: () =>
+    @root.unbind "change", this.generateData
     @view.dataView = @dataView
+
     # Get the flattened representation of the tree
     log = @root.toDataView()
     for item in log
       item._collapsed = true if item.type == "dir"
       this.observeFileSystemObject(item.obj)
 
+    # Store a reference to the root item for later, and expand it by default
+    @rootItem = log[0]
+    @rootItem._collapsed = false
+
     # Add the items to the dataview
     @dataView.beginUpdate()
     @dataView.setItems(log)
     @dataView.setFilter (item) =>
       # Parent tree traversal
-      if item.parent != null
+      if item.parent?
         parent = @dataView.getItemById(item.parent)
-        raise "Weirdness." if parent == item
         while parent
           return false if parent._collapsed
           parent = @dataView.getItemById(parent.parent)
-
+      else
+        return false # dont show the root
+      
       return true
 
     @dataView.endUpdate()

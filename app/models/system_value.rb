@@ -1,6 +1,9 @@
-class SystemValue < ActiveRedis
+class SystemValue
+  include DataMapper::Resource
+  property :id, Serial
   property :identifier, String, :unique => true, :index => true
   property :value, String
+
   def self.[](id)
     self.first(:identifier => id)
   end

@@ -1,10 +1,10 @@
-class User < ActiveRedis
+class User
+  include DataMapper::Resource
+  property :id, Serial
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-
-  property :id, Serial
   
   # Redis containers for downloaded files
   include Redis::Objects
@@ -33,7 +33,11 @@ class User < ActiveRedis
     mark_path(path, downloaded)
 
     # Set state of containing directories
-    until (path = File.dirname(path)) == Files::Config.files_path 
+    if path[-1] == "/"
+      path = path[0..-2]
+    end
+    until path == Files::Config.files_path
+      path = File.dirname(path) # Step up
       if FileCache.all_immediately_underneath(path).all? {|f| self.downloaded?(f) }
         mark_path(path, true)
       else

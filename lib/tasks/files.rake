@@ -25,11 +25,30 @@ namespace :files do
       puts "Looking at #{dir}."
       if /#{File.join(Files::Config.files_path, Files::Config.movies_dir)}/ =~ dir
         if movie = Movie.build_from_path(dir)
-          movie.save!
+          movie.save
         else
           puts "Couldn't save movie at path #{dir}!"
         end
       end
     end
   end
+
+  desc "Used by users to scan a folder into the system"
+  task :test_movies, :needs => :environment do |t|
+    Movie.destroy
+    path = "/Users/hornairs/Sites/files/files/movies"
+    puts "Searching #{path}"
+    items = Dir.glob(File.join(path, "*"))[0..10]
+    items.each do |dir|
+      puts "Looking at #{dir}."
+      if /#{File.join(Files::Config.files_path, Files::Config.movies_dir)}/ =~ dir
+        if movie = Movie.build_from_path(dir)
+          movie.save
+        else
+          puts "Couldn't save movie at path #{dir}!"
+        end
+      end
+    end
+  end
+  
 end

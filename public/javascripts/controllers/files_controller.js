@@ -45,13 +45,14 @@
         this.view.bind("rowToggled", this.toggleRow);
         this.view.bind("toggleDownloadedClicked", this.toggleDownloaded);
         return $('.mark_all_as_downloaded', this.view.el).click(__bind(function(e) {
-          this.toggleDownloaded(this.root.toDataRow());
+          this.toggleDownloaded(this.rootItem);
           return e.preventDefault();
         }, this));
       }
     };
     FilesController.prototype.generateData = function() {
       var item, log, _i, _len;
+      this.root.unbind("change", this.generateData);
       this.view.dataView = this.dataView;
       log = this.root.toDataView();
       for (_i = 0, _len = log.length; _i < _len; _i++) {
@@ -61,21 +62,22 @@
         }
         this.observeFileSystemObject(item.obj);
       }
+      this.rootItem = log[0];
+      this.rootItem._collapsed = false;
       this.dataView.beginUpdate();
       this.dataView.setItems(log);
       this.dataView.setFilter(__bind(function(item) {
         var parent;
-        if (item.parent !== null) {
+        if (item.parent != null) {
           parent = this.dataView.getItemById(item.parent);
-          if (parent === item) {
-            raise("Weirdness.");
-          }
           while (parent) {
             if (parent._collapsed) {
               return false;
             }
             parent = this.dataView.getItemById(parent.parent);
           }
+        } else {
+          return false;
         }
         return true;
       }, this));

@@ -3,27 +3,24 @@ source 'http://rubygems.org'
 gem 'rails'
 
 # Datamapper
-gem 'dm-core',           '~> 1.0.2'
-gem 'dm-redis-adapter',  '~> 0.3.0'
-gem 'dm-serializer',     '~> 1.0.2'
-gem 'dm-timestamps',     '~> 1.0.2'
-gem 'dm-accepts_nested_attributes'
-gem 'dm-devise',         '~> 1.1.4'
-gem 'active-redis',      :git => "git@github.com:arbarlow/active-redis.git"
-gem 'redis-objects',     :require => "redis/objects" # LIKE A ZILLION ORMS MAN
+gem 'dm-core',                      '~> 1.1.0'
+gem 'dm-serializer',                '~> 1.1.0'
+gem 'dm-timestamps',                '~> 1.1.0'
+gem 'dm-accepts_nested_attributes', '~> 1.1.0', :git => "git://github.com/snusnu/dm-accepts_nested_attributes.git"
+
+gem 'dm-redis-adapter',             '~> 0.3.0', :path => "~/Code/dm-redis-adapter"
+gem 'dm-devise',                    '~> 1.2.0'
+#gem 'active-redis',                 :git => "git@github.com:arbarlow/active-redis.git"
+gem 'redis-objects',                :require => "redis/objects" # LIKE A ZILLION ORMS MAN
 
 # Authentication
 gem 'devise'
-#gem "thwart", "0.0.4"
 
 # Media Info APIs
 gem 'rockstar'
-#gem 'imdb', :git => "git://github.com/tolosa/imdb.git"
 gem 'movie_searcher', :path => "~/Code/MovieSearcher"
-#gem "paperclip", "~> 2.3"
-#gem "dm-paperclip", :git => "git://github.com/arbarlow/dm-paperclip.git"
 gem 'carrierwave'
-gem 'mini_magick'
+gem 'mini_magick' # for Carrierwave to generate thumbnails
 
 # Tooling
 gem 'jammit'

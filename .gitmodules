@@ -16,3 +16,6 @@
 [submodule "public/lib/uniform"]
 	path = public/lib/uniform
 	url = https://github.com/pixelmatrix/uniform.git
+[submodule "public/lib/isotope"]
+	path = public/lib/isotope
+	url = https://github.com/desandro/isotope.git

@@ -7,7 +7,7 @@ module FileCache
     end
 
     def below(path)
-      Redis::Set.new("files_#{File.join(path,"")}")
+      Redis::Set.new("files_#{dir_path(path)}")
     end
 
     def build!
@@ -17,14 +17,14 @@ module FileCache
       count = 0
       until q.empty?
         path = q.pop
-        count += 1
-        path_set = Redis::Set.new("files_#{path}")
+        path_set = Redis::Set.new("files_#{dir_path(path)}")
         path_set.clear
         Dir.glob(File.join(path, "*")).each do |f|
           if File.directory?(f)
-            f = File.join(f, "") # All directory entries in the system have a trailing slash for recognition as a dir
+            f = dir_path(f) # All directory entries in the system have a trailing slash for recognition as a dir
             q << f
           end
+          count += 1
           all.add f
           path_set.add f
         end
@@ -57,6 +57,10 @@ module FileCache
       $redis.keys("files_*").each do |k|
         $redis.del(k)
       end
+    end
+
+    def dir_path(path)
+      File.join(path, "")
     end
   end
 end

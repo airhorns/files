@@ -71,7 +71,7 @@ class Movie < Downloadable
     if args.blank? || args.first.blank?
       args = [{}]
     end
-    args.first.merge!({:exclude => [:poster, :type]})
+    args.first.merge!({:exclude => [:poster, :type], :methods => [:releases]})
     super(*args).merge({ 
        :poster_url => self.poster.url, 
        :poster_thumb_url => self.poster.thumb.url

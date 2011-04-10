@@ -45,7 +45,7 @@ class FDB.Directory extends Backbone.Model
   toDataView: (parent_id = null) ->
     tree = []
     row = _.extend(this.toDataRow(), {parent: parent_id}) # Get this row's representation
-    tree.push row if parent_id?
+    tree.push row
     tree = tree.concat(this.subDataView(row.id))
     tree
   
