@@ -13,50 +13,92 @@
     }
     __extends(MoviesIndexView, FDB.View);
     MoviesIndexView.prototype.tagName = 'div';
-    MoviesIndexView.prototype.className = 'thumb_explorer';
+    MoviesIndexView.prototype.renderable = function() {
+      return {};
+    };
     MoviesIndexView.prototype.initialize = function(collection) {
       this.collection = collection;
       this.thumbs = {};
-      this.$el = $(this.el);
-      this.$el.isotope({
-        getSortData: {
-          title: __bind(function(el) {
-            return this.collection.at(el.data('movie_id')).get('title');
-          }, this),
-          year: __bind(function(el) {
-            return this.collection.at(el.data('movie_id')).get('year');
-          }, this),
-          rating: __bind(function(el) {
-            return this.collection.at(el.data('movie_id')).get('rating');
-          }, this),
-          added: __bind(function(el) {
-            return el.data('movie_id');
-          }, this)
-        },
-        sortBy: 'added',
-        sortAscending: false
-      });
-      this.collection.each(function(model) {
-        return this.addThumb(model);
-      });
-      this.collection.bind('add', __bind(function(model) {
-        return this.addThumb(model);
-      }, this));
-      return this.collection.bind('remove', __bind(function(model) {
-        return this.removeThumb(model);
-      }, this));
+      this.render();
+      return this.setUpIsotope();
     };
     MoviesIndexView.prototype.addThumb = function(movie) {
-      this.thumbs[movie.id] = new (FDB.view('movies/thumb'))(movie);
+      this.thumbs[movie.id] = new (FDB.view('movies/thumb'))({
+        model: movie
+      });
       this.thumbs[movie.id].render();
-      return this.$el.isotope('insert', this.thumbs[movie.id].el);
+      return this.$el.isotope('insert', $(this.thumbs[movie.id].el));
     };
     MoviesIndexView.prototype.removeThumb = function(movie) {
       $("#movie_thumb_" + movie.id, this.el).remove();
       return delete this.thumgs[movie.id];
     };
-    MoviesIndexView.prototype.render = function() {
-      return true;
+    MoviesIndexView.prototype.setUpIsotope = function() {
+      var currentDir, currentSort, filter, search, timer;
+      this.$el = $('.thumb_explorer', this.el);
+      this.collection.bind('add', __bind(function(model) {
+        return this.addThumb(model);
+      }, this));
+      this.collection.bind('remove', __bind(function(model) {
+        return this.removeThumb(model);
+      }, this));
+      this.collection.each(function(model) {
+        return this.addThumb(model);
+      });
+      currentSort = 'added';
+      currentDir = false;
+      this.$el.isotope({
+        getSortData: {
+          title: __bind(function(el) {
+            return this.collection.get(el.data('movie_id')).get('title');
+          }, this),
+          year: __bind(function(el) {
+            return this.collection.get(el.data('movie_id')).get('year');
+          }, this),
+          rating: __bind(function(el) {
+            return this.collection.get(el.data('movie_id')).get('imdb_rating');
+          }, this),
+          added: __bind(function(el) {
+            return Math.random();
+          }, this)
+        },
+        sortBy: currentSort,
+        sortAscending: currentDir,
+        animationEngine: 'css',
+        layoutMode: 'fitRows'
+      });
+      $('.sort_by', this.el).buttonset().change(__bind(function(e) {
+        var newSort;
+        newSort = $(e.target).attr('data-sort-by');
+        if (newSort === currentSort) {
+          currentDir = !currentDir;
+        } else {
+          currentSort = newSort;
+          currentDir = false;
+        }
+        return this.$el.isotope({
+          sortBy: currentSort,
+          sortAscending: currentDir
+        });
+      }, this));
+      timer = false;
+      filter = __bind(function() {
+        return this.$el.isotope({
+          filter: "[down_title*=" + (search.val()) + "]"
+        });
+      }, this);
+      search = $('input[type="search"]', this.el);
+      search.keyup(__bind(function(e) {
+        if (timer) {
+          clearTimeout(timer);
+        }
+        timer = setTimeout(filter, 300);
+        return true;
+      }, this));
+      return $('form', this.el).submit(function(e) {
+        e.preventDefault();
+        return false;
+      });
     };
     return MoviesIndexView;
   })());

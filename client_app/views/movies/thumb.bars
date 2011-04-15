@@ -1,6 +1,6 @@
   <div class="nail">
     <img src="{{attributes.poster_thumb_url}}" alt="Poster"/>
-    <div class="actions" style="display: none;">&nbsp;&nbsp;
+    <div class="actions" style="display: none;">
       <a href="#">Info</a>
       <a href="/download?id={{attributes.id}}" target="_blank">Download</a>
       <a href="/stream?id={{attributes.id}}" target="_blank">Stream</a>
@@ -8,5 +8,5 @@
     </div>
   </div>
   <div class="title">
-    {{attributes.title}}
+    <span class="title">{{attributes.title}}</span><span class="year">{{attributes.year}}</span>
   </div>

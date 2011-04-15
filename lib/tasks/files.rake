@@ -8,13 +8,7 @@ namespace :files do
   desc "Used by transmission to a folder to the system"
   task :add_from_transmission => :environment do
     dir = ENV['TR_TORRENT_DIR']
-    if /#{File.join(Files::Config.files_path, Files::Config.movies_dir)}/ =~ dir
-      if movie = Movie.build_from_path(dir)
-        movie.save!
-      else
-        puts "Couldn't save movie at path #{dir}!"
-      end
-    end
+    Downloadable.poly_create_from_path(dir)
   end
 
   desc "Used by users to scan a folder into the system"
@@ -23,13 +17,7 @@ namespace :files do
     items = Dir.glob(File.join(args.path, "*"))[0..10]
     items.each do |dir|
       puts "Looking at #{dir}."
-      if /#{File.join(Files::Config.files_path, Files::Config.movies_dir)}/ =~ dir
-        if movie = Movie.build_from_path(dir)
-          movie.save
-        else
-          puts "Couldn't save movie at path #{dir}!"
-        end
-      end
+      Downloadable.poly_create_from_path(dir)
     end
   end
 
@@ -43,12 +31,16 @@ namespace :files do
       puts "Looking at #{dir}."
       if /#{File.join(Files::Config.files_path, Files::Config.movies_dir)}/ =~ dir
         if movie = Movie.build_from_path(dir)
-          movie.save
+          if movie.save
+            puts "Saved #{movie.title}."
+          else
+            puts "Errors!"
+            puts movie.errors
+          end
         else
           puts "Couldn't save movie at path #{dir}!"
         end
       end
     end
   end
-  
 end

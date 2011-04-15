@@ -133,6 +133,8 @@ GEM
       json (~> 1.4.6)
       stringex (~> 1.2.0)
       uuidtools (~> 2.1.2)
+    dm-validations (1.1.0)
+      dm-core (~> 1.1.0)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     execjs (0.1.1)
@@ -301,6 +303,7 @@ DEPENDENCIES
   dm-redis-adapter (~> 0.3.0)!
   dm-serializer (~> 1.1.0)
   dm-timestamps (~> 1.1.0)
+  dm-validations (~> 1.1.0)
   evergreen (= 0.4.0)!
   fancy-buttons
   growl

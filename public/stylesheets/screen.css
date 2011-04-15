@@ -745,29 +745,58 @@ body.application .achtung {
   background-image: url("/images/icons/page_white_zip.png");
 }
 
-/* line 224, ../../app/stylesheets/screen.sass */
+/* line 225, ../../app/stylesheets/screen.sass */
+.isotope, .isotope-item {
+  /* change duration value to whatever you like */
+  -webkit-transition-duration: 0.4s;
+  -moz-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+
+/* line 230, ../../app/stylesheets/screen.sass */
+.isotope {
+  -webkit-transition-property: height, width;
+  -moz-transition-property: height, width;
+  transition-property: height, width;
+}
+
+/* line 234, ../../app/stylesheets/screen.sass */
+.isotope-item {
+  -webkit-transition-property: -webkit-transform, opacity;
+  -moz-transition-property: -moz-transform, opacity;
+  transition-property: transform, opacity;
+  z-index: 2;
+}
+
+/* line 240, ../../app/stylesheets/screen.sass */
+.isotope-hidden.isotope-item {
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* line 244, ../../app/stylesheets/screen.sass */
+.thumb_filter {
+  margin-bottom: 1em;
+}
+
+/* line 246, ../../app/stylesheets/screen.sass */
 .thumb_explorer {
   overflow: auto;
 }
-/* line 225, ../../app/stylesheets/screen.sass */
+/* line 247, ../../app/stylesheets/screen.sass */
 .thumb_explorer .thumb {
-  display: inline;
-  float: left;
-  margin-right: 10px;
-  width: 230px;
+  width: 205px;
+  margin-right: 20px;
   height: 350px;
 }
-/* line 138, ../../../../.rvm/gems/ruby-1.9.2-p180/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html .thumb_explorer .thumb {
-  overflow-x: hidden;
-}
-/* line 228, ../../app/stylesheets/screen.sass */
+/* line 251, ../../app/stylesheets/screen.sass */
 .thumb_explorer .thumb .nail {
+  text-align: center;
   display: inline-block;
   position: relative;
   width: auto;
 }
-/* line 232, ../../app/stylesheets/screen.sass */
+/* line 256, ../../app/stylesheets/screen.sass */
 .thumb_explorer .thumb .nail .actions {
   position: absolute;
   left: 0px;
@@ -775,13 +804,18 @@ body.application .achtung {
   padding: 5px 0px;
   background-color: rgba(0, 0, 0, 0.5);
 }
-/* line 238, ../../app/stylesheets/screen.sass */
+/* line 262, ../../app/stylesheets/screen.sass */
 .thumb_explorer .thumb .nail .actions a {
   font-weight: normal;
   font-size: 12px;
   color: white;
 }
-/* line 243, ../../app/stylesheets/screen.sass */
-.thumb_explorer .thumb .title {
+/* line 267, ../../app/stylesheets/screen.sass */
+.thumb_explorer .thumb span.title {
   font-weight: bold;
+}
+/* line 269, ../../app/stylesheets/screen.sass */
+.thumb_explorer .thumb span.year {
+  display: inline-block;
+  float: right;
 }

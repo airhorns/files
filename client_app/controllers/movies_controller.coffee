@@ -10,5 +10,6 @@ class FDB.MoviesController extends Backbone.Controller
       @views['index'] = new (FDB.view('movies/index'))(c)
       c.fetch({add:true})
       FDB.rootView.panel('movies').append @views['index'].el
+      #@views['index'].setUpIsotope()
 
   show: ->

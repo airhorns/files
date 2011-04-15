@@ -1,0 +1,15 @@
+<div class="thumb_filter">
+  <form>
+    Sort By:
+    <span class="sort_by">
+      <input type="radio" id="sort_by_title" data-sort-by="title" name="sort_by" /><label for="sort_by_title">Title</label>
+      <input type="radio" id="sort_by_added" data-sort-by="added" name="sort_by" checked="checked" /><label for="sort_by_added">Date Added</label>
+      <input type="radio" id="sort_by_rating" data-sort-by="rating" name="sort_by" /><label for="sort_by_rating">Rating</label>
+    </span>
+
+    Search:
+    <input type="search" placeholder="Enter a name"/>
+  </form>
+</div>
+<div class="thumb_explorer">
+</div>

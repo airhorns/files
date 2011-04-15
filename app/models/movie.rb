@@ -1,35 +1,46 @@
 class Movie < Downloadable
-  property :title, String, :required => true
+  property :title, String, :required => true, :index => true
   property :year, String, :required => true
-  property :imdb_id, String, :required => true
+  property :imdb_id, String, :required => true, :index => true
   property :imdb_rating, Float
   property :synopsis, Text
   property :tagline, String
   property :runtime, String
-  property :poster, String
-
+  property :poster, String, :auto_validation => false
+  
+  attr_accessor :imdb_movie
   mount_uploader :poster, MoviePosterUploader, :mount_on => :poster
   
   class << self
   
+  # Takes a path and returns either a new or existing Movie representing
+  # the files at that path.
   def identify(path)
-    if movie = MovieSearcher.find_by_download(path.encode("UTF-8"))
-      return self.new_from_imdb(movie)
+    imdb = nil
+    if imdb = MovieSearcher.find_by_download(path.encode("UTF-8"))
+      if existing = Movie.first(:imdb_id => imdb.imdb_id)
+        return existing
+      else
+        imdb = MovieSearcher.find_movie_by_id(imdb.imdb_id) # force get details
+        return self.new_from_imdb(imdb)
+      end
     else
       return false
     end
   end
 
   def new_from_imdb(imdb)
-    Movie.new({
+    m = Movie.new({
       :title => imdb.title,
-      :year => imdb.year,
+      :year => imdb.year || imdb.release_date ? imdb.release_date.year : Time.now.year,
       :imdb_id => imdb.imdb_id,
       :imdb_rating => imdb.rating,
       :synopsis => imdb.plot,
       :tagline => imdb.tagline,
       :remote_poster_url => imdb.poster_url
     })
+    m.imdb_movie = imdb
+    m
   end
 
   def guess_quality(path)

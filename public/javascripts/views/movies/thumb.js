@@ -15,21 +15,21 @@
     __extends(MoviesThumbView, FDB.View);
     MoviesThumbView.prototype.className = "movie thumb";
     MoviesThumbView.prototype.initialize = function(movie) {
-      this.movie = movie;
       $(this.el).attr({
-        id: "movie_thumb_" + this.movie.id
+        id: "movie_thumb_" + this.model.id
       });
       return $(this.el).data({
-        movie_id: this.movie.id
+        movie_id: this.model.id
       });
     };
     MoviesThumbView.prototype.renderable = function() {
-      return this.movie;
+      return this.model;
     };
     MoviesThumbView.prototype.render = function() {
       MoviesThumbView.__super__.render.call(this);
       this.actions = $(".actions", this.el);
-      return $(".nail", this.el).hover(this.hoverIn, this.hoverOut);
+      $(".nail", this.el).hover(this.hoverIn, this.hoverOut);
+      return $(this.el).attr("down_title", this.model.get('title').toLowerCase());
     };
     MoviesThumbView.prototype.hoverIn = function(e) {
       return this.actions.show();

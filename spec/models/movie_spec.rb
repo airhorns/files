@@ -30,6 +30,10 @@ describe Movie do
 
   describe "identification" do
     use_vcr_cassette
+    before :each do
+      Movie.destroy
+    end
+
     it "should search imdb for individual files" do
       n = "Battle.Los.Angeles.2011.R5.AC3-5.1.NEW.AUDIO.XViD.Hive-CM8"
       Movie.should_receive(:new_from_imdb) do |movie|
@@ -48,6 +52,14 @@ describe Movie do
     it "should search imdb for the title for folders without nfos" do
       Movie.should_receive(:new_from_imdb) do |movie|
         movie.imdb_id.should == "tt0945513"
+      end
+      Movie.identify(fixture_path_plus('Source Code 2011 TS XViD DTRG - SAFCuk009')).should_not == false
+    end
+
+    it "should pass a full featured movie object" do
+      Movie.should_receive(:new_from_imdb) do |movie|
+        movie.imdb_id.should == "tt0945513"
+        movie.rating.should be
       end
       Movie.identify(fixture_path_plus('Source Code 2011 TS XViD DTRG - SAFCuk009')).should_not == false
     end
