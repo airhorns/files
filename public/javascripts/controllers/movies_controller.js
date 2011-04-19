@@ -15,20 +15,38 @@
     MoviesController.prototype.views = {};
     MoviesController.prototype.routes = {
       '/movies': 'index',
-      '/movies/id': 'show'
+      '/movies/:id': 'show'
+    };
+    MoviesController.prototype.initialize = function() {
+      return this.collection = new FDB.MovieCollection();
     };
     MoviesController.prototype.index = function() {
-      var c;
       if (this.views['index'] == null) {
-        c = new FDB.MovieCollection();
-        this.views['index'] = new (FDB.view('movies/index'))(c);
-        c.fetch({
+        this.collection.fetch({
           add: true
+        });
+        this.views['index'] = new (FDB.view('movies/index'))({
+          collection: this.collection
         });
         return FDB.rootView.panel('movies').append(this.views['index'].el);
       }
     };
-    MoviesController.prototype.show = function() {};
+    MoviesController.prototype.show = function(id) {
+      var movie;
+      if (!(movie = this.collection.get(id))) {
+        movie = new FDB.Movie({
+          id: id
+        });
+        movie.fetch();
+      }
+      if (!this.views["movie_" + id]) {
+        this.views["movie_" + id] = new (FDB.view('movies/info'))({
+          model: movie
+        });
+        this.views["movie_" + id].render();
+        return FDB.rootView.panel('movies').append(this.views["movie_" + id].el);
+      }
+    };
     return MoviesController;
   })();
 }).call(this);

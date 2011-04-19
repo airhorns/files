@@ -1,12 +1,9 @@
 require 'open-uri'
 class Downloadable
-  include DataMapper::Resource
-
-  property :id, Serial
-  property :type, Discriminator, :index => true
-
-  has n, :releases
-  accepts_nested_attributes_for :releases
+  include Mongoid::Document
+  
+  embeds_many :releases
+  #accepts_nested_attributes_for :releases
 
   class << self
     def download_remote_image(url)

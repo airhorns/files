@@ -9,8 +9,6 @@ class FDB.MoviesThumbView extends FDB.View
     $(@el).data
       movie_id: @model.id
   
-  renderable: -> @model
-
   render: ->
     super()
     @actions = $(".actions", @el)
@@ -22,4 +20,3 @@ class FDB.MoviesThumbView extends FDB.View
 
   hoverOut: (e) =>
     @actions.hide()
-

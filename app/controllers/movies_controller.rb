@@ -6,6 +6,7 @@ class MoviesController < ApplicationController
   end
 
   def show
+    respond_with Movie.get(params[:id])
   end
 
   def update

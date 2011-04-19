@@ -1,12 +1,16 @@
   <div class="nail">
-    <img src="{{attributes.poster_thumb_url}}" alt="Poster"/>
+    {{#poster}}
+    <img src="{{thumb.url}}" alt="Poster"/>
+    {{^}}
+    <img src="/images/fallback/poster_thumb_default.png" alt="Poster"/>
+    {{/poster}}    
     <div class="actions" style="display: none;">
-      <a href="#">Info</a>
-      <a href="/download?id={{attributes.id}}" target="_blank">Download</a>
-      <a href="/stream?id={{attributes.id}}" target="_blank">Stream</a>
-      <a href="/stream?id={{attributes.id}}" target="_blank">Basket</a>
+      <a href="#/movies/{{id}}">Info</a>
+      <a href="/download?id={{id}}" target="_blank">Download</a>
+      <a href="/stream?id={{id}}" target="_blank">Stream</a>
+      <a href="/stream?id={{id}}" target="_blank">Basket</a>
     </div>
   </div>
   <div class="title">
-    <span class="title">{{attributes.title}}</span><span class="year">{{attributes.year}}</span>
+    <span class="title">{{title}}</span><span class="year">{{year}}</span>
   </div>

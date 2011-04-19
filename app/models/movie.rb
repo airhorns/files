@@ -1,14 +1,13 @@
 class Movie < Downloadable
-  property :title, String, :required => true, :index => true
-  property :year, String, :required => true
-  property :imdb_id, String, :required => true, :index => true
-  property :imdb_rating, Float
-  property :synopsis, Text
-  property :tagline, String
-  property :runtime, String
-  property :poster, String, :auto_validation => false
-  
-  attr_accessor :imdb_movie
+  field :title, type: String
+  field :year, type: String
+  field :imdb_id, type: String
+  field :imdb_rating, type: Float
+  field :synopsis, type: String
+  field :tagline, type: String
+  field :runtime, type: String
+  field :poster, type: String 
+
   mount_uploader :poster, MoviePosterUploader, :mount_on => :poster
   
   class << self
@@ -18,7 +17,7 @@ class Movie < Downloadable
   def identify(path)
     imdb = nil
     if imdb = MovieSearcher.find_by_download(path.encode("UTF-8"))
-      if existing = Movie.first(:imdb_id => imdb.imdb_id)
+      if existing = Movie.first(conditions: {imdb_id: imdb.imdb_id})
         return existing
       else
         imdb = MovieSearcher.find_movie_by_id(imdb.imdb_id) # force get details
@@ -39,8 +38,6 @@ class Movie < Downloadable
       :tagline => imdb.tagline,
       :remote_poster_url => imdb.poster_url
     })
-    m.imdb_movie = imdb
-    m
   end
 
   def guess_quality(path)
@@ -76,16 +73,5 @@ class Movie < Downloadable
     title = title.gsub(/-|_|\./, ' ')
     return title.strip
   end 
-  end
-  
-  def as_json(*args)
-    if args.blank? || args.first.blank?
-      args = [{}]
-    end
-    args.first.merge!({:exclude => [:poster, :type], :methods => [:releases]})
-    super(*args).merge({ 
-       :poster_url => self.poster.url, 
-       :poster_thumb_url => self.poster.thumb.url
-      })
   end
 end

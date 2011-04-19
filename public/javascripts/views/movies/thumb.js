@@ -22,9 +22,6 @@
         movie_id: this.model.id
       });
     };
-    MoviesThumbView.prototype.renderable = function() {
-      return this.model;
-    };
     MoviesThumbView.prototype.render = function() {
       MoviesThumbView.__super__.render.call(this);
       this.actions = $(".actions", this.el);

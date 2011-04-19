@@ -31,7 +31,7 @@ describe Movie do
   describe "identification" do
     use_vcr_cassette
     before :each do
-      Movie.destroy
+      Movie.destroy_all
     end
 
     it "should search imdb for individual files" do
@@ -62,6 +62,15 @@ describe Movie do
         movie.rating.should be
       end
       Movie.identify(fixture_path_plus('Source Code 2011 TS XViD DTRG - SAFCuk009')).should_not == false
+    end
+
+    it "should pick up existing movies" do
+      # This looks trivial but it isn't, the second call to identify should return the same movie instance as
+      # is created on the first call.
+      get = lambda { Movie.identify(fixture_path_plus('Source Code 2011 TS XViD DTRG - SAFCuk009')) }
+      movie = get.call
+      movie.save!
+      get.call.should == movie
     end
   end
 end

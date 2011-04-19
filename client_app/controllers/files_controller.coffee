@@ -67,19 +67,15 @@ class FDB.FilesController extends Backbone.Controller
 
   # Adds a newly toggled dir to the tree (well, into the log)
   toggleRow: (item, args, e) =>
-    console.log "Row clicked: #{item.id}"
 
     unless item.obj.fetched
       item.obj.fetch
         success: =>
           this.insertSubordinateRows(item)
-          console.log "After insertion, item.collapsed is #{item._collapsed}"
         error: ->
           FDB.notify("Transport error. Ensure you are connected to the internet, and refresh the page.")
-    else
-      console.log "Already had data, item.collapsed is #{item._collapsed}"
-      #@dataView.refresh()
 
+  # Run when a mark button is hit
   toggleDownloaded: (item, args, e) =>
     @dataView.beginUpdate()
     item.obj.set

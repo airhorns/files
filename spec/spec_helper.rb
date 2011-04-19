@@ -37,16 +37,11 @@ end
 Spork.each_run do
   # This code will be run each time you run your specs.
 
-  # load the models and finalize using their current state
-  Rails::DataMapper.preload_models(Files::Application)
-
   # setup the fixtures and shared specs after the models are loaded
   Dir[Rails.root.join('spec/{fixtures,shared}/**/*.rb')].each { |file| require file }
 
   # setup the repository
-  #DataMapper.auto_migrate!
 end
-
 
 # --- Instructions ---
 # Sort the contents of this file into a Spork.prefork and a Spork.each_run

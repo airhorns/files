@@ -2,8 +2,8 @@ FDB.registerView 'movies/index',
 class FDB.MoviesIndexView extends FDB.View
   tagName: 'div'
   renderable: -> {}
-  initialize: (collection) ->
-    @collection = collection
+  initialize: (options) ->
+    @collection = options.collection
     # Set up elements
     @thumbs = {}
     this.render()
@@ -37,14 +37,14 @@ class FDB.MoviesIndexView extends FDB.View
         title: (el) => @collection.get(el.data('movie_id')).get('title')
         year: (el) => @collection.get(el.data('movie_id')).get('year')
         rating: (el) => @collection.get(el.data('movie_id')).get('imdb_rating')
-        added: (el) => Math.random() #el.data('movie_id') # FIXME
+        added: (el) => el.data('movie_id') # FIXME
       sortBy: currentSort
       sortAscending: currentDir
       animationEngine: 'css'
       layoutMode: 'fitRows'
     
     # Setup sort key
-    $('.sort_by', @el).buttonset().change (e) =>
+    $('.sort_by', @el).buttonset().click (e) =>
       newSort = $(e.target).attr('data-sort-by')
       if newSort == currentSort
         currentDir = !currentDir

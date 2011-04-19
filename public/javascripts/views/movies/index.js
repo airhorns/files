@@ -16,8 +16,8 @@
     MoviesIndexView.prototype.renderable = function() {
       return {};
     };
-    MoviesIndexView.prototype.initialize = function(collection) {
-      this.collection = collection;
+    MoviesIndexView.prototype.initialize = function(options) {
+      this.collection = options.collection;
       this.thumbs = {};
       this.render();
       return this.setUpIsotope();
@@ -59,7 +59,7 @@
             return this.collection.get(el.data('movie_id')).get('imdb_rating');
           }, this),
           added: __bind(function(el) {
-            return Math.random();
+            return el.data('movie_id');
           }, this)
         },
         sortBy: currentSort,
@@ -67,7 +67,7 @@
         animationEngine: 'css',
         layoutMode: 'fitRows'
       });
-      $('.sort_by', this.el).buttonset().change(__bind(function(e) {
+      $('.sort_by', this.el).buttonset().click(__bind(function(e) {
         var newSort;
         newSort = $(e.target).attr('data-sort-by');
         if (newSort === currentSort) {

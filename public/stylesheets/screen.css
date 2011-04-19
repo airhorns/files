@@ -819,3 +819,13 @@ body.application .achtung {
   display: inline-block;
   float: right;
 }
+
+/* line 276, ../../app/stylesheets/screen.sass */
+.movie_info img.poster {
+  display: block;
+  float: left;
+}
+/* line 279, ../../app/stylesheets/screen.sass */
+.movie_info h2, .movie_info h3 {
+  width: auto;
+}

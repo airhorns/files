@@ -1,6 +1,6 @@
 class User
-  include DataMapper::Resource
-  property :id, Serial
+  include Mongoid::Document
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
   devise :database_authenticatable, :registerable,

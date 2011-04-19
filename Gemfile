@@ -2,16 +2,10 @@ source 'http://rubygems.org'
 
 gem 'rails'
 
-# Datamapper
-gem 'dm-core',                      '~> 1.1.0'
-gem 'dm-serializer',                '~> 1.1.0'
-gem 'dm-timestamps',                '~> 1.1.0'
-gem 'dm-validations',               '~> 1.1.0'
-gem 'dm-accepts_nested_attributes', '~> 1.1.0', :git => "git://github.com/snusnu/dm-accepts_nested_attributes.git"
-
-gem 'dm-redis-adapter',             '~> 0.3.0', :path => "~/Code/dm-redis-adapter"
-gem 'dm-devise',                    '~> 1.2.0'
-gem 'redis-objects',                :require => "redis/objects" # LIKE A ZILLION ORMS MAN
+# ORM
+gem 'mongoid'
+gem 'bson_ext'
+gem 'redis-objects',  :require => "redis/objects"
 
 # Authentication
 gem 'devise'
@@ -46,7 +40,7 @@ group :development, :test do
   gem "steak", ">= 1.0.0.rc.1"
   gem "capybara"
 
-  # Guard for watchin' stuff and reacting
+  # Guard for watchin' stuff and reactin'
   gem "guard"
   gem "guard-rspec"
   gem "guard-coffeescript"
@@ -59,6 +53,7 @@ group :development, :test do
 end
 
 group :test do
+  # API caching
   gem "webmock"
   gem "vcr"
 end

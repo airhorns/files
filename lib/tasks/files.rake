@@ -1,8 +1,10 @@
 namespace :files do
-  desc "Build up the Redis file system cache"
-  task :build => :environment do
-    count = FileCache.build!
-    puts "#{count} files touched."
+  namespace :cache do
+    desc "Build up the Redis file system cache"
+    task :build => :environment do
+      count = FileCache.build!
+      puts "#{count} files touched."
+    end
   end
 
   desc "Used by transmission to a folder to the system"
@@ -23,7 +25,7 @@ namespace :files do
 
   desc "Used by users to scan a folder into the system"
   task :test_movies, :needs => :environment do |t|
-    Movie.destroy
+    Movie.destroy_all
     path = "/Users/hornairs/Sites/files/files/movies"
     puts "Searching #{path}"
     items = Dir.glob(File.join(path, "*"))[0..10]

@@ -1,15 +1,14 @@
 class SystemValue
-  include DataMapper::Resource
-  property :id, Serial
-  property :identifier, String, :unique => true, :index => true
-  property :value, String
+  include Mongoid::Document
+  field :identifier, type: String
+  field :value, type: String
 
   def self.[](id)
-    self.first(:identifier => id)
+    self.first(conditions: {identifier: id})
   end
 
   def self.[]=(id, value)
-    if row = self.first(:identifier => id)
+    if row = self[id]
       row.update(:value => value)
     else
       raise "Couldn't find SystemValue with key #{id}"
