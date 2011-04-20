@@ -6,8 +6,6 @@
 // Import all the default blueprint modules so that we can access their mixins.
 @import blueprint
 
-
-
 // Blueprint business
 +blueprint-typography
 +blueprint-utilities
@@ -150,31 +148,6 @@ form
   div.selector
     margin-bottom: $input-bottom-margin - 6px
 
-div.time-picker
-  position: absolute
-  background: #fff
-  z-index: 99
-  -moz-box-shadow: 0 4px 8px rgba(0,0,0,0.5)
-  -webkit-box-shadow: 0 4px 8px rgba(0,0,0,0.5)
-  box-shadow: 0 4px 8px rgba(0,0,0,0.5)    
-  ul
-    list-style-type: none
-    overflow: auto
-    width: 110px
-    height: 191px
-  li
-    cursor: pointer
-    &.selected a
-      font-weight: normal
-      margin: -1px
-      background: #5f83b9
-      color: #FFFFFF
-      text-shadow: 0px 1px 1px #234386
-      border-color: #466086
-      -moz-border-radius: 0
-      -webkit-border-radius: 0
-      border-radius: 0
-
 // -------------------------
 // Specific places in the app
 // -------------------------
@@ -182,22 +155,23 @@ body.application
   .flash
     // Hide flash messages so they can be displayed by the app.
     display: none 
-  .application-tabs
-    background: transparent
-    & > .ui-tabs-panel
-      background: white
 
   // Notifications
   .achtung
     text-shadow: none
     font-style: normal
 
-// Dashboard
+.application-tabs, #tabs
+  background: transparent
+  & > .ui-tabs-panel
+    background: white
 
+// Dashboard
 .grid
   border: 1px solid #B6B6B6
   border-top: 0px
 
+// Files
 #browse_grid
   height: 600px
   

@@ -6,12 +6,17 @@ class DashboardController < ApplicationController
   end
   
   def stream
-    @downloadable = Downloadable.get!(params[:id])
+    @downloadable = Downloadable.find(params[:id])
+    if params[:release]
+      @release = @downloadable.releases[params[:release]]
+    else
+      @release = @downloadable.releases.first
+    end
     respond_with @downloadable
   end
 
   def download
-    @downloadable = Downloadable.get!(params[:id])
+    @downloadable = Downloadable.find(params[:id])
     respond_with @downloadable
   end
 

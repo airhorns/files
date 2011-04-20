@@ -52,4 +52,8 @@ class Downloadable
       "Unknown"
     end
   end
+
+  def name
+    self
+  end
 end

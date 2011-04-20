@@ -6,9 +6,7 @@
     {{/poster}}    
     <div class="actions" style="display: none;">
       <a href="#/movies/{{_id}}">Info</a>
-      <a href="/download?id={{_id}}" target="_blank">Download</a>
-      <a href="/stream?id={{_id}}" target="_blank">Stream</a>
-      <a href="/stream?id={{_id}}" target="_blank">Basket</a>
+      {{> movies/_shared_links}}
     </div>
   </div>
   <div class="title">

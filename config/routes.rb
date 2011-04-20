@@ -13,8 +13,8 @@ Files::Application.routes.draw do
   end
 
   post "/secret_message" => "dashboard#secret_message"
-  get "/stream" => "dashboard#stream"
-  get "/download" => "dashboard#download"
+  get "/stream" => "dashboard#stream", :as => "stream"
+  get "/download" => "dashboard#download", :as => "download"
   root :to => "dashboard#index"
 
 

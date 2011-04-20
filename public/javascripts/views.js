@@ -85,4 +85,11 @@
     }
     return $.achtung(options);
   };
+  Handlebars.JavaScriptCompiler.prototype.nameLookup = function(parent, name, type) {
+    if (Handlebars.JavaScriptCompiler.RESERVED_WORDS[name] || name.indexOf('/') !== -1) {
+      return parent + "['" + name + "']";
+    } else {
+      return parent + "." + name;
+    }
+  };
 }).call(this);

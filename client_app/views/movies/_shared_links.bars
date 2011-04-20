@@ -1,0 +1,3 @@
+<a href="/download?id={{_id}}" target="_blank">Download</a>&nbsp;
+<a href="/stream?id={{_id}}" target="_blank">Stream</a>&nbsp;
+<a href="#">Basket</a>

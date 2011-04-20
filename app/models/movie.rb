@@ -75,4 +75,8 @@ class Movie < Downloadable
     return title.strip
   end 
   end
+
+  def name
+    self.title
+  end
 end

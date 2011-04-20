@@ -1,0 +1,19 @@
+%h1
+  Download
+  %b= @downloadable.name
+#tabs
+  %ul
+    - @downloadable.releases.each_with_index do |release, i|
+      %li
+        %a{:href => "#release#{i}"}= release.quality
+
+  - @downloadable.releases.each_with_index do |release, i|
+    %div{:id => "release#{i}"}
+      %ul.files
+        - release.files.each do |file|
+          %li
+            %a{:href => asset_link_to(file), :target => "_blank"} 
+              = web_path_of(file)
+
+:javascript
+  $('#tabs').tabs()

@@ -24,7 +24,7 @@ FDB.view = (name) ->
 compiledCounter = -1
 FDB.renderTemplate = (templateString) ->
   i = compiledCounter++ # close over index
-  return (data, fallback)->
+  return (data, fallback) ->
     FDB._compiledHandlebars[i] ?= Handlebars.compile(templateString) # lazily compile the template at the index
     return FDB._compiledHandlebars[i](data, fallback)
 
@@ -74,3 +74,11 @@ FDB.notify = (textOrOptions) ->
   else
     options = _.extend {}, options, textOrOptions
   $.achtung options
+
+
+# Hook into the Handlebars compiler public API to allow for slashes in names
+Handlebars.JavaScriptCompiler.prototype.nameLookup = (parent, name, type) ->
+  if(Handlebars.JavaScriptCompiler.RESERVED_WORDS[name] || name.indexOf('/') != -1)
+    return parent + "['" + name + "']"
+  else
+    return parent + "." + name

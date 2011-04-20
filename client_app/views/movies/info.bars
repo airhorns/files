@@ -8,7 +8,10 @@
     <h2>{{title}} ({{year}})</h2>
     <h3>{{tagline}}</h3>
     <p>{{synopsis}}</p>
-    <span>IMDb Rating: {{imdb_rating}}. Runtime: {{runtime}}</span>
+    <span>IMDb Rating: {{imdb_rating}}. Runtime: {{runtime}}</span><br/>
+    <span class="actions">
+      {{> movies/_shared_links}}
+    </div>
   {{else}}
     Loading...
   {{/if}}

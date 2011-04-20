@@ -1,12 +1,26 @@
-- @downloadable.releases.each do |release|
-  %h1= release.quality
-  - release.files.each do |file|
-    %object{:classid => "clsid:67DABFBF-D0AB-41fa-9C46-CC0F21721616", :codebase => "http://go.divx.com/plugin/DivXBrowserPlugin.cab", :height => "480", :width => "640"}
-      %param{:name => "custommode", :value => "none"}/
-      %param{:name => "autoPlay", :value => "false"}/
-      %param{:name => "src", :value => asset_link_to(file)}/
-      %embed{:autoPlay => "false", :custommode => "none", :height => "480", :pluginspage => "http://go.divx.com/plugin/download/", :src => asset_link_to(file), :type => "video/divx", :width => "640"}
+%h1
+  Stream
+  %b= @downloadable.name
+
+- @release.files.each do |file|
+  %h3= web_path_of(file)
+  %object{:classid => "clsid:67DABFBF-D0AB-41fa-9C46-CC0F21721616", :codebase => "http://go.divx.com/plugin/DivXBrowserPlugin.cab", :height => "420", :width => "560"}
+    %param{:name => "custommode", :value => "none"}/
+    %param{:name => "autoPlay", :value => "false"}/
+    %param{:name => "src", :value => asset_link_to(file)}/
+    %embed{:autoPlay => "false", :custommode => "none", :height => "420", :pluginspage => "http://go.divx.com/plugin/download/", :src => asset_link_to(file), :type => "video/divx", :width => "560"}
+
+- if @downloadable.releases.count > 1
+  %p
+    This file is available in multiple qualities. You can stream the other ones too, but streaming HD doesn't work so well, beware:
+    %ul
+      - @downloadable.releases.each_with_index do |release, i|
+        %li
+          %a{:href => stream_path(release, {:release => i})}= release.quality
 %p
-  No video
+  No video?
   %a{:href => "http://www.divx.com/software/divx-plus/web-player", :target => "_blank"} Download the DivX Plus Web Player.
-%p Want to keep the file you are streaming? Right click on the player and click "Save video as...".
+%p 
+  Want to keep the file you are streaming? Right click on the player and click "Save video as...", or download it 
+  = succeed "." do
+    %a{:href => download_path(@downloadable)} here
