@@ -13,17 +13,34 @@
     }
     __extends(MoviesInfoView, FDB.View);
     MoviesInfoView.prototype.initialize = function() {
-      if (!this.model.get('title')) {
-        return this.model.bind('change', this.render);
-      }
+      return this.model.bind('change', __bind(function() {
+        return this.render();
+      }, this));
     };
     MoviesInfoView.prototype.render = function() {
       MoviesInfoView.__super__.render.apply(this, arguments);
-      return $('.dialog', this.el).dialog({
+      if (this.dialog != null) {
+        this.destroyDialog();
+      }
+      this.dialog = $('.dialog', this.el).dialog({
+        autoOpen: false,
         height: 600,
         width: 900,
-        modal: true
+        modal: true,
+        beforeClose: function() {
+          return window.location = "#/movies";
+        }
       });
+      return this.show();
+    };
+    MoviesInfoView.prototype.show = function() {
+      return this.dialog.dialog("open");
+    };
+    MoviesInfoView.prototype.hide = function() {
+      return this.dialog.dialog("close");
+    };
+    MoviesInfoView.prototype.destroyDialog = function() {
+      return this.dialog.dialog("destroy");
     };
     return MoviesInfoView;
   })());

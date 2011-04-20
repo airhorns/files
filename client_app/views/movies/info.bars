@@ -1,11 +1,15 @@
 <div class="dialog movie_info" title="Movie Info">
-  {{#poster}}
-  <img height="500px" class="poster" src="{{medium.url}}" alt="Poster"/>
-  {{^}}
-  <img src="/images/fallback/poster_thumb_default.png" alt="Poster"/>
-  {{/poster}}
-  <h2>{{title}} ({{year}})</h2>
-  <h3>{{tagline}}</h3>
-  <p>{{synopsis}}</p>
-  <span>IMDb Rating: {{imdb_rating}}</span><span>Runtime: {{runtime}}</span>
+  {{#if title}}
+    {{#poster}}
+    <img height="500px" class="poster" src="{{medium.url}}" alt="Poster"/>
+    {{^}}
+    <img src="/images/fallback/poster_thumb_default.png" alt="Poster"/>
+    {{/poster}}
+    <h2>{{title}} ({{year}})</h2>
+    <h3>{{tagline}}</h3>
+    <p>{{synopsis}}</p>
+    <span>IMDb Rating: {{imdb_rating}}. Runtime: {{runtime}}</span>
+  {{else}}
+    Loading...
+  {{/if}}
 </div>

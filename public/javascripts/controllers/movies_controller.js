@@ -44,8 +44,9 @@
           model: movie
         });
         this.views["movie_" + id].render();
-        return FDB.rootView.panel('movies').append(this.views["movie_" + id].el);
+        FDB.rootView.panel('movies').append(this.views["movie_" + id].el);
       }
+      return this.views["movie_" + id].show();
     };
     return MoviesController;
   })();

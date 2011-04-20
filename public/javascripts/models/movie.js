@@ -13,7 +13,7 @@
     }
     __extends(Movie, Backbone.Model);
     Movie.prototype.initialize = function() {
-      this.id = this.get('_id');
+      this.id || (this.id = this.get('_id'));
       return this.url = "/api/1/movies/" + this.id;
     };
     return Movie;

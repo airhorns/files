@@ -25,3 +25,6 @@ class FDB.MoviesController extends Backbone.Controller
       @views["movie_#{id}"] = new (FDB.view('movies/info'))({model: movie})
       @views["movie_#{id}"].render()
       FDB.rootView.panel('movies').append @views["movie_#{id}"].el
+
+    # Show view
+    @views["movie_#{id}"].show()

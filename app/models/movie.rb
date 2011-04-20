@@ -36,7 +36,8 @@ class Movie < Downloadable
       :imdb_rating => imdb.rating,
       :synopsis => imdb.plot,
       :tagline => imdb.tagline,
-      :remote_poster_url => imdb.poster_url
+      :remote_poster_url => imdb.poster_url,
+      :runtime => imdb.runtime
     })
   end
 
