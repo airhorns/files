@@ -1,9 +1,6 @@
 class FDB.FilesController extends Backbone.Controller
   initialize: ->
     @root = new FDB.Directory({id:"/"})
-    @root.fetch
-      success: -> @fetched = true
-
 
   views: {}
   routes:
@@ -12,6 +9,10 @@ class FDB.FilesController extends Backbone.Controller
     '/files/*path.:ext': 'browse'
 
   browse: ->
+    unless @root.fetched
+      @root.fetch
+        success: -> @fetched = true
+
     unless @view?
       # Init view and attach to panel.
       @view = new (FDB.view('files/browse'))
@@ -100,8 +101,9 @@ class FDB.FilesController extends Backbone.Controller
     
     @dataView.endUpdate()
 
+  # Called when a row's children weren't fetched before, and they have just been fetched and need to 
+  # be inserted into the dataview.
   insertSubordinateRows: (item) ->
-    console.log "Inserting fetched rows"
     indexOfOpened = @dataView.getIdxById(item.id)
     # New items for insertion
     items = item.obj.subDataView(item.id)
@@ -109,10 +111,10 @@ class FDB.FilesController extends Backbone.Controller
     for i, newItem of items.reverse()
       newItem._collapsed = true if newItem.type == "dir"
       this.observeFileSystemObject(newItem.obj)
-      console.log(newItem)
       @dataView.insertItem(indexOfOpened+1, newItem) # Add all new items (in reverse order)
     @dataView.endUpdate()
 
+  # Called to start watching an object and propagate changes into the dataview
   observeFileSystemObject: (model) ->
     model.bind 'change', =>
       @dataView.updateItem(model.id, _.extend({}, @view.dataView.getItemById(model.id), model.toDataRow()))

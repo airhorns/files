@@ -1,0 +1,12 @@
+<h3>{{_type}}: {{name}}</h3>
+{{#unconfirmed_releases}}
+  <h4>Release in {{quality}}</h4>
+  <div class="files">
+    Files:
+    <ul>
+    {{#files}}
+      <li>{{this}}</li>
+    {{/files}}
+    </ul>
+  </div>
+{{/unconfirmed_releases}}

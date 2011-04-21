@@ -15,13 +15,8 @@
     }
     __extends(FilesController, Backbone.Controller);
     FilesController.prototype.initialize = function() {
-      this.root = new FDB.Directory({
+      return this.root = new FDB.Directory({
         id: "/"
-      });
-      return this.root.fetch({
-        success: function() {
-          return this.fetched = true;
-        }
       });
     };
     FilesController.prototype.views = {};
@@ -31,6 +26,13 @@
       '/files/*path.:ext': 'browse'
     };
     FilesController.prototype.browse = function() {
+      if (!this.root.fetched) {
+        this.root.fetch({
+          success: function() {
+            return this.fetched = true;
+          }
+        });
+      }
       if (this.view == null) {
         this.view = new (FDB.view('files/browse'));
         FDB.rootView.panel('files').append(this.view.el);
@@ -84,19 +86,15 @@
       return this.dataView.endUpdate();
     };
     FilesController.prototype.toggleRow = function(item, args, e) {
-      console.log("Row clicked: " + item.id);
       if (!item.obj.fetched) {
         return item.obj.fetch({
           success: __bind(function() {
-            this.insertSubordinateRows(item);
-            return console.log("After insertion, item.collapsed is " + item._collapsed);
+            return this.insertSubordinateRows(item);
           }, this),
           error: function() {
             return FDB.notify("Transport error. Ensure you are connected to the internet, and refresh the page.");
           }
         });
-      } else {
-        return console.log("Already had data, item.collapsed is " + item._collapsed);
       }
     };
     FilesController.prototype.toggleDownloaded = function(item, args, e) {
@@ -132,7 +130,6 @@
     };
     FilesController.prototype.insertSubordinateRows = function(item) {
       var i, indexOfOpened, items, newItem, _ref;
-      console.log("Inserting fetched rows");
       indexOfOpened = this.dataView.getIdxById(item.id);
       items = item.obj.subDataView(item.id);
       this.dataView.beginUpdate();
@@ -143,7 +140,6 @@
           newItem._collapsed = true;
         }
         this.observeFileSystemObject(newItem.obj);
-        console.log(newItem);
         this.dataView.insertItem(indexOfOpened + 1, newItem);
       }
       return this.dataView.endUpdate();

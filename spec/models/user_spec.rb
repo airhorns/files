@@ -13,7 +13,7 @@ end
 describe User do
   describe "downloads tracking" do
     before(:all) do
-      FileCache.build!
+      FileCache.rebuild!
     end
 
     it "should report a file correctly" do

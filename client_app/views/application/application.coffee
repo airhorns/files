@@ -13,6 +13,18 @@ FDB.registerView "application/application", class FDB.ApplicationView extends FD
     name: "Movies"
     anchor: "movies"
     route: "/movies"
+  },{
+    #name: "Music"
+    #anchor: "music"
+    #route: "/music"
+  #},{
+    #name: "TV"
+    #anchor: "tv"
+    #route: "/tv"
+  #},{
+    name: "Queue"
+    anchor: "queue"
+    route: "/queue"
   }]
 
   renderable: ->

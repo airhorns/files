@@ -10,6 +10,12 @@ Files::Application.routes.draw do
     put "/files(/*path)" => "files#update"
 
     resources :movies, :only => [:index, :show, :update]
+    resources :downloadables, :only => [:index, :show, :update] do
+      get :unconfirmed, :on => :collection
+      resources :releases, :only => [:index, :show, :update] do
+        get :unconfirmed, :on => :collection
+      end
+    end
   end
 
   post "/secret_message" => "dashboard#secret_message"

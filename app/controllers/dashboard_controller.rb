@@ -8,7 +8,7 @@ class DashboardController < ApplicationController
   def stream
     @downloadable = Downloadable.find(params[:id])
     if params[:release]
-      @release = @downloadable.releases[params[:release]]
+      @release = @downloadable.releases.find(params[:release])
     else
       @release = @downloadable.releases.first
     end

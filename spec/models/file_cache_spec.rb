@@ -12,7 +12,7 @@ end
 
 describe FileCache do
   before(:all) do
-    FileCache.build!
+    FileCache.rebuild!
   end
 
   it "should report the set of all files" do
@@ -25,9 +25,5 @@ describe FileCache do
 
   it "should report the set of files recursively underneath a folder" do
     FileCache.all_underneath(mp 'b/').sort.should == massage_glob(['b/3.rb', 'b/4.rb', 'b/e', 'b/e/5.rb', 'b/e/6.rb'].map {|x| mp x})
-  end
-
-  it "should report directories" do
-    
   end
 end

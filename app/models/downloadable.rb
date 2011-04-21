@@ -1,9 +1,11 @@
 require 'open-uri'
 class Downloadable
   include Mongoid::Document
-  
+
   embeds_many :releases
-  #accepts_nested_attributes_for :releases
+  
+  scope :unconfirmed, where("releases.confirmed" => false)
+  scope :confirmed, where("releases.confirmed" => true)
 
   class << self
     def download_remote_image(url)
@@ -42,9 +44,9 @@ class Downloadable
         end
 
         instance.releases << release
-        return instance
+        instance
       else
-        return false
+        false
       end
     end
 
@@ -55,5 +57,11 @@ class Downloadable
 
   def name
     self
+  end
+
+  def as_json(options = nil)
+    options ||= {}    
+    options[:methods] = Array(options[:methods]).push(:name)
+    super(options)
   end
 end

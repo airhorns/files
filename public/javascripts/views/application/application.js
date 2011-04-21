@@ -28,6 +28,10 @@
         name: "Movies",
         anchor: "movies",
         route: "/movies"
+      }, {
+        name: "Queue",
+        anchor: "queue",
+        route: "/queue"
       }
     ];
     ApplicationView.prototype.renderable = function() {

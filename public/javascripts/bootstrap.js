@@ -23,6 +23,7 @@
       new FDB.DashboardController();
       new FDB.FilesController();
       new FDB.MoviesController();
+      new FDB.QueueController();
       new FDB.SecretEditController();
       return Backbone.history.start();
     }

@@ -10,25 +10,29 @@ module FileCache
       Redis::Set.new("files_#{dir_path(path)}")
     end
 
-    def build!
-      q = [Files::Config.files_path]
+    def rebuild!
       self.clear!
-      all = self.all
-      count = 0
-      until q.empty?
-        path = q.pop
-        path_set = Redis::Set.new("files_#{dir_path(path)}")
-        path_set.clear
+      # Do the first step so the root path isnt added to the set
+      Dir.glob(File.join(Files::Config.files_path, "*")).inject(0) do |acc, f|
+        acc += self.add_path!(f)
+        acc
+      end
+    end
+    
+    def add_path!(path, count = 0)
+      if File.directory?(path)
+        path = dir_path(path)
+        # Remove the old set from the all set
+        dir_set = "files_#{path}"
+        $redis.sdiffstore("all_files", "all_files", dir_set)
+        $redis.del(dir_set)
         Dir.glob(File.join(path, "*")).each do |f|
-          if File.directory?(f)
-            f = dir_path(f) # All directory entries in the system have a trailing slash for recognition as a dir
-            q << f
-          end
-          count += 1
-          all.add f
-          path_set.add f
+          count += self.add_path!(f)
         end
       end
+      count += 1
+      $redis.sadd("files_#{dir_path(File.dirname(path))}", path)
+      $redis.sadd("all_files", path)
       return count
     end
 

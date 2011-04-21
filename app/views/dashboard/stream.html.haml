@@ -10,13 +10,13 @@
     %param{:name => "src", :value => asset_link_to(file)}/
     %embed{:autoPlay => "false", :custommode => "none", :height => "420", :pluginspage => "http://go.divx.com/plugin/download/", :src => asset_link_to(file), :type => "video/divx", :width => "560"}
 
-- if @downloadable.releases.count > 1
+- if @downloadable.releases.count > 0
   %p
     This file is available in multiple qualities. You can stream the other ones too, but streaming HD doesn't work so well, beware:
     %ul
-      - @downloadable.releases.each_with_index do |release, i|
+      - @downloadable.releases.each do |release|
         %li
-          %a{:href => stream_path(release, {:release => i})}= release.quality
+          %a{:href => stream_path(:id => @downloadable._id, :release => release._id)}= release.quality
 %p
   No video?
   %a{:href => "http://www.divx.com/software/divx-plus/web-player", :target => "_blank"} Download the DivX Plus Web Player.

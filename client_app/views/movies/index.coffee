@@ -3,7 +3,6 @@ class FDB.MoviesIndexView extends FDB.View
   tagName: 'div'
   renderable: -> {}
   initialize: (options) ->
-    @collection = options.collection
     # Set up elements
     @thumbs = {}
     this.render()

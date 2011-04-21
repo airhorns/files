@@ -4,7 +4,7 @@ namespace :db do
     task :reset => :environment do
       $redis.flushdb
       Rake::Task["db:seed"].invoke
-      count = FileCache.build!
+      count = FileCache.rebuild!
       puts "#{count} files touched in FileCache."
     end
   end

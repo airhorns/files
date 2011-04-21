@@ -25,6 +25,7 @@ jQuery ($) ->
     new FDB.DashboardController()
     new FDB.FilesController()
     new FDB.MoviesController()
+    new FDB.QueueController()
     new FDB.SecretEditController()
     
     # Dispatch primary route and get to work!

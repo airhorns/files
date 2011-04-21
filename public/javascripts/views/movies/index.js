@@ -17,7 +17,6 @@
       return {};
     };
     MoviesIndexView.prototype.initialize = function(options) {
-      this.collection = options.collection;
       this.thumbs = {};
       this.render();
       return this.setUpIsotope();
