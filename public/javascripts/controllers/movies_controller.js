@@ -6,12 +6,12 @@
     child.prototype = new ctor;
     child.__super__ = parent.prototype;
     return child;
-  };
+  }, __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   FDB.MoviesController = (function() {
+    __extends(MoviesController, Backbone.Controller);
     function MoviesController() {
       MoviesController.__super__.constructor.apply(this, arguments);
     }
-    __extends(MoviesController, Backbone.Controller);
     MoviesController.prototype.views = {};
     MoviesController.prototype.routes = {
       '/movies': 'index',
@@ -21,14 +21,20 @@
       return this.collection = new FDB.MovieCollection();
     };
     MoviesController.prototype.index = function() {
+      var spinner;
       if (this.views['index'] == null) {
-        this.collection.fetch({
-          add: true
-        });
         this.views['index'] = new (FDB.view('movies/index'))({
           collection: this.collection
         });
-        return FDB.rootView.panel('movies').append(this.views['index'].el);
+        FDB.rootView.panel('movies').append(this.views['index'].el);
+        spinner = $("<img src=\"/images/spinner.gif\">");
+        $(this.views['index'].el).append(spinner);
+        return this.collection.fetch({
+          add: true,
+          success: __bind(function() {
+            return spinner.remove();
+          }, this)
+        });
       }
     };
     MoviesController.prototype.show = function(id) {

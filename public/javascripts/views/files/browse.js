@@ -31,10 +31,10 @@
     }
   };
   FDB.registerView('files/browse', FDB.FilesBrowseView = (function() {
+    __extends(FilesBrowseView, FDB.View);
     function FilesBrowseView() {
       FilesBrowseView.__super__.constructor.apply(this, arguments);
     }
-    __extends(FilesBrowseView, FDB.View);
     FilesBrowseView.prototype.render = function() {
       var columns, downloadLink, markAsDownloadedLink, nameFormatter, options;
       FilesBrowseView.__super__.render.apply(this, arguments);
@@ -57,6 +57,9 @@
           s += " <span class='icon file " + dataContext.ext + " " + (suggestedType(dataContext.ext)) + "'></span>&nbsp;";
         }
         s += "<span class='" + (dataContext.downloaded ? "" : "un") + "downloaded'>" + value + "</span>";
+        if (dataContext.toggling) {
+          s += " <img src=\"/images/spinner.gif\">";
+        }
         return s;
       }, this);
       downloadLink = function(row, cell, value, columnDef, file) {

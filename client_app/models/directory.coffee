@@ -70,7 +70,6 @@ class FDB.Directory extends Backbone.Model
       name: this.name()
       obj: this
       indent: this.get("id").split("/").length - 3
-        
   
   name: () ->
     segments = this.get("id").split("/")

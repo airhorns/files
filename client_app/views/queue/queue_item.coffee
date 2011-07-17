@@ -6,3 +6,7 @@ class FDB.QueueItemView extends FDB.View
     _.extend @model.toJSON(),
       unconfirmed_releases: @model.unconfirmed_releases.toJSON()
 
+  render: ->
+    super()
+    $('button', @el).button()
+

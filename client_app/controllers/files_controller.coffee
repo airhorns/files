@@ -68,10 +68,17 @@ class FDB.FilesController extends Backbone.Controller
 
   # Adds a newly toggled dir to the tree (well, into the log)
   toggleRow: (item, args, e) =>
-
+    return if item.toggling # Ensure that the fetch call isn't made twice
     unless item.obj.fetched
+      item.toggling = true # Mark the item as toggling so the view can render the spinner
+      @dataView.updateItem(item.id, item)
       item.obj.fetch
         success: =>
+          # Unmark the item for toggling, but make sure that we get an updated item first
+          # as other code might have changed properties (somehow, (empty) gets added before this gets called)
+          item = @dataView.getItemById(item.id)
+          item.toggling = false
+          @dataView.updateItem(item.id, item)
           this.insertSubordinateRows(item)
         error: ->
           FDB.notify("Transport error. Ensure you are connected to the internet, and refresh the page.")

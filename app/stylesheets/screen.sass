@@ -23,6 +23,12 @@ h1,h2,h3,h4,h5,h6
 .alert 
   +error
 
+.subtle
+  color: #CCC
+
+.right
+  float: right
+
 // ------------------------------
 // Container, header, and content
 // ------------------------------
@@ -101,53 +107,60 @@ header
 // Forms and Form Elements
 // ---------------------------
 $input-bottom-margin: 10px
-form
-  //+blueprint-form
-  //&.inline
-    //+blueprint-inline-form
-  .field
-    margin-right: 10px
-    min-height: 58px
-    clear: both
-    &.inline
-      float: left
-      clear: none
-    label
-      width: 150px
-      padding-top: 5px
-      display: block
-      //float: left
-    input
-      margin-bottom: $input-bottom-margin  
-      float: left
-      display: block
-      &[type="text"], &[type="password"], &[type="date"], &[type="time"]
-        margin: 4px 0px
-        height: 20px
-        border: 1px #CCC solid
-      &[type="checkbox"]
-        margin-top: 8px
-      &[type="date"]
-        width: 110px
-      &[type="time"]
-        width: 90px
-    &.field_with_errors 
-      input
-        border: 2px solid #FBC2C4
-        margin-bottom: 0px
-
-      .error
+body
+  form
+    //+blueprint-form
+    //&.inline
+      //+blueprint-inline-form
+    .field
+      margin-right: 10px
+      min-height: 58px
+      clear: both
+      &.inline
+        float: left
+        clear: none
+      label
+        width: 150px
+        padding-top: 5px
         display: block
-        border-top: 0px
-        margin-left: 90px
-        width: 293px
-  .actions
-    clear: both
-    width: 100%
+        //float: left
+      input
+        margin-bottom: $input-bottom-margin  
+        float: left
+        display: block
+        &[type="text"], &[type="password"], &[type="date"], &[type="time"]
+          margin: 4px 0px
+          height: 20px
+          border: 1px #CCC solid
+        &[type="checkbox"]
+          margin-top: 8px
+        &[type="date"]
+          width: 110px
+        &[type="time"]
+          width: 90px
+      &.field_with_errors 
+        input
+          border: 2px solid #FBC2C4
+          margin-bottom: 0px
 
-  div.selector
-    margin-bottom: $input-bottom-margin - 6px
+        .error
+          display: block
+          border-top: 0px
+          margin-left: 90px
+          width: 293px
+    .actions
+      clear: both
+      width: 100%
 
+    div.selector
+      margin-bottom: $input-bottom-margin - 6px
+    
+    input[type="submit"]:not([type="checkbox"]):not([type="radio"]):not([type="file"])
+      padding: 10px 20px 10px 20px !important
+      background-color: #DDD !important
+      border: 1px solid #AAA !important
+      +border-radius(3px)
+  
 // -------------------------
 // Specific places in the app
 // -------------------------
@@ -218,6 +231,7 @@ body
 
 .thumb_filter
   margin-bottom: 1em
+
 .thumb_explorer
   .thumb
     width: 205px
@@ -256,3 +270,12 @@ body
   h2,h3
     clear: none
     width: auto
+
+// Queue page
+.queue_item
+  .release
+    width: auto
+    float: left
+
+    button
+      float: right

@@ -9,9 +9,13 @@ class FDB.MoviesController extends Backbone.Controller
 
   index: ->
     unless @views['index']?
-      @collection.fetch({add:true})
       @views['index'] = new (FDB.view('movies/index'))({collection: @collection})
       FDB.rootView.panel('movies').append @views['index'].el
+      spinner = $ "<img src=\"/images/spinner.gif\">"
+      $(@views['index'].el).append spinner
+      @collection.fetch 
+        add: true
+        success: => spinner.remove()
 
   show: (id) ->
     # Find (possibly fetch) movie

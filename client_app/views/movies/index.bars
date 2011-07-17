@@ -9,6 +9,7 @@
 
     Search:
     <input type="search" placeholder="Enter a name"/>
+    <span class="small subtle right">Hover over a movie poster to download or stream it</span>
   </form>
 </div>
 <div class="thumb_explorer">

@@ -18,10 +18,10 @@
     };
   };
   FDB.Directory = (function() {
+    __extends(Directory, Backbone.Model);
     function Directory() {
       Directory.__super__.constructor.apply(this, arguments);
     }
-    __extends(Directory, Backbone.Model);
     Directory.prototype.initialize = function() {
       return this.url = "/api/1/files" + this.id;
     };
@@ -118,10 +118,10 @@
     return Directory;
   })();
   FDB.DirectoryCollection = (function() {
+    __extends(DirectoryCollection, Backbone.Collection);
     function DirectoryCollection() {
       DirectoryCollection.__super__.constructor.apply(this, arguments);
     }
-    __extends(DirectoryCollection, Backbone.Collection);
     DirectoryCollection.prototype.model = FDB.Directory;
     return DirectoryCollection;
   })();

@@ -26,10 +26,14 @@ class FDB.FilesBrowseView extends FDB.View
           s += " <span class='icon toggle dir expand'></span>&nbsp;"
         else
           s += " <span class='icon toggle dir collapse'></span>&nbsp;"
+          
       else
         s += " <span class='icon file #{dataContext.ext} #{suggestedType(dataContext.ext)}'></span>&nbsp;"
 
       s += "<span class='#{if dataContext.downloaded then "" else "un"}downloaded'>#{value}</span>"
+      if dataContext.toggling
+        s += " <img src=\"/images/spinner.gif\">"
+      
       s
 
     downloadLink = (row, cell, value, columnDef, file) ->

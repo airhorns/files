@@ -1,12 +1,21 @@
-<h3>{{_type}}: {{name}}</h3>
-{{#unconfirmed_releases}}
-  <h4>Release in {{quality}}</h4>
-  <div class="files">
-    Files:
-    <ul>
-    {{#files}}
-      <li>{{this}}</li>
-    {{/files}}
-    </ul>
-  </div>
-{{/unconfirmed_releases}}
+<div class="queue_item">
+  <h3>{{_type}}: {{name}}</h3>
+  {{#unconfirmed_releases}}
+    <div class="release">
+      <h4>Release in {{quality}}</h4> 
+      <button class="confirm">Confirm</button>
+      <button class="edit">Edit</button>
+      <div class="files">
+        Files:
+        <ul>
+        {{#active_files}}
+          <li>{{this}}</li>
+        {{/active_files}}
+        </ul>
+        <a class="small" href="#">show all</a>
+      </div>
+      
+    </div>
+  {{/unconfirmed_releases}}
+  <hr class="clear"/>
+</div>

@@ -24,7 +24,7 @@ group :development, :test do
   gem "haml-rails"
   gem "jquery-rails" # Template generator for jQuery
   gem "compass"
-  gem "fancy-buttons"
+  #gem "fancy-buttons"
 
   # Javascript testing
   gem 'evergreen', '0.4.0', :require => 'evergreen/rails', :path => "~/Code/evergreen"

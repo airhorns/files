@@ -8,12 +8,13 @@
     return child;
   };
   FDB.FilesController = (function() {
-    function FilesController() {
-      this.toggleDownloaded = __bind(this.toggleDownloaded, this);;
-      this.toggleRow = __bind(this.toggleRow, this);;
-      this.generateData = __bind(this.generateData, this);;      FilesController.__super__.constructor.apply(this, arguments);
-    }
     __extends(FilesController, Backbone.Controller);
+    function FilesController() {
+      this.toggleDownloaded = __bind(this.toggleDownloaded, this);
+      this.toggleRow = __bind(this.toggleRow, this);
+      this.generateData = __bind(this.generateData, this);
+      FilesController.__super__.constructor.apply(this, arguments);
+    }
     FilesController.prototype.initialize = function() {
       return this.root = new FDB.Directory({
         id: "/"
@@ -86,9 +87,17 @@
       return this.dataView.endUpdate();
     };
     FilesController.prototype.toggleRow = function(item, args, e) {
+      if (item.toggling) {
+        return;
+      }
       if (!item.obj.fetched) {
+        item.toggling = true;
+        this.dataView.updateItem(item.id, item);
         return item.obj.fetch({
           success: __bind(function() {
+            item = this.dataView.getItemById(item.id);
+            item.toggling = false;
+            this.dataView.updateItem(item.id, item);
             return this.insertSubordinateRows(item);
           }, this),
           error: function() {

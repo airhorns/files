@@ -11,4 +11,4 @@ environment = Compass::AppIntegration::Rails.env
 # relative_assets = true
 
 # Plugins!
-require 'fancy-buttons'
+#require 'fancy-buttons'
